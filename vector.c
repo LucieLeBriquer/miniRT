@@ -1,12 +1,14 @@
 #include "mlx.h"
 #include <math.h>
-#define W 600
-#define H 400
+#define W 1920
+#define H 1080
 #define FOV 1.0472
 #define PI 3.1415926535897932
 #define PURPLE 0x00A061D1
 #define WHITE 0x00FFFFFF
 #define BLACK 0x00000000
+
+#include <stdio.h>
 
 typedef struct
 {
@@ -19,6 +21,7 @@ typedef struct
 {
 	t_vect	o;
 	float	r;
+	t_vect	col;
 }			t_sphere;
 
 void	init_vect(t_vect *v, float x, float y, float z)
@@ -26,6 +29,11 @@ void	init_vect(t_vect *v, float x, float y, float z)
 	v->x = x;
 	v->y = y;
 	v->z = z;
+}
+
+void	print_vect(t_vect v)
+{
+	printf("%f %f %f\n", v.x, v.y, v.z);
 }
 
 t_vect	mul_vect(float t, t_vect a)
@@ -88,6 +96,7 @@ t_vect	sub_vect(t_vect a, t_vect b)
 	return (c);
 }
 
+
 void	init_sphere(t_sphere *sph, float x, float y, float z, float r)
 {
 	t_vect	o;
@@ -95,6 +104,8 @@ void	init_sphere(t_sphere *sph, float x, float y, float z, float r)
 	init_vect(&o, x, y, z);
 	sph->o = o;
 	sph->r = r;
+	init_vect(&(sph->col), 1, 0.5, 0);
+	normalize(&(sph->col));
 }
 
 int		inter(t_vect ray, t_sphere sph, t_vect *p, t_vect *n)
@@ -126,21 +137,18 @@ int		inter(t_vect ray, t_sphere sph, t_vect *p, t_vect *n)
 	return (0);
 }
 
-int		color_convert(float intensity, int color)
+int		color_convert(t_vect intensity)
 {
-	int		r;
-	int		g;
-	int		b;
-	float	res;
+	int	res;
+	int	r;
+	int	g;
+	int	b;
 
-	r = color % 256;
-	g = (color % 256) % 256;
-	b = ((color % 256) % 256) % 256;
-	r = fmin(255, fmax(intensity * r, 0)); 
-	g = fmin(255, fmax(intensity * g / 2, 0)); 
-	b = fmin(255, fmax(intensity * b / 2, 0)); 
-	res = 256 * 256 * b + 256 * g + r;
-	return ((int)floor(res));
+	r = (int)fmin(255, fmax(255 * intensity.x, 0)); 
+	g = (int)fmin(255, fmax(255 * intensity.y, 0)); 
+	b = (int)fmin(255, fmax(255 * intensity.z, 0)); 
+	res = 256 * 256 * r + 256 * g + b;
+	return (res);
 }
 
 void	maj_lum(t_vect *lum)
@@ -148,20 +156,18 @@ void	maj_lum(t_vect *lum)
 	init_vect(lum, lum->x, (-1) * lum->y, lum->z);
 }
 
-int		draw(void *mlx, void *win)
+int		draw(void *mlx, void *win, t_sphere sph)
 {
 	t_vect		ray;
-	t_sphere	sph;
 	t_vect		lum;
 	t_vect		p;
 	t_vect		n;
 	int			i;
 	int			j;
 	float		intense;
-	float		intensity;
+	t_vect		intensity;
 
-	init_sphere(&sph, 0, 0, -55, 15);
-	init_vect(&lum, 15, 20, -30);
+	init_vect(&lum, 15, 20, -20);
 	maj_lum(&lum);
 	intense = 1;
 	i = 0;
@@ -176,8 +182,9 @@ int		draw(void *mlx, void *win)
 			{
 				p = sub_vect(lum, p);
 				normalize(&p);
-				intensity = fmax(0, dot(p, n)) * intense / norm2(p);
-				mlx_pixel_put(mlx, win, j, i, color_convert(intensity, PURPLE));
+				intensity = mul_vect(fmax(0, dot(p, n)) * intense / norm2(p), \
+				sph.col);
+				mlx_pixel_put(mlx, win, j, i, color_convert(intensity));
 			}
 			j++;
 		}
@@ -187,14 +194,20 @@ int		draw(void *mlx, void *win)
 
 int		main()
 {
-	void	*mlx;
-	void	*win;
-	int		x;
-	int		y;
+	void		*mlx;
+	void		*win;
+	int			x;
+	int			y;
+	t_sphere	sph;
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, W, H, "sphere");
-	draw(mlx, win);
+	init_sphere(&sph, 0, 0, -55, 15);
+	draw(mlx, win, sph);
+	init_sphere(&sph, 5, 0, -30, 5);
+	draw(mlx, win, sph);
+	init_sphere(&sph, -5, 5, -20, 2);
+	draw(mlx, win, sph);
 	mlx_loop(mlx);
 	return (0);
 }
