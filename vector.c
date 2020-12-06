@@ -97,12 +97,13 @@ void	init_sphere(t_sphere *sph, float x, float y, float z, float r)
 	sph->r = r;
 }
 
-int		inter(t_vect ray, t_sphere sph)
+int		inter(t_vect ray, t_sphere sph, t_vect *p, t_vect *n)
 {
 	t_vect	v;
 	float	det;
 	float	sc;
 	float	det_sq;
+	float	sol[2];
 
 	v = mul_vect(-1, sph.o);
 	sc = dot(ray, v);
@@ -110,20 +111,59 @@ int		inter(t_vect ray, t_sphere sph)
 	if (det >= 0)
 	{
 		det_sq = sqrt(det);
-		if ((-0.5) * (2 * sc + det_sq) > 0 || (-0.5) * (2 * sc - det_sq) > 0)
-			return (1);
+		sol[1] = (-0.5) * (2 * sc - det_sq);
+		if (sol[1] < 0)
+			return (0);
+		sol[0] = (-0.5) * (2 * sc + det_sq);
+		if (sol[0] > 0)
+			*p = mul_vect(sol[0], ray);
+		else
+			*p = mul_vect(sol[1], ray);
+		*n = sub_vect(*p, sph.o);
+		normalize(n);
+		return (1);
 	}
 	return (0);
+}
+
+int		color_convert(float intensity, int color)
+{
+	int		r;
+	int		g;
+	int		b;
+	float	res;
+
+	r = color % 256;
+	g = (color % 256) % 256;
+	b = ((color % 256) % 256) % 256;
+	r = fmin(255, fmax(intensity * r, 0)); 
+	g = fmin(255, fmax(intensity * g / 2, 0)); 
+	b = fmin(255, fmax(intensity * b / 2, 0)); 
+	res = 256 * 256 * b + 256 * g + r;
+	return ((int)floor(res));
+}
+
+void	maj_lum(t_vect *lum)
+{
+	init_vect(lum, lum->x, (-1) * lum->y, lum->z);
 }
 
 int		draw(void *mlx, void *win)
 {
 	t_vect		ray;
 	t_sphere	sph;
+	t_vect		lum;
+	t_vect		p;
+	t_vect		n;
 	int			i;
 	int			j;
+	float		intense;
+	float		intensity;
 
 	init_sphere(&sph, 0, 0, -55, 15);
+	init_vect(&lum, 15, 20, -30);
+	maj_lum(&lum);
+	intense = 1;
 	i = 0;
 	while (i <= H)
 	{
@@ -132,8 +172,13 @@ int		draw(void *mlx, void *win)
 		{
 			init_vect(&ray, j - W / 2, i - H / 2, (-W) / (2 * tan(FOV / 2)));
 			normalize(&ray);
-			if (inter(ray, sph))
-				mlx_pixel_put(mlx, win, j, i, PURPLE);
+			if (inter(ray, sph, &p, &n))
+			{
+				p = sub_vect(lum, p);
+				normalize(&p);
+				intensity = fmax(0, dot(p, n)) * intense / norm2(p);
+				mlx_pixel_put(mlx, win, j, i, color_convert(intensity, PURPLE));
+			}
 			j++;
 		}
 		i++;
@@ -146,7 +191,6 @@ int		main()
 	void	*win;
 	int		x;
 	int		y;
-	void	*param[2];
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, W, H, "sphere");
