@@ -104,7 +104,7 @@ void	init_sphere(t_sphere *sph, float x, float y, float z, float r)
 	init_vect(&o, x, y, z);
 	sph->o = o;
 	sph->r = r;
-	init_vect(&(sph->col), 1, 0.5, 0);
+	init_vect(&(sph->col), 1, 0, 0.5);
 	normalize(&(sph->col));
 }
 
