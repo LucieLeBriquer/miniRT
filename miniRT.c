@@ -2,18 +2,16 @@
 
 int		color_convert(t_vect intensity)
 {
-	/*int	res;
+	int	res;
 	int	r;
 	int	g;
 	int	b;
 
-	r = (int)fmin(255, fmax(255 * intensity.x, 0)); 
-	g = (int)fmin(255, fmax(255 * intensity.y, 0)); 
-	b = (int)fmin(255, fmax(255 * intensity.z, 0)); 
+	r = (int)fmin(255, fmax(intensity.x, 0)); 
+	g = (int)fmin(255, fmax(intensity.y, 0)); 
+	b = (int)fmin(255, fmax(intensity.z, 0)); 
 	res = 256 * 256 * r + 256 * g + b;
-	return (res);*/
-	(void)intensity;
-	return (WHITE);
+	return (res);
 }
 
 int		draw(void *mlx, void *win, t_obj *objs, t_scn *scn)
@@ -53,10 +51,27 @@ t_scn	*new_scn()
 	scn = malloc(sizeof(scn));
 	if (!scn)
 		return (NULL);
-	init_vect(&lum, 15, 20, -20);
+	init_vect(&lum, 15, -20, -20);
 	scn->lum = lum;
 	scn->intensity = 1;
 	return (scn);
+}
+
+void	add_all_objs(t_obj **objs)
+{
+	t_obj	*obj_new;
+	t_vect	o1;
+	t_vect	o2;
+	t_col	col1;
+
+	init_vect(&o1, 0, 0, -55);
+	init_col(&col1, 23, 10, 240);
+	*objs = new_obj(0, o1, col1, 15, 0);
+	init_vect(&o2, 5, 0, -35);
+	obj_new = new_obj(0, o2, col1, 4, 0);
+	ft_addobj(objs, obj_new);
+	obj_new = new_obj(3, o1, col1, 2, -1);
+	ft_addobj(objs, obj_new);
 }
 
 int		main()
@@ -64,20 +79,11 @@ int		main()
 	void	*mlx;
 	void	*win;
 	t_obj	*objs;
-	t_obj	*obj_new;
-	t_vect	o1;
-	t_col	col1;
 	t_scn	*scn;
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, W, H, "sphere");
-	init_vect(&o1, 2.1, 3.4, -1.2);
-	init_col(&col1, 23, 10, 240);
-	objs = new_obj(0, o1, col1, 2, 3);
-	obj_new = new_obj(2, o1, col1, 4, 0);
-	ft_addobj(&objs, obj_new);
-	obj_new = new_obj(3, o1, col1, 2, -1);
-	ft_addobj(&objs, obj_new);
+	add_all_objs(&objs);
 	scn = new_scn();
 	draw(mlx, win, objs, scn);
 	mlx_loop(mlx);
