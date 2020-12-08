@@ -8,14 +8,6 @@ t_vect	mul_vect(float t, t_vect a)
 	return (c);
 }
 
-t_vect	mul_col(float t, t_col a)
-{
-	t_vect	c;
-
-	init_vect(&c, t * a.r, t * a.g, t * a.b);
-	return (c);
-}
-
 t_vect	div_vect(float t, t_vect a)
 {
 	t_vect	c;

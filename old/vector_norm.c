@@ -7,13 +7,6 @@ void	init_vect(t_vect *v, float x, float y, float z)
 	v->z = z;
 }
 
-void	init_col(t_col *col, int r, int g, int b)
-{
-	col->r = r;
-	col->g = g;
-	col->b = b;
-}
-
 void	print_vect(t_vect v)
 {
 	printf("%f %f %f\n", v.x, v.y, v.z);
