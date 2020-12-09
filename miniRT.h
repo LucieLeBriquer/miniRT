@@ -3,8 +3,8 @@
 # include "mlx.h"
 # include <math.h>
 # include <stdlib.h>
-# define W 1980
-# define H 1080
+# define W 900
+# define H 500
 # define FOV 1.0472
 # define PI 3.1415926535897932
 # define PURPLE 0x00A061D1
@@ -42,6 +42,7 @@ typedef struct
 {
 	t_vect	lum;
 	float	intensity;
+	float	amb;
 }		t_scn;
 
 void	init_vect(t_vect *v, float x, float y, float z);
