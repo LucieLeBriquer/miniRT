@@ -16,7 +16,7 @@ void	ft_objiter(t_obj *objs, void (*f)(t_obj))
 	}
 }
 
-t_obj	*new_obj(int type, t_vect o, t_col col, float r, float h)
+t_obj	*new_obj(int type, t_vect o, t_vect axe, t_col col, float r, float h)
 {
 	t_obj	*obj;
 
@@ -25,6 +25,8 @@ t_obj	*new_obj(int type, t_vect o, t_col col, float r, float h)
 		return (NULL);
 	obj->type = type;
 	obj->o = o;
+	obj->axe = axe;
+	normalize(&(obj->axe));
 	obj->col = col;
 	obj->r = r;
 	obj->h = h;

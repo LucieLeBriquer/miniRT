@@ -3,7 +3,7 @@
 # include "mlx.h"
 # include <math.h>
 # include <stdlib.h>
-# define W 1920
+# define W 1980
 # define H 1080
 # define FOV 1.0472
 # define PI 3.1415926535897932
@@ -31,6 +31,7 @@ typedef struct s_obj
 {
 	int				type;
 	t_vect			o;
+	t_vect			axe;
 	t_col			col;
 	float			r;
 	float			h;
@@ -48,7 +49,7 @@ void	print_vect(t_vect v);
 void	init_col(t_col *col, int r, int g, int b);
 void	ft_addobj(t_obj **obj, t_obj *obj_new);
 void	ft_objiter(t_obj *objs, void (*f)(t_obj));
-t_obj	*new_obj(int type, t_vect o, t_col col, float r, float h);
+t_obj	*new_obj(int type, t_vect o, t_vect axe, t_col col, float r, float h);
 void	show_obj(t_obj obj);
 t_vect	mul_vect(float t, t_vect a);
 t_vect	mul_col(float t, t_col a);
@@ -61,6 +62,7 @@ t_vect	add_vect(t_vect a, t_vect b);
 t_vect	sub_vect(t_vect a, t_vect b);
 int		color_convert(t_vect intensity);
 void	maj_lum(t_vect *lum);
-int		inter(t_vect ray, t_obj *objs, t_vect *p, t_vect *n, t_col *col);
+int		inter(t_vect ray, t_obj *objs, t_vect *p, t_vect *n, t_col *col, 
+		t_obj *obj_inter, float *t);
 
 #endif

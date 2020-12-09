@@ -1,8 +1,4 @@
-- faire une structure objet avec un type S, C idk
-- faire une structure scene qui est une liste chainee d'objet ou un tableau
-  statique (a decider)
-  liste chainee c'est peut etre pas plus mal vu qu'on appelle qu'une seule fois
-  chaque objet par pixel donc on perd pas de temps
-  puis c'est plus maleable
-- faire tout ca a cote pour regarder que tout fonctionne bien
-- renommer la fonction inter en inter_sphere et implementer les autres objets
+- implementer les autres fonctions d'intersection
+- penser a faire une fonction de calcul de la normale par type maybe
+- regler l'histoire de couleur et d'intensité pour ne pas avoir de soucis
+- char pour la couleur plutot que int ?
