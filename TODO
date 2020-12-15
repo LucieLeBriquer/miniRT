@@ -1,4 +1,4 @@
 - implementer les autres fonctions d'intersection
 - penser a faire une fonction de calcul de la normale par type maybe
-- regler l'histoire de couleur et d'intensité pour ne pas avoir de soucis
 - char pour la couleur plutot que int ?
+- renommer init_vect/col en field

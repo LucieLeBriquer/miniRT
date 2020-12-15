@@ -28,8 +28,25 @@ float	inter_0sphere(t_vect ray, t_obj obj)
 
 float	inter_1square(t_vect ray, t_obj obj)
 {
-	(void)ray;
-	(void)obj;
+	float	t;
+	float	sc;
+	t_vect	n;
+	t_vect	p;
+
+	n = prod_vect(obj.axe, sub_vect(obj.axe, obj.o));
+	normalize(&n);
+	sc = dot(n, obj.o);
+	if (sc != 0)
+	{
+		t = sc / dot(n, ray);
+		if (t > 0)
+		{
+			p = mul_vect(t, ray);
+			sc = dot(sub_vect(obj.o, p), obj.axe);
+			if (sc >= 0 && sc <= obj.r)
+				return (t);
+		}
+	}
 	return (-1);
 }
 
@@ -37,11 +54,13 @@ float	inter_2cylindre(t_vect ray, t_obj obj)
 {
 	(void)ray;
 	(void)obj;
+
 	return (-1);
 }
 
 /*
 ** Pour un plan l'axe est defini comme la normale
+** -> nowp changer comme pour le square
 */
 
 float	inter_3plane(t_vect ray, t_obj obj)

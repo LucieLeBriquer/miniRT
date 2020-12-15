@@ -44,3 +44,13 @@ t_vect	sub_vect(t_vect a, t_vect b)
 	init_vect(&c, a.x - b.x, a.y - b.y, a.z - b.z);
 	return (c);
 }
+
+t_vect	prod_vect(t_vect a, t_vect b)
+{
+	t_vect	c;
+
+	c.x = a.y * b.z - a.z * b.y;
+	c.y = - a.x * b.z + a.z * b.x;
+	c.z = a.x * b.y - a.y * b.x;
+	return (c);
+}

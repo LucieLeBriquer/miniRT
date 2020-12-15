@@ -61,6 +61,7 @@ void	normalize(t_vect *u);
 float	dot(t_vect a, t_vect b);
 t_vect	add_vect(t_vect a, t_vect b);
 t_vect	sub_vect(t_vect a, t_vect b);
+t_vect	prod_vect(t_vect a, t_vect b);
 int		color_convert(t_vect intensity);
 void	maj_lum(t_vect *lum);
 int		inter(t_vect ray, t_obj *objs, t_vect *p, t_vect *n, t_col *col, 

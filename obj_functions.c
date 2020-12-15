@@ -24,7 +24,9 @@ t_obj	*new_obj(int type, t_vect o, t_vect axe, t_col col, float r, float h)
 	if (!obj)
 		return (NULL);
 	obj->type = type;
+	//obj->o = o;
 	obj->o = o;
+	(obj->o).y = (-1) * o.y;
 	obj->axe = axe;
 	normalize(&(obj->axe));
 	obj->col = col;

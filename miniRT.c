@@ -42,10 +42,12 @@ int		draw(void *mlx, void *win, t_obj *objs, t_scn scn)
 		{
 			init_vect(&ray, j - W / 2, i - H / 2, (-W) / (2 * tan(FOV / 2)));
 			normalize(&ray);
+			// faire une fonction pour le rayon, i, j
 			if (inter(ray, objs, &p, &n, &col, &obj_inter, &t))
 			{
 				p = sub_vect(scn.lum, p);
 				normalize(&p);
+				// same ici en normalisant
 				intens = mul_col(fabs(dot(p, n)) * scn.intensity + scn.amb, obj_inter.col);
 				if (dot(p, n) <= 0 && obj_inter.type == 0)
 					intens = mul_col(scn.amb, obj_inter.col);
@@ -63,7 +65,7 @@ t_scn	*new_scn()
 	scn = malloc(sizeof(scn));
 	if (!scn)
 		return (NULL);
-	init_vect(&lum, 20, -30, -10);
+	init_vect(&lum, 0, 0, 0);
 	scn->lum = lum;
 	scn->intensity = 0.6;
 	scn->amb = 0.1;
@@ -88,7 +90,7 @@ void	add_all_objs(t_obj **objs)
 	init_col(&col4, 51, 196, 127); // color of the Alliance
 	init_vect(&o1, 0, 0, -55);
 	*objs = new_obj(0, o1, o1, col1, 12, 0);
-	init_vect(&o2, 5, 0, -35);
+	init_vect(&o2, 5, -10, -35);
 	obj_new = new_obj(0, o2, o2, col2, 4, 0);
 	ft_addobj(objs, obj_new);
 	init_vect(&o2, -12, 0, -55);
@@ -106,24 +108,41 @@ void	add_all_objs(t_obj **objs)
 	init_vect(&o3, 0, -30, 0);
 	obj_new = new_obj(3, o3, axe, col3, 0, 0);
 	ft_addobj(objs, obj_new);
-	init_vect(&o3, 0, 30, 0);
-	obj_new = new_obj(3, o3, axe, col3, 0, 0);
-	ft_addobj(objs, obj_new);
+	//init_vect(&o3, 0, 30, 0);
+	//obj_new = new_obj(3, o3, axe, col3, 0, 0);
+	//ft_addobj(objs, obj_new);
+	//init_vect(&o3, 0, 0, -40);
+	//init_vect(&axe, 1, 1, -1);
+	//obj_new = new_obj(1, o3, axe, col3, 5, 5);
+	//ft_addobj(objs, obj_new);
+}
+
+typedef struct
+{
+	void	*win;
+	void	*mlx;
+}			t_img;
+
+int		exit_test(t_img *img)
+{
+	mlx_clear_window(img->mlx, img->win);
+	mlx_destroy_window(img->mlx, img->win);
+	exit(0);
+	return (1);
 }
 
 int		main()
 {
-	void	*mlx;
-	void	*win;
 	t_obj	*objs;
 	t_scn	*scn;
+	t_img	img;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, W, H, "Scene");
+	img.mlx = mlx_init();
+	img.win = mlx_new_window(img.mlx, W, H, "Scene");
 	add_all_objs(&objs);
 	scn = new_scn();
-	draw(mlx, win, objs, *scn);
-	mlx_loop(mlx);
+	draw(img.mlx, img.win, objs, *scn);
+	mlx_hook(img.win, 33, 0, exit_test, &img);
+	mlx_loop(img.mlx);
 	return (0);
 }
-
