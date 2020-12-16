@@ -22,7 +22,7 @@ t_vect	intensity_calculator(float t, t_vect p, t_vect n, t_obj obj, float intens
 		return (mul_col(intensity / (t * 100), obj.col));
 }
 
-int		draw(void *mlx, void *win, t_obj *objs, t_scn scn)
+void	draw(void *mlx, void *win, t_obj *objs, t_scn scn)
 {
 	t_vect		ray;
 	t_vect		p;
@@ -33,12 +33,17 @@ int		draw(void *mlx, void *win, t_obj *objs, t_scn scn)
 	int			i;
 	int			j;
 	float		t;
-
+	int     bpp;
+	int     size_line;
+	int     endian;
+	void    *img_ptr = mlx_new_image(mlx, W, H);
+	int		*img_data = (int *)mlx_get_data_addr(img_ptr, &bpp, &size_line, &endian);
+	
 	i = -1;
-	while (++i <= H)
+	while (++i < H)
 	{
 		j = -1;
-		while (++j <= W)
+		while (++j < W)
 		{
 			init_vect(&ray, j - W / 2, i - H / 2, (-W) / (2 * tan(FOV / 2)));
 			normalize(&ray);
@@ -48,13 +53,17 @@ int		draw(void *mlx, void *win, t_obj *objs, t_scn scn)
 				p = sub_vect(scn.lum, p);
 				normalize(&p);
 				// same ici en normalisant
+				//fonction pour l'intensite aussi
 				intens = mul_col(fabs(dot(p, n)) * scn.intensity + scn.amb, obj_inter.col);
 				if (dot(p, n) <= 0 && obj_inter.type == 0)
 					intens = mul_col(scn.amb, obj_inter.col);
-				mlx_pixel_put(mlx, win, j, i, color_convert(intens));
+				img_data[i * W + j] = color_convert(intens);
 			}
+			else
+				img_data[i * W + j] = 0xFFFFFF;
 		}
 	}
+	mlx_put_image_to_window(mlx, win, img_ptr, 0, 0);
 }
 
 t_scn	*new_scn()
@@ -108,13 +117,6 @@ void	add_all_objs(t_obj **objs)
 	init_vect(&o3, 0, -30, 0);
 	obj_new = new_obj(3, o3, axe, col3, 0, 0);
 	ft_addobj(objs, obj_new);
-	//init_vect(&o3, 0, 30, 0);
-	//obj_new = new_obj(3, o3, axe, col3, 0, 0);
-	//ft_addobj(objs, obj_new);
-	//init_vect(&o3, 0, 0, -40);
-	//init_vect(&axe, 1, 1, -1);
-	//obj_new = new_obj(1, o3, axe, col3, 5, 5);
-	//ft_addobj(objs, obj_new);
 }
 
 typedef struct
