@@ -1,15 +1,14 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 # include "mlx.h"
+# include "get_next_line.h"
+# include "libft.h"
 # include <math.h>
 # include <stdlib.h>
-# define W 900
-# define H 500
+# include <unistd.h>
+# include <fcntl.h>
 # define FOV 1.0472
 # define PI 3.1415926535897932
-# define PURPLE 0x00A061D1
-# define WHITE 0x00FFFFFF
-# define BLACK 0x00000000
 
 # include <stdio.h>
 
@@ -44,6 +43,41 @@ typedef struct
 	float	intensity;
 	float	amb;
 }		t_scn;
+
+typedef struct
+{
+	t_vect			pos;
+	t_vect			axe;
+}					t_cam;
+
+typedef struct
+{
+	float			ratio;
+	t_vect			pos;
+	t_col			col;
+}					t_lum;
+
+typedef struct
+{
+	int				type;
+	t_vect			o;
+	t_vect			axe;
+	t_col			col;
+	float			r;
+	float			h;
+}					t_obj2;
+
+typedef struct
+{
+	int		W;
+	int		H;
+	float	amb;
+	float	fov;
+	t_col	amb_col;
+	t_list	*cams;
+	t_list	*lums;
+	t_list	*objs;
+}			t_scene;
 
 void	init_vect(t_vect *v, float x, float y, float z);
 void	print_vect(t_vect v);

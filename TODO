@@ -2,3 +2,4 @@
 - penser a faire une fonction de calcul de la normale par type maybe
 - char pour la couleur plutot que int ?
 - renommer init_vect/col en field
+- remplacer printf par ft_printf !
