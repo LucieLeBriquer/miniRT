@@ -100,5 +100,8 @@ int		color_convert(t_vect intensity);
 void	maj_lum(t_vect *lum);
 int		inter(t_vect ray, t_obj *objs, t_vect *p, t_vect *n, t_col *col, 
 		t_obj *obj_inter, float *t);
+int		is_save(char *s);
+
+void	print_parsing(t_scene scene);
 
 #endif

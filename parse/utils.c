@@ -20,3 +20,10 @@ int		is_save(char *s)
 		return (1);
 	return (0);
 }
+
+void	print_parsing(t_scene scene)
+{
+	printf("Resolution : %d %d\n", scene.W, scene.H);
+	printf("Ambiante : %.10f %d,%d,%d\n", scene.amb, scene.amb_col.r,
+	scene.amb_col.g, scene.amb_col.b);
+}
