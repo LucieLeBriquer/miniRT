@@ -7,6 +7,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# define W 800
+# define H 600
 # define FOV 1.0472
 # define PI 3.1415926535897932
 
@@ -48,6 +50,7 @@ typedef struct
 {
 	t_vect			pos;
 	t_vect			axe;
+	float			fov;
 }					t_cam;
 
 typedef struct
@@ -69,14 +72,15 @@ typedef struct
 
 typedef struct
 {
-	int		W;
-	int		H;
+	int		w;
+	int		h;
+	int		nb_cam;
+	int		nb_lum;
 	float	amb;
-	float	fov;
 	t_col	amb_col;
-	t_list	*cams;
-	t_list	*lums;
-	t_list	*objs;
+	t_cam	*cams;
+	t_lum	*lums;
+	t_obj2	*objs;
 }			t_scene;
 
 void	init_vect(t_vect *v, float x, float y, float z);

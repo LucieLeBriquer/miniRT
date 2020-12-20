@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 00:08:59 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/11/27 17:08:08 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/17 19:37:13 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void			ft_lstdelone(t_list *lst, void (*del)(void *));
 int				ft_lstsize(t_list *lst);
 t_list			*ft_lstlast(t_list *lst);
 void			ft_lstclear(t_list **lst, void (*del)(void *));
-void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)());
+void			ft_lstiter(t_list *lst, void (*f)());
+t_list			*ft_lstmap(t_list *lst, void *(*f)(), void (*del)());
 int				ft_issep(char c, const char *charset);
 int				ft_isspace(char c);
 
