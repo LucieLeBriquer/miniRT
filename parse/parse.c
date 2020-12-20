@@ -151,7 +151,6 @@ int		parse_amb(int fd, t_scene *scene, char *line)
 	int		one_point;
 	t_col	col;
 
-	line++;
 	one_point = 0;
 	while (ft_isspace(*line))
 		line++;
@@ -166,10 +165,6 @@ int		parse_amb(int fd, t_scene *scene, char *line)
 	scene->amb_col = col;
 	return (1);
 }
-
-/*
-**	Verifier en plus qu'on est bien a la fin de la ligne
-*/
 
 int		to_vect(char *line, t_vect *vect)
 {
@@ -200,7 +195,6 @@ int		parse_cam(int fd, t_scene *scene, char *line)
 	static int	nb;
 	t_cam		cam;
 
-	line++;
 	while (ft_isspace(*line))
 		line++;	
 	if (to_vect(line, &(cam.pos)) == -1)
@@ -222,7 +216,6 @@ int		parse_lum(int fd, t_scene *scene, char *line)
 	static int	nb;
 	t_lum		lum;
 
-	line++;
 	while (ft_isspace(*line))
 		line++;	
 	if (to_vect(line, &(lum.pos)) == -1)
@@ -242,7 +235,6 @@ int		parse_sph(int fd, t_scene *scene, char *line, int nb)
 {
 	t_obj2	sph;
 
-	line++;
 	while (ft_isspace(*line))
 		line++;
 	if (to_vect(line, &(sph.o)) == -1)
@@ -263,7 +255,6 @@ int		parse_pln(int fd, t_scene *scene, char *line, int nb)
 {
 	t_obj2	pln;
 
-	line++;
 	while (ft_isspace(*line))
 		line++;
 	if (to_vect(line, &(pln.o)) == -1)
@@ -279,21 +270,90 @@ int		parse_pln(int fd, t_scene *scene, char *line, int nb)
 	return (1);
 }
 
+int		parse_sqr(int fd, t_scene *scene, char *line, int nb)
+{
+	t_obj2	sqr;
+
+	while (ft_isspace(*line))
+		line++;
+	if (to_vect(line, &(sqr.o)) == -1)
+		return (-1);
+	line += skip_vect(line);
+	if (to_vect(line, &(sqr.axe)) == -1)
+		return (-1);
+	line += skip_vect(line);
+	if (ft_atof(line, &(sqr.h)) == -1)
+		return (-1);
+	line += skip_float(line);
+	if (to_col(line, &(sqr.col)) == -1)
+		return (-1);
+	sqr.type = 2;
+	(scene->objs)[nb - 1] = sqr;
+	return (1);
+}
+
+int		parse_cyl(int fd, t_scene *scene, char *line, int nb)
+{
+	t_obj2	cyl;
+
+	while (ft_isspace(*line))
+		line++;
+	if (to_vect(line, &(cyl.o)) == -1)
+		return (-1);
+	line += skip_vect(line);
+	if (to_vect(line, &(cyl.axe)) == -1)
+		return (-1);
+	line += skip_vect(line);
+	if (ft_atof(line, &(cyl.r)) == -1)
+		return (-1);
+	line += skip_float(line);
+	if (ft_atof(line, &(cyl.h)) == -1)
+		return (-1);
+	line += skip_float(line);
+	if (to_col(line, &(cyl.col)) == -1)
+		return (-1);
+	cyl.type = 3;
+	(scene->objs)[nb - 1] = cyl;
+	return (1);
+}
+
+int		parse_trg(int fd, t_scene *scene, char *line, int nb)
+{
+	t_obj2	trg;
+
+	while (ft_isspace(*line))
+		line++;
+	if (to_vect(line, &(trg.o)) == -1)
+		return (-1);
+	line += skip_vect(line);
+	if (to_vect(line, &(trg.axe)) == -1)
+		return (-1);
+	line += skip_vect(line);
+	if (to_vect(line, &(trg.p)) == -1)
+		return (-1);
+	line += skip_vect(line);
+	if (to_col(line, &(trg.col)) == -1)
+		return (-1);
+	trg.type = 4;
+	(scene->objs)[nb - 1] = trg;
+	return (1);
+}
+
 int		parse_obj(int fd, t_scene *scene, char *line)
 {	
 	static int	nb;
 
 	nb++;
-	if (*line == 's' && *(++line) == 'p')
-		return (parse_sph(fd, scene, line, nb));
-	if (*line == 'p' && *(++line) == 'l')
-		return (parse_pln(fd, scene, line, nb));
-	/*if (*line == 's' && *(++line) == 'q')
-		return (parse_sqr(fd, scene, line, nb));
-	if (*line == 'c' && *(++line) == 'y')
-		return (parse_cyl(fd, scene, line, nb));
-	if (*line == 't' && *(++line) == 'r')
-		return (parse_trg(fd, scene, line, nb));*/
+	if (line[0] == 's' && line[1] == 'p')
+		return (parse_sph(fd, scene, line + 2, nb));
+	if (line[0] == 'p' && line[1] == 'l')
+		return (parse_pln(fd, scene, line + 2, nb));
+	if (line[0] == 's' && line[1] == 'q')
+		return (parse_sqr(fd, scene, line + 2, nb));
+	if (line[0] == 'c' && line[1] == 'y')
+		return (parse_cyl(fd, scene, line + 2, nb));
+	if (line[0] == 't' && line[1] == 'r')
+		return (parse_trg(fd, scene, line + 2, nb));
 	return (-1);
 }
 
@@ -301,14 +361,14 @@ int		parse_line(int fd, t_scene *scene, char *line)
 {
 	while (ft_isspace(*line))
 		line++;
-	if (*line == 'R')
-		return (parse_res(fd, scene, line));
-	if (*line == 'A')
-		return (parse_amb(fd, scene, line));
-	if (*line == 'c')
-		return (parse_cam(fd, scene, line));
-	if (*line == 'l')
-		return (parse_lum(fd, scene, line));
+	if (line[0] == 'R' && ft_isspace(line[1]))
+		return (parse_res(fd, scene, line + 1));
+	if (line[0] == 'A' && ft_isspace(line[1]))
+		return (parse_amb(fd, scene, line + 1));
+	if (line[0] == 'c' && ft_isspace(line[1]))
+		return (parse_cam(fd, scene, line + 1));
+	if (line[0] == 'l' && ft_isspace(line[1]))
+		return (parse_lum(fd, scene, line + 1));
 	else
 		return (parse_obj(fd, scene, line));
 }
@@ -326,6 +386,8 @@ int		parse(int fd, t_scene *scene)
 	{
 		if (line && line[0])
 		{
+			if (line[0] == '#')
+				continue;
 			if (parse_line(fd, scene, line) == -1)
 				return (-1);
 		}
@@ -343,9 +405,9 @@ int		get_numbers(int *fd, t_scene *scene, char *file_name)
 		{
 			while (ft_isspace(*line))
 				line++;
-			if (*line == 'c')
+			if (*line == 'c' && ft_isspace(line[1]))
 				scene->nb_cam++;
-			else if (*line == 'l')
+			else if (*line == 'l' && ft_isspace(line[1]))
 				scene->nb_lum++;
 			else if (*line != 'R' && *line != 'A')
 				scene->nb_obj++;

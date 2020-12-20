@@ -60,6 +60,27 @@ void	print_pln(t_obj2 pln, int i)
 		pln.col.b);
 }
 
+void	print_sqr(t_obj2 sqr, int i)
+{
+		printf("[%d]sqr : %f,%f,%f\t%f,%f,%f\t%f\t%d,%d,%d\n", i, sqr.o.x,
+		sqr.o.y, sqr.o.z, sqr.axe.x, sqr.axe.y, sqr.axe.z, sqr.h, sqr.col.r, sqr.col.g,
+		sqr.col.b);
+}
+
+void	print_cyl(t_obj2 cyl, int i)
+{
+		printf("[%d]cyl : %f,%f,%f\t%f,%f,%f\t%f  %f\t%d,%d,%d\n", i, cyl.o.x,
+		cyl.o.y, cyl.o.z, cyl.axe.x, cyl.axe.y, cyl.axe.z, cyl.h, cyl.r,
+		cyl.col.r, cyl.col.g, cyl.col.b);
+}
+
+void	print_trg(t_obj2 trg, int i)
+{
+		printf("[%d]trg : %f,%f,%f\t%f,%f,%f\t%f,%f,%f\t%d,%d,%d\n", i, trg.o.x,
+		trg.o.y, trg.o.z, trg.axe.x, trg.axe.y, trg.axe.z, trg.p.x, trg.p.y,
+		trg.p.z, trg.col.r, trg.col.g, trg.col.b);
+}
+
 void	print_obj(t_obj2 *obj, int nb_obj)
 {
 	int	i;
@@ -71,6 +92,12 @@ void	print_obj(t_obj2 *obj, int nb_obj)
 			print_sph(obj[i], i);
 		else if (obj[i].type == 1)
 			print_pln(obj[i], i);
+		else if (obj[i].type == 2)
+			print_sqr(obj[i], i);
+		else if (obj[i].type == 3)
+			print_cyl(obj[i], i);
+		else if (obj[i].type == 4)
+			print_trg(obj[i], i);
 		i++;
 	}
 }
@@ -80,7 +107,10 @@ void	print_parsing(t_scene scene)
 	printf("Resol. : %d %d\n", scene.w, scene.h);
 	printf("Ambia. : %.10f %d,%d,%d\n", scene.amb, scene.amb_col.r,
 	scene.amb_col.g, scene.amb_col.b);
+	printf("----  %d cam  ----\n", scene.nb_cam);
 	print_cam(scene.cams, scene.nb_cam);
+	printf("----  %d lum  ----\n", scene.nb_lum);
 	print_lum(scene.lums, scene.nb_lum);
+	printf("----  %d objs ----\n", scene.nb_obj);
 	print_obj(scene.objs, scene.nb_obj);
 }

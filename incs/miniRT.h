@@ -65,6 +65,7 @@ typedef struct
 	int				type;
 	t_vect			o;
 	t_vect			axe;
+	t_vect			p;
 	t_col			col;
 	float			r;
 	float			h;
