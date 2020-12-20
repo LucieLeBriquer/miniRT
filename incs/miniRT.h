@@ -76,6 +76,7 @@ typedef struct
 	int		h;
 	int		nb_cam;
 	int		nb_lum;
+	int		nb_obj;
 	float	amb;
 	t_col	amb_col;
 	t_cam	*cams;
