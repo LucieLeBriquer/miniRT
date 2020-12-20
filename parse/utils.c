@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:57 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/20 16:26:58 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/20 19:59:23 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,31 @@ int		is_save(char *s)
 	return (0);
 }
 
+void	print_vect(t_vect vect)
+{
+	printf("\t%5.3f,%5.3f,%5.3f", vect.x, vect.y, vect.z);
+}
+
+void	print_float(float f)
+{
+	printf("\t%5.3f", f);
+}
+
+void	print_col(t_col col)
+{
+	printf("\t%d,%d,%d", col.r, col.g, col.b);
+}
+
+void	newline(void)
+{
+	printf("\n");
+}
+
+void	newtab(void)
+{
+	printf("\t");
+}
+
 void	print_cam(t_cam *cam, int nb_cam)
 {
 	int	i;
@@ -40,8 +65,11 @@ void	print_cam(t_cam *cam, int nb_cam)
 	i = 0;
 	while (i < nb_cam)
 	{
-		printf("Cam %d  : %f,%f,%f\t%f,%f,%f\t%f\n", i, cam[i].pos.x, cam[i].pos.y,
-		cam[i].pos.z, cam[i].axe.x, cam[i].axe.y, cam[i].axe.z, cam[i].fov);
+		printf("Cam %3d :", i);
+		print_vect(cam[i].pos);
+		print_vect(cam[i].axe);
+		print_float(cam[i].fov);
+		newline();
 		i++;
 	}
 }
@@ -53,44 +81,62 @@ void	print_lum(t_lum *lum, int nb_lum)
 	i = 0;
 	while (i < nb_lum)
 	{
-		printf("Lum %d  : %f,%f,%f\t%f\t%d,%d,%d\n", i, lum[i].pos.x, lum[i].pos.y,
-		lum[i].pos.z, lum[i].ratio, lum[i].col.r, lum[i].col.g, lum[i].col.b);
+		printf("Lum %3d :", i);
+		print_vect(lum[i].pos);
+		print_float(lum[i].ratio);
+		print_col(lum[i].col);
 		i++;
 	}
 }
 
 void	print_sph(t_obj2 sph, int i)
 {
-		printf("[%d]sph : %f,%f,%f\t\t%d,%d,%d\t%f\n", i, sph.o.x,
-		sph.o.y, sph.o.z, sph.col.r, sph.col.g, sph.col.b, sph.r);
+	printf("[%02d]sph :", i);
+	print_vect(sph.o);
+	print_col(sph.col);
+	print_float(sph.r);
+	newline();
 }
 
 void	print_pln(t_obj2 pln, int i)
 {
-		printf("[%d]pln : %f,%f,%f\t%f,%f,%f\t%d,%d,%d\n", i, pln.o.x,
-		pln.o.y, pln.o.z, pln.axe.x, pln.axe.y, pln.axe.z, pln.col.r, pln.col.g,
-		pln.col.b);
+	printf("[%02d]pln :", i);
+	print_vect(pln.o);
+	print_vect(pln.axe);
+	print_col(pln.col);
+	newline();
 }
 
 void	print_sqr(t_obj2 sqr, int i)
 {
-		printf("[%d]sqr : %f,%f,%f\t%f,%f,%f\t%f\t%d,%d,%d\n", i, sqr.o.x,
-		sqr.o.y, sqr.o.z, sqr.axe.x, sqr.axe.y, sqr.axe.z, sqr.h, sqr.col.r, sqr.col.g,
-		sqr.col.b);
+	printf("[%02d]sqr :", i);
+	print_vect(sqr.o);
+	print_vect(sqr.axe);
+	print_float(sqr.h); 
+	print_col(sqr.col);
+	newline();
 }
 
 void	print_cyl(t_obj2 cyl, int i)
 {
-		printf("[%d]cyl : %f,%f,%f\t%f,%f,%f\t%f  %f\t%d,%d,%d\n", i, cyl.o.x,
-		cyl.o.y, cyl.o.z, cyl.axe.x, cyl.axe.y, cyl.axe.z, cyl.h, cyl.r,
-		cyl.col.r, cyl.col.g, cyl.col.b);
+	printf("[%02d]cyl :", i);
+	print_vect(cyl.o);
+	print_vect(cyl.axe);
+	print_float(cyl.r); 
+	print_col(cyl.col);
+	newline();
 }
 
 void	print_trg(t_obj2 trg, int i)
 {
-		printf("[%d]trg : %f,%f,%f\t%f,%f,%f\t%f,%f,%f\t%d,%d,%d\n", i, trg.o.x,
-		trg.o.y, trg.o.z, trg.axe.x, trg.axe.y, trg.axe.z, trg.p.x, trg.p.y,
-		trg.p.z, trg.col.r, trg.col.g, trg.col.b);
+	printf("[%02d]trg :", i);
+	print_vect(trg.o);
+	print_vect(trg.axe);
+	newline();
+	newtab();
+	print_vect(trg.p);
+	print_col(trg.col);
+	newline();
 }
 
 void	print_obj(t_obj2 *obj, int nb_obj)
@@ -116,13 +162,13 @@ void	print_obj(t_obj2 *obj, int nb_obj)
 
 void	print_parsing(t_scene scene)
 {
-	printf("Resol. : %d %d\n", scene.w, scene.h);
-	printf("Ambia. : %.10f %d,%d,%d\n", scene.amb, scene.amb_col.r,
-	scene.amb_col.g, scene.amb_col.b);
-	printf("----  %d cam  ----\n", scene.nb_cam);
+	printf("Resolution :\t%d %d\n", scene.w, scene.h);
+	printf("Ambiance   :\t%4.3f %d,%d,%d\n", scene.amb, scene.amb_col.r,
+			scene.amb_col.g, scene.amb_col.b);
+	printf("\n---- %d cams ----\n", scene.nb_cam);
 	print_cam(scene.cams, scene.nb_cam);
-	printf("----  %d lum  ----\n", scene.nb_lum);
+	printf("\n---- %d lums ----\n", scene.nb_lum);
 	print_lum(scene.lums, scene.nb_lum);
-	printf("----  %d objs ----\n", scene.nb_obj);
+	printf("\n\n---- %d objs ----\n", scene.nb_obj);
 	print_obj(scene.objs, scene.nb_obj);
 }
