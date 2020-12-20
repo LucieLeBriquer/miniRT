@@ -110,4 +110,20 @@ int		is_save(char *s);
 
 void	print_parsing(t_scene scene);
 
+int		parse_trg(int fd, t_scene *scene, char *line, int nb);
+int		parse_cyl(int fd, t_scene *scene, char *line, int nb);
+int		parse_sqr(int fd, t_scene *scene, char *line, int nb);
+int		parse_pln(int fd, t_scene *scene, char *line, int nb);
+int		parse_sph(int fd, t_scene *scene, char *line, int nb);
+int		skip_float(char *line);
+int		skip_vect(char *line);
+int		to_float(char *line, float *f);
+int		to_vect(char *line, t_vect *vect);
+int		to_col(char *line, t_col *col);
+int		parse_obj(int fd, t_scene *scene, char *line);
+int		parse_lum(int fd, t_scene *scene, char *line);
+int		parse_cam(int fd, t_scene *scene, char *line);
+int		parse_amb(int fd, t_scene *scene, char *line);
+int		parse_res(int fd, t_scene *scene, char *line);
+
 #endif

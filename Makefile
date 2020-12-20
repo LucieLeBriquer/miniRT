@@ -16,7 +16,11 @@ SRCS		= miniRT.c \
 
 PARS		= read/get_next_line.c \
 			read/get_next_line_utils.c \
+			parse/converter.c \
+			parse/global.c \
 			parse/parse.c \
+			parse/skip.c \
+			parse/type.c \
 			parse/utils.c
 
 OBJS		= $(SRCS:.c=.o)
