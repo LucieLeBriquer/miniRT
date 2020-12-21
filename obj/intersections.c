@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-float	inter_0sphere(t_vect ray, t_obj obj)
+float	inter_0sphere(t_ray ray, t_obj obj)
 {
 	t_vect	v;
 	float	det;
@@ -8,8 +8,8 @@ float	inter_0sphere(t_vect ray, t_obj obj)
 	float	det_sq;
 	float	sol[2];
 
-	v = mul_vect(-1, obj.o);
-	sc = dot(ray, v);
+	v = sub_vect(ray.org, obj.o);
+	sc = dot(ray.dir, v);
 	det = 4 * (sc * sc - norm2(v) + obj.r * obj.r); 
 	if (det >= 0)
 	{
@@ -26,44 +26,7 @@ float	inter_0sphere(t_vect ray, t_obj obj)
 	return (-1);
 }
 
-float	inter_1square(t_vect ray, t_obj obj)
-{
-	float	t;
-	float	sc;
-	t_vect	n;
-	t_vect	p;
-
-	n = prod_vect(obj.axe, sub_vect(obj.axe, obj.o));
-	normalize(&n);
-	sc = dot(n, obj.o);
-	if (sc != 0)
-	{
-		t = sc / dot(n, ray);
-		if (t > 0)
-		{
-			p = mul_vect(t, ray);
-			sc = dot(sub_vect(obj.o, p), obj.axe);
-			if (sc >= 0 && sc <= obj.r)
-				return (t);
-		}
-	}
-	return (-1);
-}
-
-float	inter_2cylindre(t_vect ray, t_obj obj)
-{
-	(void)ray;
-	(void)obj;
-
-	return (-1);
-}
-
-/*
-** Pour un plan l'axe est defini comme la normale
-** -> nowp changer comme pour le square
-*/
-
-float	inter_3plane(t_vect ray, t_obj obj)
+float	inter_1plane(t_ray ray, t_obj obj)
 {
 	float	t;
 	float	sc;
@@ -71,55 +34,76 @@ float	inter_3plane(t_vect ray, t_obj obj)
 	sc = dot(obj.axe, obj.o);
 	if (sc != 0)
 	{
-		t = sc / dot(obj.axe, ray);
+		t = sc / dot(obj.axe, ray.dir);
 		if (t > 0)
 			return (t);
 	}
 	return (-1);
 }
 
-float	inter_4triangle(t_vect ray, t_obj obj)
+float	inter_2square(t_ray ray, t_obj obj)
 {
 	(void)ray;
 	(void)obj;
+
 	return (-1);
 }
 
-int		inter(t_vect ray, t_obj *objs, t_vect *p, t_vect *n, t_col *col, 
-			t_obj *obj_inter, float *t_min)
+float	inter_3cylindre(t_ray ray, t_obj obj)
 {
-	float	t;
-	float	(*inter_fun[4])(t_vect, t_obj);
+	(void)ray;
+	(void)obj;
 
-	inter_fun[0] = &inter_0sphere;
-	inter_fun[1] = &inter_1square;
-	inter_fun[2] = &inter_2cylindre;
-	inter_fun[3] = &inter_3plane;
-	inter_fun[4] = &inter_4triangle;
-	*t_min = -1;
-	while (objs)
+	return (-1);
+}
+
+float	inter_4triangle(t_ray ray, t_obj obj)
+{
+	(void)ray;
+	(void)obj;
+
+	return (-1);
+}
+
+int		fill_useful_vectors(t_inter *itr)
+{
+	if (itr->t > 0)
 	{
-		t = (inter_fun[objs->type])(ray, *objs);
-		if (t > 0)
-		{
-			if (*t_min < 0 || *t_min > 0 && t < *t_min)
-			{
-				*t_min = t;
-				*obj_inter = *objs;
-			}
-		}
-		objs = objs->next;	
-	}
-	if (*t_min > 0)
-	{
-		*p = mul_vect(*t_min, ray);
-		*col = obj_inter->col;
-		if (obj_inter->type == 0)
-			*n = sub_vect(*p, obj_inter->o);
+		itr->p = add_vect(itr->ray.org, mul_vect(itr->t, itr->ray.dir));
+		if (itr->obj_inter.type == 0)
+			itr->n = sub_vect(itr->p, itr->obj_inter.o);
 		else
-			*n = obj_inter->axe;
-		normalize(n);
+			itr->n = itr->obj_inter.axe;
+		normalize(&(itr->n));
 		return (1);
 	}
 	return (0);
+}
+
+int		inter(t_inter *itr, t_scene scene)
+{
+	float	(*inter_fun[4])(t_ray, t_obj);
+	float	new_t;
+	int		i;
+
+	inter_fun[0] = &inter_0sphere;
+	inter_fun[1] = &inter_1plane;
+	inter_fun[2] = &inter_2square;
+	inter_fun[3] = &inter_3cylindre;
+	inter_fun[4] = &inter_4triangle;
+	itr->t = -1;
+	i = -1;
+	while (++i < scene.nb_obj)
+	{
+		new_t = (inter_fun[scene.objs[i].type])(itr->ray, scene.objs[i]);
+		if (new_t > 0)
+		{
+			if (itr->t < 0 || itr->t > 0 && new_t < itr->t)
+			{
+				itr->t = new_t;
+				itr->obj_inter = scene.objs[i];
+			}
+		}
+	}
+	return (fill_useful_vectors(itr));
 }

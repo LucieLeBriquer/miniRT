@@ -6,11 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:57 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/20 19:59:23 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/21 03:00:38 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+#define cyan "\033[36m"
+#define white "\033[0m"
 
 int		ft_strcmp(const char *s1, const char *s2)
 {
@@ -89,7 +91,7 @@ void	print_lum(t_lum *lum, int nb_lum)
 	}
 }
 
-void	print_sph(t_obj2 sph, int i)
+void	print_sph(t_obj sph, int i)
 {
 	printf("[%02d]sph :", i);
 	print_vect(sph.o);
@@ -98,7 +100,7 @@ void	print_sph(t_obj2 sph, int i)
 	newline();
 }
 
-void	print_pln(t_obj2 pln, int i)
+void	print_pln(t_obj pln, int i)
 {
 	printf("[%02d]pln :", i);
 	print_vect(pln.o);
@@ -107,7 +109,7 @@ void	print_pln(t_obj2 pln, int i)
 	newline();
 }
 
-void	print_sqr(t_obj2 sqr, int i)
+void	print_sqr(t_obj sqr, int i)
 {
 	printf("[%02d]sqr :", i);
 	print_vect(sqr.o);
@@ -117,7 +119,7 @@ void	print_sqr(t_obj2 sqr, int i)
 	newline();
 }
 
-void	print_cyl(t_obj2 cyl, int i)
+void	print_cyl(t_obj cyl, int i)
 {
 	printf("[%02d]cyl :", i);
 	print_vect(cyl.o);
@@ -127,7 +129,7 @@ void	print_cyl(t_obj2 cyl, int i)
 	newline();
 }
 
-void	print_trg(t_obj2 trg, int i)
+void	print_trg(t_obj trg, int i)
 {
 	printf("[%02d]trg :", i);
 	print_vect(trg.o);
@@ -139,7 +141,7 @@ void	print_trg(t_obj2 trg, int i)
 	newline();
 }
 
-void	print_obj(t_obj2 *obj, int nb_obj)
+void	print_obj(t_obj *obj, int nb_obj)
 {
 	int	i;
 
@@ -162,13 +164,14 @@ void	print_obj(t_obj2 *obj, int nb_obj)
 
 void	print_parsing(t_scene scene)
 {
+	printf("%s[configuration]%s\n", cyan, white);
 	printf("Resolution :\t%d %d\n", scene.w, scene.h);
 	printf("Ambiance   :\t%4.3f %d,%d,%d\n", scene.amb, scene.amb_col.r,
 			scene.amb_col.g, scene.amb_col.b);
-	printf("\n---- %d cams ----\n", scene.nb_cam);
+	printf("\n%s>> %d cams%s\n", cyan, scene.nb_cam, white);
 	print_cam(scene.cams, scene.nb_cam);
-	printf("\n---- %d lums ----\n", scene.nb_lum);
+	printf("\n%s>> %d lums%s\n", cyan, scene.nb_lum, white);
 	print_lum(scene.lums, scene.nb_lum);
-	printf("\n\n---- %d objs ----\n", scene.nb_obj);
+	printf("\n\n%s>> %d objs%s\n", cyan, scene.nb_obj, white);
 	print_obj(scene.objs, scene.nb_obj);
 }

@@ -10,11 +10,10 @@ NORME		= ~/.norminette/norminette.rb
 
 SRCS		= miniRT.c \
 			obj/intersections.c \
-			obj/obj_functions.c \
 			vector/vector_norm.c \
-			vector/vector_operations.c
-
-PARS		= read/get_next_line.c \
+			vector/vector_operations.c \
+			vector/ray_operations.c \
+			read/get_next_line.c \
 			read/get_next_line_utils.c \
 			parse/converter.c \
 			parse/global.c \
@@ -24,7 +23,6 @@ PARS		= read/get_next_line.c \
 			parse/utils.c
 
 OBJS		= $(SRCS:.c=.o)
-PARS_OBJ	= $(PARS:.c=.o)
 
 %.o			: %.c
 			$(CC) $(CFLAGS) -I$(INCS_DIR) -c $< -o $@
@@ -34,9 +32,6 @@ all			: $(NAME)
 $(NAME)		: $(OBJS) $(INCS)
 			$(CC) -I$(INCS_DIR) $(OBJS) $(LIBS) -o $(NAME)
 		
-parse		: $(PARS_OBJ)
-			$(CC) -I$(INCS_DIR) $(PARS_OBJ) $(LIBS) -o pars
-
 norme		:
 			$(NORME) $(SRCS)
 

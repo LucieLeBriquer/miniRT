@@ -7,10 +7,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# define W 800
-# define H 600
-# define FOV 1.0472
-# define PI 3.1415926535897932
 
 # include <stdio.h>
 
@@ -28,48 +24,46 @@ typedef struct
 	int		b;
 }			t_col;
 
-typedef struct s_obj
+typedef struct
 {
-	int				type;
-	t_vect			o;
-	t_vect			axe;
-	t_col			col;
-	float			r;
-	float			h;
-	struct s_obj	*next;
-}					t_obj;
+	t_vect	org;
+	t_vect	dir;
+}			t_ray;
 
 typedef struct
 {
-	t_vect	lum;
-	float	intensity;
-	float	amb;
-}		t_scn;
+	t_vect	pos;
+	t_vect	axe;
+	float	fov;
+}			t_cam;
 
 typedef struct
 {
-	t_vect			pos;
-	t_vect			axe;
-	float			fov;
-}					t_cam;
+	float	ratio;
+	t_vect	pos;
+	t_col	col;
+}			t_lum;
 
 typedef struct
 {
-	float			ratio;
-	t_vect			pos;
-	t_col			col;
-}					t_lum;
+	int		type;
+	t_vect	o;
+	t_vect	axe;
+	t_vect	p;
+	t_col	col;
+	float	r;
+	float	h;
+}			t_obj;
 
 typedef struct
 {
-	int				type;
-	t_vect			o;
-	t_vect			axe;
-	t_vect			p;
-	t_col			col;
-	float			r;
-	float			h;
-}					t_obj2;
+	t_ray	ray;
+	t_ray	ray_light;
+	t_vect	p;
+	t_vect	n;
+	t_obj	obj_inter;
+	float	t;
+}			t_inter;
 
 typedef struct
 {
@@ -82,7 +76,11 @@ typedef struct
 	t_col	amb_col;
 	t_cam	*cams;
 	t_lum	*lums;
-	t_obj2	*objs;
+	t_obj	*objs;
+	void	*img_ptr;
+	int		*img_data;
+	void	*mlx;
+	void	*win;
 }			t_scene;
 
 void	init_vect(t_vect *v, float x, float y, float z);
@@ -102,14 +100,10 @@ float	dot(t_vect a, t_vect b);
 t_vect	add_vect(t_vect a, t_vect b);
 t_vect	sub_vect(t_vect a, t_vect b);
 t_vect	prod_vect(t_vect a, t_vect b);
-int		color_convert(t_vect intensity);
-void	maj_lum(t_vect *lum);
-int		inter(t_vect ray, t_obj *objs, t_vect *p, t_vect *n, t_col *col, 
-		t_obj *obj_inter, float *t);
-int		is_save(char *s);
-
+void	reverse(t_vect *a);
+int		inter(t_inter *itr, t_scene scene);
 void	print_parsing(t_scene scene);
-
+int		is_save(char *s);
 int		parse_trg(int fd, t_scene *scene, char *line, int nb);
 int		parse_cyl(int fd, t_scene *scene, char *line, int nb);
 int		parse_sqr(int fd, t_scene *scene, char *line, int nb);
@@ -125,5 +119,8 @@ int		parse_lum(int fd, t_scene *scene, char *line);
 int		parse_cam(int fd, t_scene *scene, char *line);
 int		parse_amb(int fd, t_scene *scene, char *line);
 int		parse_res(int fd, t_scene *scene, char *line);
+int		parse_file(int argc, char **argv, t_scene *scene);
+void	init_ray_dir(t_ray *ray, float x, float y, float z);
+void	init_ray_org(t_ray *ray, t_vect org);
 
 #endif

@@ -14,11 +14,6 @@ void	init_col(t_col *col, int r, int g, int b)
 	col->b = b;
 }
 
-void	print_vect(t_vect v)
-{
-	printf("%f %f %f\n", v.x, v.y, v.z);
-}
-
 float	norm2(t_vect v)
 {
 	return (v.x * v.x + v.y * v.y + v.z * v.z);

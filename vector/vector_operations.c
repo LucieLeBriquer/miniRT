@@ -54,3 +54,8 @@ t_vect	prod_vect(t_vect a, t_vect b)
 	c.z = a.x * b.y - a.y * b.x;
 	return (c);
 }
+
+void	reverse(t_vect *a)
+{
+	a->y = (-1) * a->y;
+}
