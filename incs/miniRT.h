@@ -93,6 +93,7 @@ t_obj	*new_obj(int type, t_vect o, t_vect axe, t_col col, float r, float h);
 void	show_obj(t_obj obj);
 t_vect	mul_vect(float t, t_vect a);
 t_vect	mul_col(float t, t_col a);
+t_vect	min_col(t_col col1, t_col col2);
 t_vect	div_vect(float t, t_vect a);
 float	norm2(t_vect v);
 float	norm(t_vect v);
