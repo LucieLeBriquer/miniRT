@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 06:02:06 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/21 06:04:21 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	draw(t_scene scn, int n_cam)
 		j = -1;
 		while (++j < scn.w)
 		{
-			init_ray_dir(&(itr.ray), j - scn.w / 2, i - scn.h / 2, 
+			init_ray_dir(&(itr.ray), j - scn.w / 2, i - scn.h / 2,
 			(-scn.w) / (2 * tan(scn.cams[n_cam].fov / 2)));
 			if (inter(&itr, scn))
-				(scn.img_data)[i * scn.w + j] = get_color(itr, scn);	
+				(scn.img_data)[i * scn.w + j] = get_color(itr, scn);
 			else
 				(scn.img_data)[i * scn.w + j] = 0x000000;
 		}
