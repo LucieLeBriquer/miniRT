@@ -3,12 +3,13 @@ CFLAGS		= -Wall -Wextra -Werror
 #CFLAGS		=
 RM			= rm -rf
 NAME		= minirt 
-LIBS		= libmlx_Linux.a libft.a -lXext -lX11 -lm
+LIBS		= libraries/libmlx_Linux.a \
+			libraries/libft.a -lXext -lX11 -lm
 INCS		= incs/miniRT.h incs/get_next_line.h incs/mlx.h incs/libft.h
 INCS_DIR	= ./incs
 NORME		= ~/.norminette/norminette.rb
 
-SRCS		= minirt.c \
+SRCS		= $(addprefix srcs/, minirt.c \
 			color/color.c \
 			inter/inter.c \
 			inter/inter_0sphere.c \
@@ -30,7 +31,7 @@ SRCS		= minirt.c \
 			parse/utils.c \
 			print/print_elem.c \
 			print/print_obj.c \
-			print/print_parsing.c
+			print/print_parsing.c)
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -46,7 +47,7 @@ norme		:
 			$(NORME) $(SRCS)
 
 clean:
-			$(RM) $(OBJS) $(PARS_OBJ)
+			$(RM) $(OBJS)
 
 fclean		: clean
 			$(RM) $(NAME) pars
