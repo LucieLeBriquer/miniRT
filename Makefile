@@ -8,7 +8,8 @@ INCS		= incs/miniRT.h incs/get_next_line.h incs/mlx.h incs/libft.h
 INCS_DIR	= ./incs
 NORME		= ~/.norminette/norminette.rb
 
-SRCS		= miniRT.c \
+SRCS		= minirt.c \
+			color/color.c \
 			inter/inter.c \
 			inter/inter_0sphere.c \
 			inter/inter_1plane.c \

@@ -8,3 +8,4 @@
 - implementer les ombres portees
 - check lumieres colorees et plusieurs spots
 - video 5 de NB : triangles
+- fermer proprement mlx si probleme de parsing dans le main
