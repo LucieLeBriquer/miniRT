@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:27:26 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 22:55:47 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/21 22:56:46 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,3 @@ int		get_color(t_inter itr, t_scene scn)
 	color = add_vect(color, mul_col(scn.amb, scn.amb_col));
 	return (color_vect_ftoi(color));
 }
-
-/*
-** tranformer en t_vect l'intensite et hop la couleur de la lumiere
-*/
