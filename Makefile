@@ -1,6 +1,5 @@
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-#CFLAGS		=
 RM			= rm -rf
 NAME		= minirt 
 LIBS		= libraries/libmlx_Linux.a \
