@@ -140,5 +140,6 @@ void	print_cyl(t_obj cyl, int i);
 void	print_trg(t_obj trg, int i);
 int		get_color(t_inter itr, t_scene scn);
 int		color_vect_ftoi(t_vect color);
+int		is_visible(t_inter itr, t_scene scn, int n_lum);
 
 #endif

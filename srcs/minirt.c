@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 17:22:56 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/21 21:23:39 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	init_image(t_scene *scene)
 	&bpp, &size_line, &endian);
 }
 
-int		is_visible(t_inter itr, t_scene scn)
+int		is_visible(t_inter itr, t_scene scn, int n_lum)
 {
 	t_inter	omb;
 	t_vect	v;
 
-	v = sub_vect(scn.lums[0].pos, itr.p);
+	v = sub_vect(scn.lums[n_lum].pos, itr.p);
 	init_ray(&(omb.ray), add_vect(itr.p, mul_vect(0.01, itr.n)), v);
 	if (inter(&omb, scn) && omb.t * omb.t < norm(v))
 		return (0);
@@ -49,8 +49,8 @@ void	draw(t_scene scn, int n_cam)
 		while (++j < scn.w)
 		{
 			init_ray_dir(&(itr.ray), j - scn.w / 2, -i + scn.h / 2,
-			(-scn.w) / (2 * tan(scn.cams[n_cam].fov / 2)));
-			if (inter(&itr, scn) && is_visible(itr, scn))
+			(-scn.w) / (2 * tan(scn.cams[n_cam].fov * M_PI / 360)));
+			if (inter(&itr, scn))
 				(scn.img_data)[i * scn.w + j] = get_color(itr, scn);
 			else
 				(scn.img_data)[i * scn.w + j] = 0x000000;

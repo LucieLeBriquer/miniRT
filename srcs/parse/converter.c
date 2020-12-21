@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:00 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/20 16:22:33 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/21 20:08:57 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@ int		to_float(char *line, float *f)
 		sign = -1;
 	while (ft_isdigit(*line))
 		line++;
-	if (*line == '.')
-		line++;
-	floating = ft_atoi(line);
+	if (*line == '.' && line++)
+		floating = ft_atoi(line);
 	size = size_of_int(floating);
 	while (*line == '0' && line++)
 		size++;

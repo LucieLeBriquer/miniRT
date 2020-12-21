@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:57 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:38:54 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/21 20:14:42 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	print_lum(t_lum *lum, int nb_lum)
 		print_vect(lum[i].pos);
 		print_float(lum[i].ratio);
 		print_col(lum[i].col);
+		newline();
 		i++;
 	}
 }
