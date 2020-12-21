@@ -6,26 +6,26 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 04:23:42 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:54:42 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		parse_line(int fd, t_scene *scene, char *line)
+int		parse_line(t_scene *scene, char *line)
 {
 	while (ft_isspace(*line))
 		line++;
 	if (line[0] == 'R' && ft_isspace(line[1]))
-		return (parse_res(fd, scene, line + 1));
+		return (parse_res(scene, line + 1));
 	if (line[0] == 'A' && ft_isspace(line[1]))
-		return (parse_amb(fd, scene, line + 1));
+		return (parse_amb(scene, line + 1));
 	if (line[0] == 'c' && ft_isspace(line[1]))
-		return (parse_cam(fd, scene, line + 1));
+		return (parse_cam(scene, line + 1));
 	if (line[0] == 'l' && ft_isspace(line[1]))
-		return (parse_lum(fd, scene, line + 1));
+		return (parse_lum(scene, line + 1));
 	else
-		return (parse_obj(fd, scene, line));
+		return (parse_obj(scene, line));
 }
 
 int		parse(int fd, t_scene *scene)
@@ -43,7 +43,7 @@ int		parse(int fd, t_scene *scene)
 		{
 			if (line[0] == '#')
 				continue;
-			if (parse_line(fd, scene, line) == -1)
+			if (parse_line(scene, line) == -1)
 				return (0);
 		}
 	}
@@ -75,7 +75,6 @@ int		get_numbers(int *fd, t_scene *scene, char *file_name)
 
 int		parse_file(int argc, char **argv, t_scene *scene)
 {
-	char	*save_name;
 	int		fd;
 
 	if (argc == 2 || (argc == 4 && is_save(argv[2])))

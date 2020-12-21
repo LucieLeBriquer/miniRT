@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:19:56 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:51:15 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		parse_sph(int fd, t_scene *scene, char *line, int nb)
+int		parse_sph(t_scene *scene, char *line, int nb)
 {
 	t_obj	sph;
 
@@ -33,7 +33,7 @@ int		parse_sph(int fd, t_scene *scene, char *line, int nb)
 	return (1);
 }
 
-int		parse_pln(int fd, t_scene *scene, char *line, int nb)
+int		parse_pln(t_scene *scene, char *line, int nb)
 {
 	t_obj	pln;
 
@@ -53,7 +53,7 @@ int		parse_pln(int fd, t_scene *scene, char *line, int nb)
 	return (1);
 }
 
-int		parse_sqr(int fd, t_scene *scene, char *line, int nb)
+int		parse_sqr(t_scene *scene, char *line, int nb)
 {
 	t_obj	sqr;
 
@@ -76,7 +76,7 @@ int		parse_sqr(int fd, t_scene *scene, char *line, int nb)
 	return (1);
 }
 
-int		parse_cyl(int fd, t_scene *scene, char *line, int nb)
+int		parse_cyl(t_scene *scene, char *line, int nb)
 {
 	t_obj	cyl;
 
@@ -102,7 +102,7 @@ int		parse_cyl(int fd, t_scene *scene, char *line, int nb)
 	return (1);
 }
 
-int		parse_trg(int fd, t_scene *scene, char *line, int nb)
+int		parse_trg(t_scene *scene, char *line, int nb)
 {
 	t_obj	trg;
 

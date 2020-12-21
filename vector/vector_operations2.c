@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_operations.c                                   :+:      :+:    :+:   */
+/*   vector_operations2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/21 05:30:32 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:30:34 by lle-briq         ###   ########.fr       */
+/*   Created: 2020/12/21 05:29:22 by lle-briq          #+#    #+#             */
+/*   Updated: 2020/12/21 05:29:29 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	init_ray_dir(t_ray *ray, float x, float y, float z)
+t_vect	mul_vect(float t, t_vect a)
 {
-	ray->dir.x = x;
-	ray->dir.y = y;
-	ray->dir.z = z;
-	normalize(&(ray->dir));
+	t_vect	c;
+
+	init_vect(&c, t * a.x, t * a.y, t * a.z);
+	return (c);
 }
 
-void	init_ray_org(t_ray *ray, t_vect org)
+t_vect	mul_col(float t, t_col a)
 {
-	ray->org.x = org.x;
-	ray->org.y = org.y;
-	ray->org.z = org.z;
+	t_vect	c;
+
+	init_vect(&c, t * a.r, t * a.g, t * a.b);
+	return (c);
+}
+
+t_vect	div_vect(float t, t_vect a)
+{
+	t_vect	c;
+
+	init_vect(&c, a.x / t, a.y / t, a.z / t);
+	return (c);
+}
+
+float	dot(t_vect a, t_vect b)
+{
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }

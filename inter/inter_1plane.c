@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_operations.c                                   :+:      :+:    :+:   */
+/*   inter_1plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/21 05:30:32 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:30:34 by lle-briq         ###   ########.fr       */
+/*   Created: 2020/12/21 05:44:34 by lle-briq          #+#    #+#             */
+/*   Updated: 2020/12/21 05:44:35 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	init_ray_dir(t_ray *ray, float x, float y, float z)
+float	inter_1plane(t_ray ray, t_obj obj)
 {
-	ray->dir.x = x;
-	ray->dir.y = y;
-	ray->dir.z = z;
-	normalize(&(ray->dir));
-}
+	float	t;
+	float	sc;
 
-void	init_ray_org(t_ray *ray, t_vect org)
-{
-	ray->org.x = org.x;
-	ray->org.y = org.y;
-	ray->org.z = org.z;
+	sc = dot(obj.axe, obj.o);
+	if (sc != 0)
+	{
+		t = sc / dot(obj.axe, ray.dir);
+		if (t > 0)
+			return (t);
+	}
+	return (-1);
 }

@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_operations.c                                   :+:      :+:    :+:   */
+/*   inter_3cylindre.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/21 05:30:32 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:30:34 by lle-briq         ###   ########.fr       */
+/*   Created: 2020/12/21 05:44:57 by lle-briq          #+#    #+#             */
+/*   Updated: 2020/12/21 05:50:08 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	init_ray_dir(t_ray *ray, float x, float y, float z)
+float	inter_3cylindre(t_ray ray, t_obj obj)
 {
-	ray->dir.x = x;
-	ray->dir.y = y;
-	ray->dir.z = z;
-	normalize(&(ray->dir));
-}
-
-void	init_ray_org(t_ray *ray, t_vect org)
-{
-	ray->org.x = org.x;
-	ray->org.y = org.y;
-	ray->org.z = org.z;
+	(void)ray;
+	(void)obj;
+	return (-1);
 }

@@ -1,28 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_operations.c                                   :+:      :+:    :+:   */
+/*   vector_operations1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/21 05:30:32 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:30:34 by lle-briq         ###   ########.fr       */
+/*   Created: 2020/12/21 05:29:23 by lle-briq          #+#    #+#             */
+/*   Updated: 2020/12/21 05:30:12 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	init_ray_dir(t_ray *ray, float x, float y, float z)
+t_vect	add_vect(t_vect a, t_vect b)
 {
-	ray->dir.x = x;
-	ray->dir.y = y;
-	ray->dir.z = z;
-	normalize(&(ray->dir));
+	t_vect	c;
+
+	init_vect(&c, a.x + b.x, a.y + b.y, a.z + b.z);
+	return (c);
 }
 
-void	init_ray_org(t_ray *ray, t_vect org)
+t_vect	sub_vect(t_vect a, t_vect b)
 {
-	ray->org.x = org.x;
-	ray->org.y = org.y;
-	ray->org.z = org.z;
+	t_vect	c;
+
+	init_vect(&c, a.x - b.x, a.y - b.y, a.z - b.z);
+	return (c);
+}
+
+t_vect	prod_vect(t_vect a, t_vect b)
+{
+	t_vect	c;
+
+	c.x = a.y * b.z - a.z * b.y;
+	c.y = -a.x * b.z + a.z * b.x;
+	c.z = a.x * b.y - a.y * b.x;
+	return (c);
+}
+
+void	reverse(t_vect *a)
+{
+	a->y = -a->y;
 }

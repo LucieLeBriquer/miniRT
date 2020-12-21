@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_operations.c                                   :+:      :+:    :+:   */
+/*   print_elem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/21 05:30:32 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:30:34 by lle-briq         ###   ########.fr       */
+/*   Created: 2020/12/20 16:26:57 by lle-briq          #+#    #+#             */
+/*   Updated: 2020/12/21 05:34:15 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	init_ray_dir(t_ray *ray, float x, float y, float z)
+void	print_vect(t_vect vect)
 {
-	ray->dir.x = x;
-	ray->dir.y = y;
-	ray->dir.z = z;
-	normalize(&(ray->dir));
+	printf("\t%5.3f,%5.3f,%5.3f", vect.x, vect.y, vect.z);
 }
 
-void	init_ray_org(t_ray *ray, t_vect org)
+void	print_float(float f)
 {
-	ray->org.x = org.x;
-	ray->org.y = org.y;
-	ray->org.z = org.z;
+	printf("\t%5.3f", f);
+}
+
+void	print_col(t_col col)
+{
+	printf("\t%d,%d,%d", col.r, col.g, col.b);
+}
+
+void	newline(void)
+{
+	printf("\n");
+}
+
+void	newtab(void)
+{
+	printf("\t");
 }

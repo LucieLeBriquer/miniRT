@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/20 16:24:39 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/21 05:54:03 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int		parse_res(int fd, t_scene *scene, char *line)
+int		parse_res(t_scene *scene, char *line)
 {
 	int		width;
 	int		height;
@@ -35,13 +35,11 @@ int		parse_res(int fd, t_scene *scene, char *line)
 	return (1);
 }
 
-int		parse_amb(int fd, t_scene *scene, char *line)
+int		parse_amb(t_scene *scene, char *line)
 {
 	float	amb;
-	int		one_point;
 	t_col	col;
 
-	one_point = 0;
 	while (ft_isspace(*line))
 		line++;
 	if (to_float(line, &amb) < 0 || amb < 0 || amb > 1)
@@ -56,7 +54,7 @@ int		parse_amb(int fd, t_scene *scene, char *line)
 	return (1);
 }
 
-int		parse_cam(int fd, t_scene *scene, char *line)
+int		parse_cam(t_scene *scene, char *line)
 {
 	static int	nb;
 	t_cam		cam;
@@ -77,7 +75,7 @@ int		parse_cam(int fd, t_scene *scene, char *line)
 	return (1);
 }
 
-int		parse_lum(int fd, t_scene *scene, char *line)
+int		parse_lum(t_scene *scene, char *line)
 {
 	static int	nb;
 	t_lum		lum;
@@ -97,20 +95,20 @@ int		parse_lum(int fd, t_scene *scene, char *line)
 	return (1);
 }
 
-int		parse_obj(int fd, t_scene *scene, char *line)
+int		parse_obj(t_scene *scene, char *line)
 {
 	static int	nb;
 
 	nb++;
 	if (line[0] == 's' && line[1] == 'p')
-		return (parse_sph(fd, scene, line + 2, nb));
+		return (parse_sph(scene, line + 2, nb));
 	if (line[0] == 'p' && line[1] == 'l')
-		return (parse_pln(fd, scene, line + 2, nb));
+		return (parse_pln(scene, line + 2, nb));
 	if (line[0] == 's' && line[1] == 'q')
-		return (parse_sqr(fd, scene, line + 2, nb));
+		return (parse_sqr(scene, line + 2, nb));
 	if (line[0] == 'c' && line[1] == 'y')
-		return (parse_cyl(fd, scene, line + 2, nb));
+		return (parse_cyl(scene, line + 2, nb));
 	if (line[0] == 't' && line[1] == 'r')
-		return (parse_trg(fd, scene, line + 2, nb));
+		return (parse_trg(scene, line + 2, nb));
 	return (-1);
 }

@@ -7,6 +7,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# define CYAN "\033[36m"
+# define WHITE "\033[0m"
 
 # include <stdio.h>
 
@@ -84,7 +86,6 @@ typedef struct
 }			t_scene;
 
 void	init_vect(t_vect *v, float x, float y, float z);
-void	print_vect(t_vect v);
 void	init_col(t_col *col, int r, int g, int b);
 void	ft_addobj(t_obj **obj, t_obj *obj_new);
 void	ft_objiter(t_obj *objs, void (*f)(t_obj));
@@ -101,26 +102,41 @@ t_vect	add_vect(t_vect a, t_vect b);
 t_vect	sub_vect(t_vect a, t_vect b);
 t_vect	prod_vect(t_vect a, t_vect b);
 void	reverse(t_vect *a);
+float	inter_0sphere(t_ray ray, t_obj obj);
+float	inter_1plane(t_ray ray, t_obj obj);
+float	inter_2square(t_ray ray, t_obj obj);
+float	inter_3cylindre(t_ray ray, t_obj obj);
+float	inter_4triangle(t_ray ray, t_obj obj);
 int		inter(t_inter *itr, t_scene scene);
 void	print_parsing(t_scene scene);
 int		is_save(char *s);
-int		parse_trg(int fd, t_scene *scene, char *line, int nb);
-int		parse_cyl(int fd, t_scene *scene, char *line, int nb);
-int		parse_sqr(int fd, t_scene *scene, char *line, int nb);
-int		parse_pln(int fd, t_scene *scene, char *line, int nb);
-int		parse_sph(int fd, t_scene *scene, char *line, int nb);
+int		parse_trg(t_scene *scene, char *line, int nb);
+int		parse_cyl(t_scene *scene, char *line, int nb);
+int		parse_sqr(t_scene *scene, char *line, int nb);
+int		parse_pln(t_scene *scene, char *line, int nb);
+int		parse_sph(t_scene *scene, char *line, int nb);
 int		skip_float(char *line);
 int		skip_vect(char *line);
 int		to_float(char *line, float *f);
 int		to_vect(char *line, t_vect *vect);
 int		to_col(char *line, t_col *col);
-int		parse_obj(int fd, t_scene *scene, char *line);
-int		parse_lum(int fd, t_scene *scene, char *line);
-int		parse_cam(int fd, t_scene *scene, char *line);
-int		parse_amb(int fd, t_scene *scene, char *line);
-int		parse_res(int fd, t_scene *scene, char *line);
+int		parse_obj(t_scene *scene, char *line);
+int		parse_lum(t_scene *scene, char *line);
+int		parse_cam(t_scene *scene, char *line);
+int		parse_amb(t_scene *scene, char *line);
+int		parse_res(t_scene *scene, char *line);
 int		parse_file(int argc, char **argv, t_scene *scene);
 void	init_ray_dir(t_ray *ray, float x, float y, float z);
 void	init_ray_org(t_ray *ray, t_vect org);
+void	print_vect(t_vect v);
+void	print_float(float f);
+void	print_col(t_col col);
+void	newline(void);
+void	newtab(void);
+void	print_sph(t_obj sph, int i);
+void	print_pln(t_obj pln, int i);
+void	print_sqr(t_obj sqr, int i);
+void	print_cyl(t_obj cyl, int i);
+void	print_trg(t_obj trg, int i);
 
 #endif
