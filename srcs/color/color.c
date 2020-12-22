@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:27:26 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 22:56:46 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 16:12:50 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		get_color(t_inter itr, t_scene scn)
 		if (sc == 0)
 			continue;
 		sc = dot(light, itr.n) / norm(light);
-		if ((sc <= 0 && itr.obj_inter.type == 0) || !is_visible(itr, scn, i))
+		if (!is_visible(itr, scn, i))
 			continue;
 		intensity = mul_vect(fabs(sc) * scn.lums[i].ratio,
 		min_col(scn.lums[i].col, itr.obj_inter.col));

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 17:09:48 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 15:27:27 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		parse_trg(t_scene *scene, char *line, int nb)
 	if (to_vect(line, &(trg.o)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_vect(line, &(trg.axe)) == -1)
+	if (to_vect(line, &(trg.q)) == -1)
 		return (-1);
 	line += skip_vect(line);
 	if (to_vect(line, &(trg.p)) == -1)
@@ -116,6 +116,8 @@ int		parse_trg(t_scene *scene, char *line, int nb)
 	if (to_col(line, &(trg.col)) == -1)
 		return (-1);
 	trg.type = 4;
+	trg.axe = prod_vect(sub_vect(trg.q, trg.o), sub_vect(trg.p, trg.o)); 
+	normalize(&(trg.axe));
 	(scene->objs)[nb - 1] = trg;
 	return (1);
 }

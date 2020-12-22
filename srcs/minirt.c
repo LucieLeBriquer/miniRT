@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 21:23:39 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 16:18:59 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ int		is_visible(t_inter itr, t_scene scn, int n_lum)
 {
 	t_inter	omb;
 	t_vect	v;
+	float	epsilon;
 
 	v = sub_vect(scn.lums[n_lum].pos, itr.p);
-	init_ray(&(omb.ray), add_vect(itr.p, mul_vect(0.01, itr.n)), v);
-	if (inter(&omb, scn) && omb.t * omb.t < norm(v))
+	epsilon = 0.01;
+	init_ray(&(omb.ray), add_vect(itr.p, mul_vect(epsilon, itr.n)), v);
+	if (inter(&omb, scn) && omb.t > 2 * epsilon && omb.t * omb.t < norm(v))
 		return (0);
 	return (1);
 }
@@ -40,8 +42,11 @@ void	draw(t_scene scn, int n_cam)
 	t_inter	itr;
 	int		i;
 	int		j;
+	int		pct;
+	int		pct_save;
 
 	i = -1;
+	pct = 0;
 	init_ray_org(&(itr.ray), scn.cams[n_cam].pos);
 	while (++i < scn.h)
 	{
@@ -55,7 +60,12 @@ void	draw(t_scene scn, int n_cam)
 			else
 				(scn.img_data)[i * scn.w + j] = 0x000000;
 		}
+		pct_save = pct;
+		pct = 100 * (i % scn.h) / scn.h;
+		if (pct_save < pct)
+			printf("\rRendering : [%3d%%]\n", pct);
 	}
+	printf("\rRendering : [100%%]\n");
 	mlx_put_image_to_window(scn.mlx, scn.win, scn.img_ptr, 0, 0);
 }
 

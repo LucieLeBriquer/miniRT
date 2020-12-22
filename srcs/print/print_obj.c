@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:57 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:41:45 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 15:28:09 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,11 @@ void	print_trg(t_obj trg, int i)
 {
 	printf("[%02d]trg :", i);
 	print_vect(trg.o);
-	print_vect(trg.axe);
+	print_vect(trg.p);
 	newline();
 	newtab();
-	print_vect(trg.p);
+	print_vect(trg.q);
+	print_vect(trg.axe);
 	print_col(trg.col);
 	newline();
 }
