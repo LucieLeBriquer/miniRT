@@ -4,8 +4,6 @@
 - remplacer printf par ft_printf !
 - faire un to_vect_range pour les vecteurs dans [-1,1]^3
 - dans le parsing lorsque 0,1.0,1  123,15,12  -> 0,1.0,1.123 /!\
-- rotation des objets et non de la cam
-- implementer les ombres portees
-- check lumieres colorees et plusieurs spots
-- video 5 de NB : triangles
 - fermer proprement mlx si probleme de parsing dans le main
+- plusieurs cam
+- parsing : si pas de cam ou pas de resolution -> erreur

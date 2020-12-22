@@ -3,6 +3,7 @@
 # include "mlx.h"
 # include "get_next_line.h"
 # include "libft.h"
+# include "mlx_code.h"
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -87,8 +88,8 @@ typedef struct
 	t_cam	*cams;
 	t_lum	*lums;
 	t_obj	*objs;
-	void	*img_ptr;
-	int		*img_data;
+	void	**img_ptr;
+	int		**img_data;
 	void	*mlx;
 	void	*win;
 }			t_scene;

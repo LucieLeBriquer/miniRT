@@ -6,21 +6,31 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 19:00:44 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 22:30:59 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	init_image(t_scene *scene)
+int		init_image(t_scene *scene)
 {
 	int	bpp;
 	int	size_line;
 	int	endian;
+	int	i;
 
-	scene->img_ptr = mlx_new_image(scene->mlx, scene->w, scene->h);
-	scene->img_data = (int *)mlx_get_data_addr(scene->img_ptr,
-	&bpp, &size_line, &endian);
+	i = -1;
+	scene->img_ptr = malloc(scene->nb_cam * sizeof(void *));
+	scene->img_data = malloc(scene->nb_cam * sizeof(int *));
+	if (!scene->img_ptr || !scene->img_data)
+		return (-1);
+	while (++i < scene->nb_cam)
+	{
+		scene->img_ptr[i] = mlx_new_image(scene->mlx, scene->w, scene->h);
+		scene->img_data[i] = (int *)mlx_get_data_addr(scene->img_ptr[i],
+		&bpp, &size_line, &endian);
+	}
+	return (1);
 }
 
 int		is_visible(t_inter itr, t_scene scn, int n_lum)
@@ -85,20 +95,29 @@ void	draw(t_scene scn, int n_cam)
 			(scn.w) / (2 * tan(scn.cams[n_cam].fov * M_PI / 360)));
 			rotate(&(itr.ray.dir), base);
 			if (inter(&itr, scn))
-				(scn.img_data)[i * scn.w + j] = get_color(itr, scn);
+				(scn.img_data[n_cam])[i * scn.w + j] = get_color(itr, scn);
 			else
-				(scn.img_data)[i * scn.w + j] = 0x000000;
+				(scn.img_data[n_cam])[i * scn.w + j] = 0x000000;
 		}
 		pct_save = pct;
 		pct = 100 * (i % scn.h) / scn.h;
 		if (pct > pct_save)
-			printf("\rRendering... [%3d%%]", pct);
+			printf("\rRendering view %-2d [%3d%%]", n_cam, pct);
 	}
-	printf("\rRendering... [100%%]\n");
-	mlx_put_image_to_window(scn.mlx, scn.win, scn.img_ptr, 0, 0);
+	printf("\rRendering view %-2d [100%%]\n", n_cam);
 }
 
-int		exit_test(t_scene *scene)
+void	render(t_scene scn)
+{
+	int	i;
+
+	i = -1;
+	while (++i < scn.nb_cam)
+		draw(scn, i);
+	mlx_put_image_to_window(scn.mlx, scn.win, scn.img_ptr[0], 0, 0);	
+}
+
+int		exit_scene(t_scene *scene)
 {
 	free(scene->lums);
 	free(scene->cams);
@@ -106,6 +125,19 @@ int		exit_test(t_scene *scene)
 	mlx_clear_window(scene->mlx, scene->win);
 	mlx_destroy_window(scene->mlx, scene->win);
 	exit(0);
+	return (1);
+}
+
+int		next_cam(int keynote, t_scene *scn)
+{
+	static int	i;
+
+	if (keynote == ESC_KEY)
+		return (exit_scene(scn));
+	if (keynote != SP_KEY)
+		return (-1);
+	i = (i + 1) % scn->nb_cam;
+	mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[i], 0, 0);	
 	return (1);
 }
 
@@ -117,10 +149,12 @@ int		main(int argc, char **argv)
 	if (parse_file(argc, argv, &scene) < 0)
 		return (-1);
 	scene.win = mlx_new_window(scene.mlx, scene.w, scene.h, "Scene");
-	init_image(&scene);
+	if (init_image(&scene) < 0)
+		return (printf("Error allocation\n"));
 	print_parsing(scene);
-	draw(scene, 0);
-	mlx_hook(scene.win, 33, 0, exit_test, &scene);
+	render(scene);
+	mlx_hook(scene.win, 2, 1L<<0, next_cam, &scene);
+	mlx_hook(scene.win, 33, 0, exit_scene, &scene);
 	mlx_loop(scene.mlx);
 	return (0);
 }
