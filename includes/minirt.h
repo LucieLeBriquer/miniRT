@@ -136,7 +136,7 @@ float	inter_2square(t_ray ray, t_obj obj);
 float	inter_3cylindre(t_ray ray, t_obj obj);
 float	inter_4triangle(t_ray ray, t_obj obj);
 int		inter(t_inter *itr, t_scene scene);
-int		get_color(t_inter itr, t_scene scn);
+int		get_color(t_inter *itr, t_scene scn);
 int		color_vect_ftoi(t_vect color);
 int		is_visible(t_inter itr, t_scene scn, int n_lum);
 

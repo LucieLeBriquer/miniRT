@@ -6,11 +6,11 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 22:53:50 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 23:35:35 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 void	draw(t_scene scn, int n_cam)
 {
@@ -31,7 +31,7 @@ void	draw(t_scene scn, int n_cam)
 			init_ray_dir(&(itr.ray), j - scn.w / 2, -i + scn.h / 2,
 					(scn.w) / (2 * tan(scn.cams[n_cam].fov * M_PI / 360)));
 			rotate(&(itr.ray.dir), base);
-			(scn.img_data[n_cam])[i * scn.w + j] = inter(&itr, scn) * get_color(itr, scn);
+			(scn.img_data[n_cam])[i * scn.w + j] = get_color(&itr, scn);
 		}
 		if (100 * (i % scn.h) / scn.h > scn.prog)
 		{
@@ -51,5 +51,5 @@ void	render(t_scene scn)
 		draw(scn, i);
 		printf("\rRendering view %-2d [100%%]\n", i);
 	}
-	mlx_put_image_to_window(scn.mlx, scn.win, scn.img_ptr[0], 0, 0);	
+	mlx_put_image_to_window(scn.mlx, scn.win, scn.img_ptr[0], 0, 0);
 }

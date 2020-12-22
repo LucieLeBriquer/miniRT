@@ -1,11 +1,22 @@
 CC			= gcc
+
 CFLAGS		= -Wall -Wextra -Werror
+
 RM			= rm -rf
+
 NAME		= minirt 
+
 LIBS		= libraries/libmlx_Linux.a \
 			libraries/libft.a -lXext -lX11 -lm
-INCS		= incs/miniRT.h incs/get_next_line.h incs/mlx.h incs/libft.h
-INCS_DIR	= ./incs
+
+INCS		= $(addprefix includes/, minirt.h \
+			get_next_line.h \
+			libft.h \
+			mlx_code.h \
+			mlx.h)
+
+INCS_DIR	= ./includes
+
 NORME		= ~/.norminette/norminette.rb
 
 SRCS		= $(addprefix srcs/, minirt.c \

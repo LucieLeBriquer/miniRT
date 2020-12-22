@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 22:13:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 22:30:29 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 23:29:41 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define NOEXPOSE 14
 # define VISIBILITYNOTIFY 15
 # define CREATENOTIFY 16
-# define DESTROYNOTIFY 17
+# define DESTROYNOTIFY 33
 # define UNMAPNOTIFY 18
 # define MAPNOTIFY 19
 # define MAPREQUEST 20

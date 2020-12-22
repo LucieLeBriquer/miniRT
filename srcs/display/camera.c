@@ -6,11 +6,11 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 23:06:31 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 23:23:44 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 void	init_base(t_base *base, t_vect c_axe)
 {

@@ -6,11 +6,11 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:44:14 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:50:28 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 23:24:16 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 float	inter_0sphere(t_ray ray, t_obj obj)
 {

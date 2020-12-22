@@ -6,11 +6,11 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 22:53:44 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 23:30:20 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 int		init_image(t_scene *scene)
 {
@@ -46,8 +46,8 @@ int		main(int argc, char **argv)
 	print_parsing(scene);
 	newline();
 	render(scene);
-	mlx_hook(scene.win, 2, 1L<<0, next_cam, &scene);
-	mlx_hook(scene.win, 33, 0, exit_scene, &scene);
+	mlx_hook(scene.win, KEYPRESS, KEYPRESSMASK, next_cam, &scene);
+	mlx_hook(scene.win, DESTROYNOTIFY, NOEVENTMASK, exit_scene, &scene);
 	mlx_loop(scene.mlx);
 	return (0);
 }

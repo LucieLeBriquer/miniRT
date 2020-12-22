@@ -6,11 +6,11 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:44:44 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:50:14 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 23:24:32 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 float	inter_2square(t_ray ray, t_obj obj)
 {
