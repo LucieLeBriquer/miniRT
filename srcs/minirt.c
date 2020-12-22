@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 16:18:59 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 19:00:44 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,53 @@ int		is_visible(t_inter itr, t_scene scn, int n_lum)
 	return (1);
 }
 
+void	init_base(t_base *base, t_vect c_axe)
+{
+	t_vect	u;
+
+	init_vect(&u, 0, 1, 0);
+	base->z_axis = c_axe;
+	if (fabs(c_axe.y) == 1)
+	{
+		if (c_axe.y == -1)
+			init_vect(&(base->x_axis), -1, 0, 0);
+		else
+			init_vect(&(base->x_axis), 1, 0, 0);
+	}
+	else
+		base->x_axis = prod_vect(base->z_axis, u);
+	base->y_axis = prod_vect(base->x_axis, base->z_axis);
+}
+
+void	rotate(t_vect *rayd, t_base base)
+{
+	rayd->x = dot(*rayd, base.x_axis);
+	rayd->y = dot(*rayd, base.y_axis);
+	rayd->z = dot(*rayd, base.z_axis);
+	normalize(rayd);
+}
+
 void	draw(t_scene scn, int n_cam)
 {
 	t_inter	itr;
+	t_base	base;
 	int		i;
 	int		j;
 	int		pct;
 	int		pct_save;
 
 	i = -1;
-	pct = 0;
 	init_ray_org(&(itr.ray), scn.cams[n_cam].pos);
+	init_base(&base, scn.cams[n_cam].axe);
+	pct = 0;
 	while (++i < scn.h)
 	{
 		j = -1;
 		while (++j < scn.w)
 		{
 			init_ray_dir(&(itr.ray), j - scn.w / 2, -i + scn.h / 2,
-			(-scn.w) / (2 * tan(scn.cams[n_cam].fov * M_PI / 360)));
+			(scn.w) / (2 * tan(scn.cams[n_cam].fov * M_PI / 360)));
+			rotate(&(itr.ray.dir), base);
 			if (inter(&itr, scn))
 				(scn.img_data)[i * scn.w + j] = get_color(itr, scn);
 			else
@@ -62,10 +91,10 @@ void	draw(t_scene scn, int n_cam)
 		}
 		pct_save = pct;
 		pct = 100 * (i % scn.h) / scn.h;
-		if (pct_save < pct)
-			printf("\rRendering : [%3d%%]\n", pct);
+		if (pct > pct_save)
+			printf("\rRendering... [%3d%%]", pct);
 	}
-	printf("\rRendering : [100%%]\n");
+	printf("\rRendering... [100%%]\n");
 	mlx_put_image_to_window(scn.mlx, scn.win, scn.img_ptr, 0, 0);
 }
 

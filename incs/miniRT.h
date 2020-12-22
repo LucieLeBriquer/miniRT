@@ -34,6 +34,13 @@ typedef struct
 
 typedef struct
 {
+	t_vect	x_axis;
+	t_vect	y_axis;
+	t_vect	z_axis;
+}			t_base;
+
+typedef struct
+{
 	t_vect	pos;
 	t_vect	axe;
 	float	fov;

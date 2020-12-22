@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:54:42 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 18:35:51 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		get_numbers(int *fd, t_scene *scene, char *file_name)
 				scene->nb_cam++;
 			else if (*line == 'l' && ft_isspace(line[1]))
 				scene->nb_lum++;
-			else if (*line != 'R' && *line != 'A')
+			else if (*line != 'R' && *line != 'A' && *line != '#')
 				scene->nb_obj++;
 		}
 	}
