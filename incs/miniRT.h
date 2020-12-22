@@ -10,7 +10,6 @@
 # include <fcntl.h>
 # define CYAN "\033[36m"
 # define WHITE "\033[0m"
-
 # include <stdio.h>
 
 typedef struct
@@ -92,14 +91,26 @@ typedef struct
 	int		**img_data;
 	void	*mlx;
 	void	*win;
+	int		prog;
 }			t_scene;
+
+/*
+** Rendering and display
+*/
+
+void	draw(t_scene scn, int n_cam);
+void	render(t_scene scn);
+void	init_base(t_base *base, t_vect c_axe);
+void	rotate(t_vect *rayd, t_base base);
+int		exit_scene(t_scene *scene);
+int		next_cam(int keynote, t_scene *scn);
+
+/*
+** Vector functions
+*/
 
 void	init_vect(t_vect *v, float x, float y, float z);
 void	init_col(t_col *col, int r, int g, int b);
-void	ft_addobj(t_obj **obj, t_obj *obj_new);
-void	ft_objiter(t_obj *objs, void (*f)(t_obj));
-t_obj	*new_obj(int type, t_vect o, t_vect axe, t_col col, float r, float h);
-void	show_obj(t_obj obj);
 t_vect	mul_vect(float t, t_vect a);
 t_vect	mul_col(float t, t_col a);
 t_vect	min_col(t_col col1, t_col col2);
@@ -111,14 +122,28 @@ float	dot(t_vect a, t_vect b);
 t_vect	add_vect(t_vect a, t_vect b);
 t_vect	sub_vect(t_vect a, t_vect b);
 t_vect	prod_vect(t_vect a, t_vect b);
+void	init_ray_dir(t_ray *ray, float x, float y, float z);
+void	init_ray_org(t_ray *ray, t_vect org);
+void	init_ray(t_ray *ray, t_vect org, t_vect dir);
+
+/*
+** Pixel's color calculation
+*/
+
 float	inter_0sphere(t_ray ray, t_obj obj);
 float	inter_1plane(t_ray ray, t_obj obj);
 float	inter_2square(t_ray ray, t_obj obj);
 float	inter_3cylindre(t_ray ray, t_obj obj);
 float	inter_4triangle(t_ray ray, t_obj obj);
 int		inter(t_inter *itr, t_scene scene);
-void	print_parsing(t_scene scene);
-int		is_save(char *s);
+int		get_color(t_inter itr, t_scene scn);
+int		color_vect_ftoi(t_vect color);
+int		is_visible(t_inter itr, t_scene scn, int n_lum);
+
+/*
+** Parsing
+*/
+
 int		parse_trg(t_scene *scene, char *line, int nb);
 int		parse_cyl(t_scene *scene, char *line, int nb);
 int		parse_sqr(t_scene *scene, char *line, int nb);
@@ -135,9 +160,13 @@ int		parse_cam(t_scene *scene, char *line);
 int		parse_amb(t_scene *scene, char *line);
 int		parse_res(t_scene *scene, char *line);
 int		parse_file(int argc, char **argv, t_scene *scene);
-void	init_ray_dir(t_ray *ray, float x, float y, float z);
-void	init_ray_org(t_ray *ray, t_vect org);
-void	init_ray(t_ray *ray, t_vect org, t_vect dir);
+
+/*
+** Print
+*/
+
+void	print_parsing(t_scene scene);
+int		is_save(char *s);
 void	print_vect(t_vect v);
 void	print_float(float f);
 void	print_col(t_col col);
@@ -148,8 +177,5 @@ void	print_pln(t_obj pln, int i);
 void	print_sqr(t_obj sqr, int i);
 void	print_cyl(t_obj cyl, int i);
 void	print_trg(t_obj trg, int i);
-int		get_color(t_inter itr, t_scene scn);
-int		color_vect_ftoi(t_vect color);
-int		is_visible(t_inter itr, t_scene scn, int n_lum);
 
 #endif

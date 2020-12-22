@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:27:26 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 16:12:50 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/22 22:51:47 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@ int		color_vect_ftoi(t_vect color)
 	b = fmin(255, fmax(color.z, 0));
 	res = 256 * 256 * r + 256 * g + b;
 	return (res);
+}
+
+int		is_visible(t_inter itr, t_scene scn, int n_lum)
+{
+	t_inter	omb;
+	t_vect	v;
+	float	epsilon;
+
+	v = sub_vect(scn.lums[n_lum].pos, itr.p);
+	epsilon = 0.01;
+	init_ray(&(omb.ray), add_vect(itr.p, mul_vect(epsilon, itr.n)), v);
+	if (inter(&omb, scn) && omb.t > 2 * epsilon && omb.t * omb.t < norm(v))
+		return (0);
+	return (1);
 }
 
 int		get_color(t_inter itr, t_scene scn)
