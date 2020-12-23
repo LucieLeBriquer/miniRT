@@ -23,7 +23,6 @@ SRCS		= $(addprefix srcs/, minirt.c \
 			display/camera.c \
 			display/events.c \
 			display/rendering.c \
-			inter/color.c \
 			parse/converter.c \
 			parse/get_next_line.c \
 			parse/get_next_line_utils.c \
@@ -35,6 +34,7 @@ SRCS		= $(addprefix srcs/, minirt.c \
 			print/print_elem.c \
 			print/print_obj.c \
 			print/print_parsing.c \
+			raytracing/color.c \
 			raytracing/inter_0sphere.c \
 			raytracing/inter_1plane.c \
 			raytracing/inter_2square.c \
