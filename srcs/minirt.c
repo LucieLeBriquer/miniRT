@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/23 14:09:57 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/23 14:10:56 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		print_errors(int err)
 		printf("Error : File is unreadable\n");
 	else if (err == -5)
 		printf("Error : Wrong format\n");
-	return (0);	
+	return (0);
 }
 
 int		main(int argc, char **argv)
