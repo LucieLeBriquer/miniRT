@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/23 14:13:21 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/23 14:38:41 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,17 @@ int		init_image(t_scene *scene)
 	return (1);
 }
 
-int		print_errors(int err)
+void	free_all(t_scene scene)
+{
+	if (scene.cams)
+		free(scene.cams);
+	if (scene.lums)
+		free(scene.lums);
+	if (scene.objs)
+		free(scene.objs);
+}
+
+int		print_errors_and_free(int err, t_scene scene)
 {
 	if (err == -2)
 	{
@@ -50,7 +60,16 @@ int		print_errors(int err)
 	else if (err == -4)
 		printf("Error : File is unreadable\n");
 	else if (err == -5)
+	{
 		printf("Error : Wrong format\n");
+		free_all(scene);
+	}
+	else if (err == -6)
+	{
+		printf("Error : Allocation's issues\n");
+		free_all(scene);
+	}
+	exit(0);
 	return (0);
 }
 
@@ -62,10 +81,10 @@ int		main(int argc, char **argv)
 	scene.mlx = mlx_init();
 	error_parse = parse_file(argc, argv, &scene);
 	if (error_parse < 0)
-		return (print_errors(error_parse));
+		return (print_errors_and_free(error_parse, scene));
 	scene.win = mlx_new_window(scene.mlx, scene.w, scene.h, argv[2]);
 	if (init_image(&scene) < 0)
-		return (printf("Error allocation\n"));
+		return (printf("Error : Allocation's issues\n"));
 	print_parsing(scene);
 	newline();
 	render(scene);
