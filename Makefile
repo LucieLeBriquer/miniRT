@@ -19,7 +19,7 @@ INCS_DIR	= ./includes
 
 NORME		= ~/.norminette/norminette.rb
 
-SRCS		= $(addprefix srcs/, minirt.c \
+SRCS		= $(addprefix sources/, minirt.c \
 			display/camera.c \
 			display/events.c \
 			display/rendering.c \
