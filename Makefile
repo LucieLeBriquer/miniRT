@@ -21,6 +21,7 @@ NORME		= ~/.norminette/norminette.rb
 
 SRCS		= $(addprefix sources/, minirt.c \
 			display/camera.c \
+			display/errors.c \
 			display/events.c \
 			display/rendering.c \
 			parse/converter.c \

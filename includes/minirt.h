@@ -105,6 +105,8 @@ void	init_base(t_base *base, t_vect c_axe);
 void	rotate(t_vect *rayd, t_base base);
 int		exit_scene(t_scene *scene);
 int		next_cam(int keynote, t_scene *scn);
+void	free_all(t_scene scene);
+int		print_errors_and_free(int err, t_scene scene);
 
 /*
 ** Vector functions

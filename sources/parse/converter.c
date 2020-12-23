@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:00 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 20:08:57 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/23 15:52:45 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		size_of_int(int i)
 {
 	int	size;
 
+	size = 0;
 	if (i == 0)
 		return (1);
 	while (i > 0)
