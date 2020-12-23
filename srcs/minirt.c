@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/23 14:10:56 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/23 14:13:21 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,14 @@ int		init_image(t_scene *scene)
 
 	i = -1;
 	scene->img_ptr = malloc(scene->nb_cam * sizeof(void *));
-	scene->img_data = malloc(scene->nb_cam * sizeof(int *));
-	if (!scene->img_ptr || !scene->img_data)
+	if (!scene->img_ptr)
 		return (-1);
+	scene->img_data = malloc(scene->nb_cam * sizeof(int *));
+	if (!scene->img_data)
+	{
+		free(scene->img_ptr);
+		return (-1);
+	}
 	while (++i < scene->nb_cam)
 	{
 		scene->img_ptr[i] = mlx_new_image(scene->mlx, scene->w, scene->h);

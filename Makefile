@@ -24,12 +24,6 @@ SRCS		= $(addprefix srcs/, minirt.c \
 			display/events.c \
 			display/rendering.c \
 			inter/color.c \
-			inter/inter_0sphere.c \
-			inter/inter_1plane.c \
-			inter/inter_2square.c \
-			inter/inter_3cylindre.c \
-			inter/inter_4triangle.c \
-			inter/inter.c \
 			parse/converter.c \
 			parse/get_next_line.c \
 			parse/get_next_line_utils.c \
@@ -41,6 +35,12 @@ SRCS		= $(addprefix srcs/, minirt.c \
 			print/print_elem.c \
 			print/print_obj.c \
 			print/print_parsing.c \
+			raytracing/inter_0sphere.c \
+			raytracing/inter_1plane.c \
+			raytracing/inter_2square.c \
+			raytracing/inter_3cylindre.c \
+			raytracing/inter_4triangle.c \
+			raytracing/inter.c \
 			vector/ray_operations.c \
 			vector/vector_norm.c \
 			vector/vector_operations1.c \
