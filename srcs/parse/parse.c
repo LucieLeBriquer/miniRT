@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 18:35:51 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/23 14:08:07 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,12 @@ int		parse(int fd, t_scene *scene)
 int		get_numbers(int *fd, t_scene *scene, char *file_name)
 {
 	char	*line;
+	int		is_readable;
 
-	while (get_next_line(*fd, &line))
+	is_readable = 0;
+	while (get_next_line(*fd, &line) > 0)
 	{
+		is_readable = 1;
 		if (line && line[0])
 		{
 			while (ft_isspace(*line))
@@ -70,7 +73,7 @@ int		get_numbers(int *fd, t_scene *scene, char *file_name)
 	}
 	close(*fd);
 	*fd = open(file_name, O_RDONLY);
-	return (*fd > 0);
+	return (*fd > 0 && is_readable);
 }
 
 int		parse_file(int argc, char **argv, t_scene *scene)
@@ -85,13 +88,13 @@ int		parse_file(int argc, char **argv, t_scene *scene)
 			scene->nb_cam = 0;
 			scene->nb_lum = 0;
 			scene->nb_obj = 0;
-			if (get_numbers(&fd, scene, argv[1]) && parse(fd, scene))
-				return (close(fd));
-			else
-				printf("Error\n");
+			if (!get_numbers(&fd, scene, argv[1]))
+				return (-4 * (1 + close(fd)));
+			if (!parse(fd, scene))
+				return (-5 * (1 + close(fd)));
+			return (close(fd));
 		}
+		return (-3);
 	}
-	else
-		printf("Error\n");
-	return (-1);
+	return (-2);
 }
