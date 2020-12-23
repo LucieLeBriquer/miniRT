@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/23 15:02:35 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/23 15:35:24 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,18 @@ int		parse(int fd, t_scene *scene)
 	line = NULL;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (line[0] == '#')
+		if (line && line[0])
 		{
-			free(line);
-			continue;
-		}
-		if (parse_line(scene, line) == -1)
-		{
-			free(line);
-			return (0);
+			if (line[0] == '#')
+			{
+				free(line);
+				continue;
+			}
+			if (parse_line(scene, line) == -1)
+			{
+				free(line);
+				return (0);
+			}
 		}
 		free(line);
 	}
@@ -59,22 +62,25 @@ int		parse(int fd, t_scene *scene)
 int		get_numbers(int *fd, t_scene *scene, char *file_name)
 {
 	char	*line;
-	int		i;
 	int		is_readable;
+	int		i;
 
 	is_readable = 0;
 	while (get_next_line(*fd, &line) > 0)
 	{
 		is_readable = 1;
 		i = 0;
-		while (ft_isspace(line[i]))
-			i++;
-		if (line[i] == 'c' && ft_isspace(line[i + 1]))
-			scene->nb_cam++;
-		else if (line[i] == 'l' && ft_isspace(line[i + 1]))
-			scene->nb_lum++;
-		else if (line[i] != 'R' && line[i] != 'A' && line[i] != '#')
-			scene->nb_obj++;
+		if (line && line[0])
+		{
+			while (ft_isspace(line[i]))
+				i++;
+			if (line[i] == 'c' && ft_isspace(line[i + 1]))
+				scene->nb_cam++;
+			else if (line[i] == 'l' && ft_isspace(line[i + 1]))
+				scene->nb_lum++;
+			else if (line[i] != 'R' && line[i] != 'A' && line[i] != '#')
+				scene->nb_obj++;
+		}
 		free(line);
 	}
 	free(line);
@@ -86,6 +92,7 @@ int		get_numbers(int *fd, t_scene *scene, char *file_name)
 int		parse_file(int argc, char **argv, t_scene *scene)
 {
 	int		fd;
+	int		err_parse;
 
 	if (argc == 2 || (argc == 4 && is_save(argv[2])))
 	{
@@ -97,9 +104,10 @@ int		parse_file(int argc, char **argv, t_scene *scene)
 			scene->nb_obj = 0;
 			if (!get_numbers(&fd, scene, argv[1]))
 				return (-4 * (1 + close(fd)));
-			if (!parse(fd, scene))
+			err_parse = parse(fd, scene);
+			if (!err_parse)
 				return (-5 * (1 + close(fd)));
-			if (parse(fd, scene) < 0)
+			if (err_parse < 0)
 				return (-6 * (1 + close(fd)));
 			return (close(fd));
 		}
