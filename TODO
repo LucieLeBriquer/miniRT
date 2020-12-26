@@ -1,9 +1,10 @@
 - implementer les autres fonctions d'intersection
-- penser a faire une fonction de calcul de la normale par type maybe
 - verifier les fin de lignes ?
 - remplacer printf par ft_printf !
 - faire un to_vect_range pour les vecteurs dans [-1,1]^3
-- dans le parsing lorsque 0,1.0,1  123,15,12  -> 0,1.0,1.123 /!\
 - fermer proprement mlx si probleme de parsing dans le main
-- plusieurs cam
 - parsing : si pas de cam ou pas de resolution -> erreur
+- encore probleme d'orientation et de positionnement jpp
+- implementer square comme 2 triangles
+- implementer cylindre
+- optimiser
