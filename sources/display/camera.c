@@ -6,11 +6,18 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 23:23:44 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/23 17:59:42 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	print_base(t_base base)
+{
+	printf("%f,%f,%f\n", base.x_axis.x, base.x_axis.y, base.x_axis.z);
+	printf("%f,%f,%f\n", base.y_axis.x, base.y_axis.y, base.y_axis.z);
+	printf("%f,%f,%f\n", base.z_axis.x, base.z_axis.y, base.z_axis.z);
+}
 
 void	init_base(t_base *base, t_vect c_axe)
 {
