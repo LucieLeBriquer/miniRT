@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/26 14:15:07 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/26 15:25:43 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int		main(int argc, char **argv)
 		exit_scene(&scene);
 		return (printf("Error : Allocation's issues\n"));
 	}
-	//print_parsing(scene);
-	//newline();
+	print_parsing(scene);
+	newline();
 	render(scene);
 	mlx_hook(scene.win, KEYPRESS, KEYPRESSMASK, next_cam, &scene);
 	mlx_hook(scene.win, DESTROYNOTIFY, STRUCTURENOTIFYMASK, exit_scene, &scene);
