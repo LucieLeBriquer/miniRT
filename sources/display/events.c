@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/23 16:39:33 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/26 17:42:59 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,18 @@ int		next_cam(int keynote, t_scene *scn)
 
 	if (keynote == ESC_KEY)
 		return (exit_scene(scn));
-	if (keynote != SP_KEY)
-		return (-1);
-	i = (i + 1) % scn->nb_cam;
-	mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[i], 0, 0);
+	if (keynote == SP_KEY || keynote == W_KEY || keynote == RIGHT_KEY)
+	{
+		i = (i + 1) % scn->nb_cam;
+		mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[i], 0, 0);
+	}
+	else if (keynote == S_KEY || keynote == LEFT_KEY)
+	{
+		if (i == 0)
+			i = scn->nb_cam - 1;
+		else
+			i = i - 1;
+		mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[i], 0, 0);
+	}
 	return (1);
 }

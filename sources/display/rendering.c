@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/26 15:26:54 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/26 17:56:32 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	progress(int i, int j, t_scene scn, int n_cam)
 {
 	static int	prog;
 	int			new;
-	
+
 	if (i == 0)
 		prog = 0;
 	new = 100 * ((i * scn.w + j) % (scn.h * scn.w)) / (scn.h * scn.w);
 	if (new > prog)
-	{	
+	{
 		prog = new;
 		printf("\rRendering view %-2d [%3d%%]", n_cam, prog);
 		fflush(stdout);
@@ -36,7 +36,7 @@ t_vect	create_ray(int i, int j, t_scene scn, int n_cam)
 
 	real_fov = tan(scn.cams[n_cam].fov * M_PI / 360);
 	img_ratio = (float)scn.w / (float)scn.h;
-	dir.x = (2 * ((float)j / (float)scn.w) - 1) * img_ratio * real_fov; 
+	dir.x = (2 * ((float)j / (float)scn.w) - 1) * img_ratio * real_fov;
 	dir.y = (1 - 2 * ((float)i / (float)scn.h)) * real_fov;
 	dir.z = 1;
 	normalize(&dir);
@@ -58,8 +58,6 @@ void	draw(t_scene scn, int n_cam)
 		j = -1;
 		while (++j < scn.w)
 		{
-			//init_ray_dir(&(itr.ray), j - scn.w / 2, -i + scn.h / 2,
-			//(fmax(scn.w, scn.h) / (2 * tan(scn.cams[n_cam].fov * M_PI / 360))));
 			itr.ray.dir = create_ray(i, j, scn, n_cam);
 			rotate(&(itr.ray.dir), base);
 			(scn.img_data[n_cam])[i * scn.w + j] = get_color(&itr, scn);

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 22:13:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 23:29:41 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/26 17:40:09 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define NOEXPOSE 14
 # define VISIBILITYNOTIFY 15
 # define CREATENOTIFY 16
-# define DESTROYNOTIFY 33
+# define DESTROYNOTIFY 17
 # define UNMAPNOTIFY 18
 # define MAPNOTIFY 19
 # define MAPREQUEST 20
@@ -64,27 +64,6 @@
 # define CONFIGUREREQUEST 23
 # define GRAVITYNOTIFY 24
 
-# define BUT1_KEY 1
-# define BUT2_KEY 2
-# define BUT3_KEY 3
-# define SCROLLUP_KEY 4
-# define SCROLLDOWN_KEY 5
-# define SCROLLLEFT_KEY 6
-# define SCROLLRIGHT_KEY 7
-
-# define A_KEY 97
-# define B_KEY 11
-# define C_KEY 8
-# define D_KEY 100
-# define E_KEY 14
-# define F_KEY 3
-# define G_KEY 5
-# define H_KEY 4
-# define I_KEY 34
-# define J_KEY 38
-# define K_KEY 40
-# define L_KEY 37
-# define M_KEY 46
 # define N_KEY 45
 # define O_KEY 31
 # define P_KEY 35

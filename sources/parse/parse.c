@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/23 15:35:24 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/26 17:54:21 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,13 @@ int		parse(int fd, t_scene *scene)
 	scene->objs = malloc(scene->nb_obj * sizeof(t_obj));
 	if (!(scene->cams) || !(scene->lums) || !(scene->objs))
 		return (-1);
-	line = NULL;
 	while (get_next_line(fd, &line) == 1)
 	{
 		if (line && line[0])
 		{
 			if (line[0] == '#')
-			{
-				free(line);
-				continue;
-			}
-			if (parse_line(scene, line) == -1)
+				;
+			else if (parse_line(scene, line) == -1)
 			{
 				free(line);
 				return (0);
@@ -59,7 +55,7 @@ int		parse(int fd, t_scene *scene)
 	return (1);
 }
 
-int		get_numbers(int *fd, t_scene *scene, char *file_name)
+int		get_numbers(int *fd, t_scene *scene)
 {
 	char	*line;
 	int		is_readable;
@@ -68,10 +64,10 @@ int		get_numbers(int *fd, t_scene *scene, char *file_name)
 	is_readable = 0;
 	while (get_next_line(*fd, &line) > 0)
 	{
-		is_readable = 1;
-		i = 0;
 		if (line && line[0])
 		{
+			is_readable = 1;
+			i = 0;
 			while (ft_isspace(line[i]))
 				i++;
 			if (line[i] == 'c' && ft_isspace(line[i + 1]))
@@ -84,9 +80,7 @@ int		get_numbers(int *fd, t_scene *scene, char *file_name)
 		free(line);
 	}
 	free(line);
-	close(*fd);
-	*fd = open(file_name, O_RDONLY);
-	return (*fd > 0 && is_readable);
+	return (is_readable);
 }
 
 int		parse_file(int argc, char **argv, t_scene *scene)
@@ -102,8 +96,9 @@ int		parse_file(int argc, char **argv, t_scene *scene)
 			scene->nb_cam = 0;
 			scene->nb_lum = 0;
 			scene->nb_obj = 0;
-			if (!get_numbers(&fd, scene, argv[1]))
+			if (!get_numbers(&fd, scene))
 				return (-4 * (1 + close(fd)));
+			fd = open(argv[1], O_RDONLY);
 			err_parse = parse(fd, scene);
 			if (!err_parse)
 				return (-5 * (1 + close(fd)));
