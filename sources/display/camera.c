@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/26 17:01:52 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 22:35:45 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	init_base(t_base *base, t_vect c_axe)
 	else
 		base->x_axis = prod_vect(u, base->z_axis);
 	base->y_axis = prod_vect(base->z_axis, base->x_axis);
-	print_base(*base);
+	normalize(&(base->x_axis));
+	normalize(&(base->y_axis));
+	normalize(&(base->z_axis));
 }
 
 void	rotate(t_vect *rayd, t_base base)

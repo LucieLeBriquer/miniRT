@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/26 17:56:32 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 22:46:41 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_vect	create_ray(int i, int j, t_scene scn, int n_cam)
 
 	real_fov = tan(scn.cams[n_cam].fov * M_PI / 360);
 	img_ratio = (float)scn.w / (float)scn.h;
-	dir.x = (2 * ((float)j / (float)scn.w) - 1) * img_ratio * real_fov;
-	dir.y = (1 - 2 * ((float)i / (float)scn.h)) * real_fov;
+	dir.x = (1 - 2 * ((float)(j + 0.5) / (float)scn.w)) * img_ratio * real_fov;
+	dir.y = (1 - 2 * ((float)(i + 0.5) / (float)scn.h)) * real_fov;
 	dir.z = 1;
 	normalize(&dir);
 	return (dir);
