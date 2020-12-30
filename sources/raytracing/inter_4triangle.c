@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:45:12 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 15:48:01 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:29:33 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	o		axe		p
 */
 
-int		is_inside(t_vect u, t_vect v, t_vect w, t_vect point)
+int	is_inside(t_vect u, t_vect v, t_vect w, t_vect point)
 {
 	t_vect	v1;
 	t_vect	v2;

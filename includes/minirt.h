@@ -13,48 +13,48 @@
 # define WHITE "\033[0m"
 # include <stdio.h>
 
-typedef struct
+typedef struct s_vect
 {
 	float	x;
 	float	y;
 	float	z;
 }			t_vect;
 
-typedef struct
+typedef struct s_col
 {
 	int		r;
 	int		g;
 	int		b;
 }			t_col;
 
-typedef struct
+typedef struct s_ray
 {
 	t_vect	org;
 	t_vect	dir;
 }			t_ray;
 
-typedef struct
+typedef struct s_base
 {
 	t_vect	x_axis;
 	t_vect	y_axis;
 	t_vect	z_axis;
 }			t_base;
 
-typedef struct
+typedef struct s_cam
 {
 	t_vect	pos;
 	t_vect	axe;
 	float	fov;
 }			t_cam;
 
-typedef struct
+typedef struct s_lum
 {
 	float	ratio;
 	t_vect	pos;
 	t_col	col;
 }			t_lum;
 
-typedef struct
+typedef struct s_obj
 {
 	int		type;
 	t_vect	o;
@@ -66,7 +66,7 @@ typedef struct
 	float	h;
 }			t_obj;
 
-typedef struct
+typedef struct s_inter
 {
 	t_ray	ray;
 	t_ray	ray_light;
@@ -76,7 +76,7 @@ typedef struct
 	float	t;
 }			t_inter;
 
-typedef struct
+typedef struct s_scene
 {
 	int		w;
 	int		h;
@@ -94,6 +94,8 @@ typedef struct
 	void	*win;
 	int		prog;
 }			t_scene;
+
+typedef float	(*t_interfunc)(t_ray, t_obj);
 
 /*
 ** Rendering and display

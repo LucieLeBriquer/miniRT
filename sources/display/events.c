@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/26 17:42:59 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:25:10 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		exit_scene(t_scene *scene)
+int	exit_scene(t_scene *scene)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ int		exit_scene(t_scene *scene)
 	return (1);
 }
 
-int		next_cam(int keynote, t_scene *scn)
+int	next_cam(int keynote, t_scene *scn)
 {
 	static int	i;
 

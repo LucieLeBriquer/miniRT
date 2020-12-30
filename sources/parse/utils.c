@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:57 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 05:38:59 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:28:17 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	int				i;
 	unsigned char	*str1;
@@ -26,7 +26,7 @@ int		ft_strcmp(const char *s1, const char *s2)
 	return (str1[i] - str2[i]);
 }
 
-int		is_save(char *s)
+int	is_save(char *s)
 {
 	if (ft_strcmp(s, "-save") == 0)
 		return (1);

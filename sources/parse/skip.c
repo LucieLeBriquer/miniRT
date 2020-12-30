@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:21 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/20 16:26:22 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:27:41 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		skip_float(char *line)
+int	skip_float(char *line)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ int		skip_float(char *line)
 	return (i);
 }
 
-int		skip_float_ns(char *line)
+int	skip_float_ns(char *line)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ int		skip_float_ns(char *line)
 	return (i);
 }
 
-int		skip_vect(char *line)
+int	skip_vect(char *line)
 {
 	int	i;
 

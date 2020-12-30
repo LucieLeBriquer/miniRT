@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:29:22 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/21 22:55:18 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:32:00 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ float	dot(t_vect a, t_vect b)
 
 t_vect	min_col(t_col col1, t_col col2)
 {
-	t_vect res;
+	t_vect	res;
 
 	res.x = fmin(col1.r, col2.r);
 	res.y = fmin(col1.g, col2.g);

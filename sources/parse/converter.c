@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:00 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/23 15:52:45 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:25:58 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		size_of_int(int i)
+int	size_of_int(int i)
 {
 	int	size;
 
@@ -27,7 +27,7 @@ int		size_of_int(int i)
 	return (size);
 }
 
-int		to_float(char *line, float *f)
+int	to_float(char *line, float *f)
 {
 	int		entiere;
 	int		floating;
@@ -48,11 +48,11 @@ int		to_float(char *line, float *f)
 		size++;
 	if (floating < 0)
 		return (-1);
-	*f = entiere + sign * (float)(floating) * pow(0.1, size);
+	*f = entiere + sign * (float)(floating)*pow(0.1, size);
 	return (1);
 }
 
-int		to_col(char *line, t_col *col)
+int	to_col(char *line, t_col *col)
 {
 	int		c;
 
@@ -81,7 +81,7 @@ int		to_col(char *line, t_col *col)
 	return (1);
 }
 
-int		to_vect(char *line, t_vect *vect)
+int	to_vect(char *line, t_vect *vect)
 {
 	float	c;
 

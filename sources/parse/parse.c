@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/26 17:54:21 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:27:30 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		parse_line(t_scene *scene, char *line)
+int	parse_line(t_scene *scene, char *line)
 {
 	while (ft_isspace(*line))
 		line++;
@@ -28,7 +28,7 @@ int		parse_line(t_scene *scene, char *line)
 		return (parse_obj(scene, line));
 }
 
-int		parse(int fd, t_scene *scene)
+int	parse(int fd, t_scene *scene)
 {
 	char	*line;
 
@@ -55,7 +55,7 @@ int		parse(int fd, t_scene *scene)
 	return (1);
 }
 
-int		get_numbers(int *fd, t_scene *scene)
+int	get_numbers(int *fd, t_scene *scene)
 {
 	char	*line;
 	int		is_readable;
@@ -83,7 +83,7 @@ int		get_numbers(int *fd, t_scene *scene)
 	return (is_readable);
 }
 
-int		parse_file(int argc, char **argv, t_scene *scene)
+int	parse_file(int argc, char **argv, t_scene *scene)
 {
 	int		fd;
 	int		err_parse;

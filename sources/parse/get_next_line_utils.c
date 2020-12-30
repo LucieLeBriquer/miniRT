@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 17:54:53 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/11/19 17:59:38 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:00:47 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_strlen(const char *s)
+static int	ft_strlen(const char *s)
 {
 	size_t	i;
 
@@ -22,21 +22,7 @@ int		ft_strlen(const char *s)
 	return (i);
 }
 
-int		find_char_index(char *str, char c)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-char	*ft_realloc(char *str, int len)
+static char	*ft_realloc(char *str, int len)
 {
 	char	*new;
 	int		i;
@@ -78,4 +64,18 @@ char	*join_and_realloc(char *s, char *buf, int size)
 	}
 	s[j] = '\0';
 	return (s);
+}
+
+int	find_char_index(char *str, char c)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
 }

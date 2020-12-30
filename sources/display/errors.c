@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/23 16:07:07 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:24:59 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_all(t_scene scene)
 		free(scene.objs);
 }
 
-int		print_errors_and_free(int err, t_scene scene)
+int	print_errors_and_free(int err, t_scene scene)
 {
 	if (err == -2)
 	{

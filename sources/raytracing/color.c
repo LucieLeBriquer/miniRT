@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:27:26 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/23 16:51:31 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:29:09 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		color_vect_ftoi(t_vect color)
+int	color_vect_ftoi(t_vect color)
 {
 	int	res;
 	int	r;
@@ -26,7 +26,7 @@ int		color_vect_ftoi(t_vect color)
 	return (res);
 }
 
-int		is_visible(t_inter itr, t_scene scn, int n_lum)
+int	is_visible(t_inter itr, t_scene scn, int n_lum)
 {
 	t_inter	omb;
 	t_vect	v;
@@ -40,7 +40,7 @@ int		is_visible(t_inter itr, t_scene scn, int n_lum)
 	return (1);
 }
 
-int		get_color(t_inter *itr, t_scene scn)
+int	get_color(t_inter *itr, t_scene scn)
 {
 	t_vect	light;
 	t_vect	color;
@@ -57,12 +57,12 @@ int		get_color(t_inter *itr, t_scene scn)
 		light = sub_vect(scn.lums[i].pos, itr->p);
 		sc = norm2(light);
 		if (sc == 0)
-			continue;
+			continue ;
 		sc = dot(light, itr->n) / norm(light);
 		if (!is_visible(*itr, scn, i))
-			continue;
+			continue ;
 		intensity = mul_vect(fabs(sc) * scn.lums[i].ratio,
-		min_col(scn.lums[i].col, itr->obj_inter.col));
+				min_col(scn.lums[i].col, itr->obj_inter.col));
 		color = add_vect(color, intensity);
 	}
 	color = add_vect(color, mul_col(scn.amb, scn.amb_col));

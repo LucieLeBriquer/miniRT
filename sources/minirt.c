@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/26 17:55:10 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/27 16:13:49 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		init_image(t_scene *scene)
+int	init_image(t_scene *scene)
 {
 	int	bpp;
 	int	size_line;
@@ -38,7 +38,7 @@ int		init_image(t_scene *scene)
 	return (1);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_scene	scene;
 	int		error_parse;

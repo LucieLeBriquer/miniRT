@@ -15,9 +15,11 @@ INCS		= $(addprefix includes/, minirt.h \
 			mlx_code.h \
 			mlx.h)
 
-INCS_DIR	= ./includes
+INCS_NR		= $(addprefix includes/, minirt.h \
+			get_next_line.h \
+			libft.h)
 
-NORME		= ~/.norminette/norminette.rb
+INCS_DIR	= ./includes
 
 SRCS		= $(addprefix sources/, minirt.c \
 			display/camera.c \
@@ -58,7 +60,7 @@ $(NAME)		: $(OBJS) $(INCS)
 			$(CC) -I$(INCS_DIR) $(OBJS) $(LIBS) -o $(NAME)
 		
 norme		:
-			$(NORME) $(SRCS)
+			norminette $(SRCS)
 
 clean:
 			$(RM) $(OBJS)

@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/23 15:33:32 by lle-briq         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:27:15 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		parse_res(t_scene *scene, char *line)
+int	parse_res(t_scene *scene, char *line)
 {
 	int		width;
 	int		height;
@@ -35,7 +35,7 @@ int		parse_res(t_scene *scene, char *line)
 	return (1);
 }
 
-int		parse_amb(t_scene *scene, char *line)
+int	parse_amb(t_scene *scene, char *line)
 {
 	float	amb;
 	t_col	col;
@@ -54,7 +54,7 @@ int		parse_amb(t_scene *scene, char *line)
 	return (1);
 }
 
-int		parse_cam(t_scene *scene, char *line)
+int	parse_cam(t_scene *scene, char *line)
 {
 	static int	nb;
 	t_cam		cam;
@@ -76,7 +76,7 @@ int		parse_cam(t_scene *scene, char *line)
 	return (1);
 }
 
-int		parse_lum(t_scene *scene, char *line)
+int	parse_lum(t_scene *scene, char *line)
 {
 	static int	nb;
 	t_lum		lum;
@@ -96,7 +96,7 @@ int		parse_lum(t_scene *scene, char *line)
 	return (1);
 }
 
-int		parse_obj(t_scene *scene, char *line)
+int	parse_obj(t_scene *scene, char *line)
 {
 	static int	nb;
 
