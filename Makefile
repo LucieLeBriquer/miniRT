@@ -68,7 +68,7 @@ libs		:
 
 norme		:
 			@norminette $(SRCS)
-			@make norme -C ./libraries/libft/
+			@$(MAKE) --no-print-directory norme -C ./libraries/libft/
 
 clean:
 			@echo -n "Cleaning objs from miniRT\t\t"
