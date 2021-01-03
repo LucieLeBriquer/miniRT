@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 15:24:59 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/03 16:08:02 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,21 @@ int	print_errors_and_free(int err, t_scene scene)
 {
 	if (err == -2)
 	{
-		printf("Error : Wrong number of arguments\n\tUse ./minirt scene.rt");
-		printf(" or ./minirt scene.rt -save save_file\n");
+		ft_printf("Error : Wrong number of arguments\n\tUse ./minirt scene.rt");
+		ft_printf(" or ./minirt scene.rt -save save_file\n");
 	}
 	else if (err == -3)
-		printf("Error : %s\n", strerror(2));
+		ft_printf("Error : %s\n", strerror(2));
 	else if (err == -4)
-		printf("Error : File is unreadable\n");
+		ft_printf("Error : File is unreadable\n");
 	else if (err == -5)
 	{
-		printf("Error : Wrong format\n");
+		ft_printf("Error : Wrong format\n");
 		free_all(scene);
 	}
 	else if (err == -6)
 	{
-		printf("Error : Allocation's issues\n");
+		ft_printf("Error : Allocation's issues\n");
 		free_all(scene);
 	}
 	exit(0);

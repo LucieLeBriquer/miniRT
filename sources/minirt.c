@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 23:11:42 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/03 16:06:42 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 	if (init_image(&scene) < 0)
 	{
 		exit_scene(&scene);
-		return (printf("Error : Allocation's issues\n"));
+		return (ft_printf("Error : Allocation's issues\n"));
 	}
 	render(scene);
 	mlx_hook(scene.win, 33, (1L << 17), exit_scene, &scene);

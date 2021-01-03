@@ -1,13 +1,11 @@
 CC			= gcc
-
 CFLAGS		= -Wall -Wextra -Werror
-
 RM			= rm -rf
 
 NAME		= minirt 
 
 LIBS		= libraries/libmlx_Linux.a \
-			libraries/libft.a -lXext -lX11 -lm
+			libraries/libftfull.a -lXext -lX11 -lm
 
 INCS		= $(addprefix includes/, minirt.h \
 			get_next_line.h \
@@ -53,22 +51,41 @@ SRCS		= $(addprefix sources/, minirt.c \
 OBJS		= $(SRCS:.c=.o)
 
 %.o			: %.c
-			$(CC) $(CFLAGS) -I$(INCS_DIR) -c $< -o $@
+			@$(CC) $(CFLAGS) -I$(INCS_DIR) -c $< -o $@
 
 all			: $(NAME)
 
-$(NAME)		: $(OBJS) $(INCS)
-			$(CC) -I$(INCS_DIR) $(OBJS) $(LIBS) -o $(NAME)
-		
+$(NAME)		: $(OBJS) $(INCS) libs
+			@echo -n "Compiling all objs for miniRT\t\t"
+			@$(CC) -I$(INCS_DIR) $(OBJS) $(LIBS) -o $(NAME)
+			@echo "OK"
+
+libs		:
+			@echo -n "Updating libft...\t\t\t"
+			@$(MAKE) --no-print-directory -s -C ./libraries/libft/
+			@cp ./libraries/libft/libftfull.a ./libraries
+			@echo "OK"
+
 norme		:
-			norminette $(SRCS)
+			@norminette $(SRCS)
+			@make norme -C ./libraries/libft/
 
 clean:
-			$(RM) $(OBJS)
+			@echo -n "Cleaning objs from miniRT\t\t"
+			@$(RM) $(OBJS)
+			@echo "OK"
 
 fclean		: clean
-			$(RM) $(NAME)
+			@echo -n "Deleting ./minirt\t\t\t"
+			@$(RM) $(NAME)
+			@echo "OK"
 
-re			: fclean all
+libclean	:
+			@echo -n "Cleaning libft...\t\t\t"
+			@$(MAKE) --no-print-directory fclean -C ./libraries/libft/
+			@rm ./libraries/libftfull.a
+			@echo "OK"
 
-.PHONY		: all clean fclean re norme
+re			: fclean libclean all
+
+.PHONY		: all clean fclean re libs norme libclean

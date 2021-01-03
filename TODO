@@ -1,7 +1,6 @@
 - implementer les autres fonctions d'intersection
 - remplacer printf par ft_printf !
 - fermer proprement mlx si probleme de parsing dans le main
-- encore probleme d'orientation et de positionnement jpp
 - implementer square comme 2 triangles
 - implementer cylindre
 - optimiser

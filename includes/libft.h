@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 00:08:59 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 14:53:23 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/03 16:09:44 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)());
 int		ft_issep(char c, const char *charset);
 int		ft_isspace(char c);
+int		ft_printf(const char *str, ...);
 
 #endif

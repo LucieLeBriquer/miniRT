@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/03 15:32:25 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/03 16:08:25 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	progress(int i, int j, t_scene scn, int n_cam)
 	if (new > prog)
 	{
 		prog = new;
-		printf("\rRendering view %-2d [%3d%%]", n_cam, prog);
+		ft_printf("\rRendering view %-2d [%3d%%]", n_cam, prog);
 		fflush(stdout);
 	}
 }
@@ -74,7 +74,7 @@ void	render(t_scene scn)
 	while (++i < scn.nb_cam)
 	{
 		draw(scn, i);
-		printf("\rRendering view %-2d [100%%]\n", i);
+		ft_printf("\rRendering view %-2d [100%%]\n", i);
 	}
 	mlx_put_image_to_window(scn.mlx, scn.win, scn.img_ptr[0], 0, 0);
 }
