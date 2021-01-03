@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 22:35:45 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/03 16:02:30 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_base(t_base *base, t_vect c_axe)
 	t_vect	u;
 
 	init_vect(&u, 0, 1, 0);
-	base->z_axis = c_axe;
+	base->z_axis = mul_vect(-1, c_axe);
 	if (fabs(c_axe.y) == 1)
 	{
 		if (c_axe.y == -1)

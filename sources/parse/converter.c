@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:00 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 15:25:58 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/03 14:52:09 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,30 @@ int	to_vect(char *line, t_vect *vect)
 	vect->y = c;
 	line++;
 	if (to_float(line, &c) < 0)
+		return (-1);
+	vect->z = c;
+	return (1);
+}
+
+int	to_vect_range(char *line, t_vect *vect)
+{
+	float	c;
+
+	if (to_float(line, &c) < 0 || c < -1 || c > 1)
+		return (-1);
+	line += skip_float(line);
+	if (*line != ',')
+		return (-1);
+	vect->x = c;
+	line++;
+	if (to_float(line, &c) < 0 || c < -1 || c > 1)
+		return (-1);
+	line += skip_float(line);
+	if (*line != ',')
+		return (-1);
+	vect->y = c;
+	line++;
+	if (to_float(line, &c) < 0 || c < -1 || c > 1)
 		return (-1);
 	vect->z = c;
 	return (1);

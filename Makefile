@@ -44,10 +44,11 @@ SRCS		= $(addprefix sources/, minirt.c \
 			raytracing/inter_3cylindre.c \
 			raytracing/inter_4triangle.c \
 			raytracing/inter.c \
+			vector/color_operations.c \
 			vector/ray_operations.c \
+			vector/vector_geometry.c \
 			vector/vector_norm.c \
-			vector/vector_operations1.c \
-			vector/vector_operations2.c)
+			vector/vector_operations.c)
 
 OBJS		= $(SRCS:.c=.o)
 

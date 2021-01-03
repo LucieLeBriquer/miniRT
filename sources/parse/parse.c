@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 15:27:30 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/03 14:40:59 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ int	parse_line(t_scene *scene, char *line)
 		return (parse_obj(scene, line));
 }
 
+int	at_least_res_cam(t_scene scene)
+{
+	if (scene.w <= 0 || scene.h <= 0 || scene.nb_cam <= 0)
+		return (0);
+	return (1);
+}
+
 int	parse(int fd, t_scene *scene)
 {
 	char	*line;
@@ -37,6 +44,8 @@ int	parse(int fd, t_scene *scene)
 	scene->objs = malloc(scene->nb_obj * sizeof(t_obj));
 	if (!(scene->cams) || !(scene->lums) || !(scene->objs))
 		return (-1);
+	scene->w = -1;
+	scene->h = -1;
 	while (get_next_line(fd, &line) == 1)
 	{
 		if (line && line[0])
@@ -52,7 +61,7 @@ int	parse(int fd, t_scene *scene)
 		free(line);
 	}
 	free(line);
-	return (1);
+	return (at_least_res_cam(*scene));
 }
 
 int	get_numbers(int *fd, t_scene *scene)

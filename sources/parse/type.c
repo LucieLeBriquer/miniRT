@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 15:28:01 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/03 14:48:13 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	parse_pln(t_scene *scene, char *line, int nb)
 	if (to_vect(line, &(pln.o)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_vect(line, &(pln.axe)) == -1)
+	if (to_vect_range(line, &(pln.axe)) == -1)
 		return (-1);
 	line += skip_vect(line);
 	if (to_col(line, &(pln.col)) == -1)
@@ -60,7 +60,7 @@ int	parse_sqr(t_scene *scene, char *line, int nb)
 	if (to_vect(line, &(sqr.o)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_vect(line, &(sqr.axe)) == -1)
+	if (to_vect_range(line, &(sqr.axe)) == -1)
 		return (-1);
 	line += skip_vect(line);
 	if (to_float(line, &(sqr.h)) == -1)
@@ -82,7 +82,7 @@ int	parse_cyl(t_scene *scene, char *line, int nb)
 	if (to_vect(line, &(cyl.o)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_vect(line, &(cyl.axe)) == -1)
+	if (to_vect_range(line, &(cyl.axe)) == -1)
 		return (-1);
 	line += skip_vect(line);
 	if (to_float(line, &(cyl.r)) == -1)

@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_operations1.c                               :+:      :+:    :+:   */
+/*   vector_geometry.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/21 05:29:23 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/26 14:37:07 by lle-briq         ###   ########.fr       */
+/*   Created: 2020/12/21 05:29:22 by lle-briq          #+#    #+#             */
+/*   Updated: 2021/01/03 15:59:02 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vect	add_vect(t_vect a, t_vect b)
+float	dot(t_vect a, t_vect b)
 {
-	t_vect	c;
-
-	init_vect(&c, a.x + b.x, a.y + b.y, a.z + b.z);
-	return (c);
-}
-
-t_vect	sub_vect(t_vect a, t_vect b)
-{
-	t_vect	c;
-
-	init_vect(&c, a.x - b.x, a.y - b.y, a.z - b.z);
-	return (c);
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
 t_vect	prod_vect(t_vect a, t_vect b)

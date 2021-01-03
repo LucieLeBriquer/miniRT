@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 15:27:15 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/03 15:54:40 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ int	parse_cam(t_scene *scene, char *line)
 	if (to_vect(line, &(cam.pos)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_vect(line, &(cam.axe)) == -1)
+	if (to_vect_range(line, &(cam.axe)) == -1)
 		return (-1);
-	normalize(&(cam.axe));
+	normalize_and_reverse(&(cam.axe));
 	line += skip_vect(line);
 	cam.fov = ft_atoi(line);
 	if (cam.fov < 0 || cam.fov > 180)
