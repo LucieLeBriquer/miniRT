@@ -7,8 +7,7 @@
 # include <math.h>
 # include "mlx.h"
 # include "mlx_code.h"
-# include "get_next_line.h"
-# include "libft.h"
+# include "libftfull.h"
 # define CYAN "\033[36m"
 # define WHITE "\033[0m"
 # include <stdio.h>

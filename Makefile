@@ -8,8 +8,7 @@ LIBS		= libraries/libmlx_Linux.a \
 			libraries/libftfull.a -lXext -lX11 -lm
 
 INCS		= $(addprefix includes/, minirt.h \
-			get_next_line.h \
-			libft.h \
+			libftfull.h \
 			mlx_code.h \
 			mlx.h)
 
@@ -25,8 +24,6 @@ SRCS		= $(addprefix sources/, minirt.c \
 			display/events.c \
 			display/rendering.c \
 			parse/converter.c \
-			parse/get_next_line.c \
-			parse/get_next_line_utils.c \
 			parse/global.c \
 			parse/parse.c \
 			parse/skip.c \
@@ -64,6 +61,7 @@ libs		:
 			@echo -n "Updating libft...\t\t\t"
 			@$(MAKE) --no-print-directory -s -C ./libraries/libft/
 			@cp ./libraries/libft/libftfull.a ./libraries
+			@cp ./libraries/libft/includes/libftfull.h ./includes
 			@echo "OK"
 
 norme		:
