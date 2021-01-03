@@ -84,6 +84,9 @@ libclean	:
 			@rm ./libraries/libftfull.a
 			@echo "OK"
 
+docu		:
+			@$(MAKE) --no-print-directory -s -C ./documentation/
+
 re			: fclean libclean all
 
-.PHONY		: all clean fclean re libs norme libclean
+.PHONY		: all clean fclean re libs norme libclean docu
