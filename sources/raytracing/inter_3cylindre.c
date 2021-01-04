@@ -6,25 +6,22 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:44:57 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/04 16:59:02 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/04 18:18:41 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static float	inter_infinite_cyl(t_ray ray, t_obj cyl)
+static float	solve_eq(float sc[4], float r)
 {
 	float	d[3];
-	float	sc[2];
 	float	det;
 	float	det_sq;
 	float	sol[2];
 
-	sc[0] = dot(ray.dir, cyl.axe);
-	sc[1] = dot(ray.org, cyl.axe);
-	d[0] = 1 - sc[0] * sc[0];
-	d[1] = 2 * (dot(ray.org, ray.dir) - sc[0] * sc[1]); 
-	d[2] = norm2(ray.org) - sc[1] * sc[1] - cyl.r * cyl.r;
+	d[0] = sc[0] * sc[0] + sc[2] * sc[2];
+	d[1] = 2 * (sc[0] * sc[1] + sc[2] * sc[3]);
+	d[2] = sc[1] * sc[1] + sc[3] * sc[3] - r * r;
 	det = d[1] * d[1] - 4 * d[0] * d[2];
 	if (det >= 0)
 	{
@@ -39,6 +36,19 @@ static float	inter_infinite_cyl(t_ray ray, t_obj cyl)
 			return (sol[1]);
 	}
 	return (-1);
+}
+
+static float	inter_infinite_cyl(t_ray ray, t_obj cyl)
+{
+	t_base	base;
+	float	sc[4];
+
+	init_base(&base, cyl.axe);
+	sc[0] = dot(ray.dir, base.x_axis);
+	sc[1] = dot(ray.org, base.x_axis);
+	sc[2] = dot(ray.dir, base.y_axis);
+	sc[3] = dot(ray.org, base.y_axis);
+	return(solve_eq(sc, cyl.r));
 }
 
 float	inter_3cylindre(t_ray ray, t_obj cyl)
