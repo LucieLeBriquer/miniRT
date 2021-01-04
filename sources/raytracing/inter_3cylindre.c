@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:44:57 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/04 18:37:13 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/04 22:04:29 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,21 @@ static void	solve_eq(float sc[4], float r, float sol[2])
 float	inter_3cylindre(t_ray ray, t_obj cyl)
 {
 	t_base	base;
+	t_vect	origin;
 	float	sc[6];
 	float	t[2];
 
 	init_base(&base, cyl.axe);
+	origin = sub_vect(ray.org, cyl.o);
 	sc[0] = dot(ray.dir, base.x_axis);
-	sc[1] = dot(ray.org, base.x_axis);
+	sc[1] = dot(origin, base.x_axis);
 	sc[2] = dot(ray.dir, base.y_axis);
-	sc[3] = dot(ray.org, base.y_axis);
+	sc[3] = dot(origin, base.y_axis);
 	solve_eq(sc, cyl.r, t);
 	if (t[1] > 0)
 	{
 		sc[4] = dot(ray.dir, base.z_axis);
-		sc[5] = dot(ray.org, base.z_axis);
+		sc[5] = dot(origin, base.z_axis);
 		if (t[0] > 0 && fabs(t[0] * sc[4] + sc[5]) <= cyl.h / 2)
 			return (t[0]);
 		else if (fabs(t[1] * sc[4] + sc[5]) <= cyl.h / 2)
