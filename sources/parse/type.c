@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/03 14:48:13 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/04 18:27:09 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	parse_cyl(t_scene *scene, char *line, int nb)
 	line += skip_vect(line);
 	if (to_float(line, &(cyl.r)) == -1)
 		return (-1);
+	cyl.r = cyl.r / 2;
 	line += skip_float(line);
 	if (to_float(line, &(cyl.h)) == -1)
 		return (-1);
