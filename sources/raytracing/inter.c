@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:43:41 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 15:31:38 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/04 15:12:58 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	fill_useful_vectors(t_inter *itr)
 
 int	inter(t_inter *itr, t_scene scene)
 {
-	t_interfunc	inter_fun[4];
+	t_interfunc	inter_fun[5];
 	float		new_t;
 	int			i;
 
