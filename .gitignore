@@ -3,4 +3,4 @@
 minirt
 *.pdf
 *.log
-*/aux/*
+documentation/tex/aux/*
