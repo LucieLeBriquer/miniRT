@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/03 16:06:42 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/04 16:22:41 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	error_parse = parse_file(argc, argv, &scene);
 	if (error_parse < 0)
 		return (print_errors_and_free(error_parse, scene));
-	scene.win = mlx_new_window(scene.mlx, scene.w, scene.h, argv[2]);
+	scene.win = mlx_new_window(scene.mlx, scene.w, scene.h, argv[1]);
 	if (init_image(&scene) < 0)
 	{
 		exit_scene(&scene);

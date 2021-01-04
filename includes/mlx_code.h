@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 22:13:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 23:10:36 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/04 17:17:55 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,19 @@
 # define P_KEY 35
 # define Q_KEY 12
 # define R_KEY 15
-# define S_KEY 115
+# ifndef MAC
+#  define S_KEY 115
+# else
+#  define S_KEY 1
+# endif
 # define T_KEY 17
 # define U_KEY 32
 # define V_KEY 9
-# define W_KEY 119
+# ifndef MAC
+#  define W_KEY 119
+# else
+#  define W_KEY 13
+# endif
 # define X_KEY 7
 # define Y_KEY 16
 # define Z_KEY 6
@@ -38,7 +46,11 @@
 # define K9_KEY 25
 # define K0_KEY 29
 
-# define SP_KEY 32
+# ifndef MAC
+#  define SP_KEY 32
+# else
+#  define SP_KEY 49
+# endif
 # define BQ_KEY 50
 # define MN_KEY 27
 # define PL_KEY 24
@@ -61,7 +73,7 @@
 # define F8_KEY 100
 # define F9_KEY 101
 # define F10_KEY 109
-# define F11_KEY
+# define F11_KEY 110
 # define F12_KEY 111
 # define F13_KEY 105
 # define F14_KEY 107
@@ -71,7 +83,11 @@
 # define F18_KEY 79
 # define F19_KEY 80
 
-# define ESC_KEY 65307
+# ifndef MAC
+#  define ESC_KEY 65307
+# else
+#  define ESC_KEY 53
+# endif
 # define TAB_KEY 48
 # define CL_KEY 272
 # define LSFT_KEY 65505
@@ -95,7 +111,15 @@
 
 # define UP_KEY 126
 # define DOWN_KEY 125
-# define RIGHT_KEY 65363
-# define LEFT_KEY 65361
+# ifndef MAC
+#  define RIGHT_KEY 65363
+# else
+#  define RIGHT_KEY 124
+# endif
+# ifndef MAC
+#  define LEFT_KEY 65361
+# else
+#  define LEFT_KEY 123
+# endif
 
 #endif

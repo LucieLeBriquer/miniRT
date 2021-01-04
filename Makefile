@@ -7,8 +7,14 @@ NAME		= minirt
 LIBS		= libraries/libmlx_Linux.a \
 			libraries/libftfull.a -lXext -lX11 -lm
 
-LIBS_MAC	= -framework OpenGL -framework AppKit \
+LIBS_MAC	= -framework OpenGL -framework AppKit -lm \
 			libraries/libmlx_mac.a libraries/libftfull.a
+
+UNAME		:= $(shell uname -s)
+
+ifeq ($(UNAME), Darwin)
+MAC_KEYS	= -D MAC
+endif
 
 INCS		= $(addprefix includes/, minirt.h \
 			libftfull.h \
@@ -53,7 +59,7 @@ OBJS		= $(SRCS:.c=.o)
 SHELL		= bash
 
 %.o			: %.c
-			@$(CC) $(CFLAGS) -I$(INCS_DIR) -c $< -o $@
+			@$(CC) $(CFLAGS) $(MAC_KEYS) -I$(INCS_DIR) -c $< -o $@
 
 all			: $(NAME)
 
@@ -64,7 +70,7 @@ $(NAME)		: $(OBJS) $(INCS) libs
 
 mac			: $(OBJS) $(INCS) libs
 			@echo -n "Compiling all objs for miniRT... "
-			@$(CC) -I$(INCS_DIR) $(OBJS) $(LIBS_MAC) -o $(NAME)
+			@$(CC) -I$(INCS_DIR) $(MAC_KEYS) $(OBJS) $(LIBS_MAC) -o $(NAME)
 			@echo "OK"
 			
 libs		:

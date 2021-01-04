@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:44:14 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/22 23:24:16 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/04 16:50:08 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ float	inter_0sphere(t_ray ray, t_obj obj)
 		det_sq = sqrt(det);
 		sol[1] = (-0.5) * (2 * sc - det_sq);
 		if (sol[1] < 0)
-			return (0);
+			return (-1);
 		sol[0] = (-0.5) * (2 * sc + det_sq);
 		if (sol[0] > 0)
 			return (sol[0]);
