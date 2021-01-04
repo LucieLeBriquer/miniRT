@@ -1,10 +1,12 @@
 CC			= gcc
+
 CFLAGS		= -Wall -Wextra -Werror
+
 RM			= rm -rf
 
 NAME		= minirt 
 
-LIBS		= libraries/libmlx_Linux.a \
+LIBS_LIN	= libraries/libmlx_Linux.a \
 			libraries/libftfull.a -lXext -lX11 -lm
 
 LIBS_MAC	= -framework OpenGL -framework AppKit -lm \
@@ -13,7 +15,12 @@ LIBS_MAC	= -framework OpenGL -framework AppKit -lm \
 UNAME		:= $(shell uname -s)
 
 ifeq ($(UNAME), Darwin)
-MAC_KEYS	= -D MAC
+{
+	MAC_KEYS	= -D MAC
+	LIBS		= $(LIBS_MAC)
+}
+else
+	LIBS		= $(LIBS_LIN)
 endif
 
 INCS		= $(addprefix includes/, minirt.h \
@@ -64,17 +71,12 @@ SHELL		= bash
 all			: $(NAME)
 
 $(NAME)		: $(OBJS) $(INCS) libs
-			@echo -n "Compiling all objs for miniRT... "
-			@$(CC) -I$(INCS_DIR) $(OBJS) $(LIBS) -o $(NAME)
+			@echo -ne "Compiling all objs for miniRT\t\t"
+			@$(CC) -I$(INCS_DIR) $(MAC_KEYS) $(OBJS) $(LIBS) -o $(NAME)
 			@echo "OK"
 
-mac			: $(OBJS) $(INCS) libs
-			@echo -n "Compiling all objs for miniRT... "
-			@$(CC) -I$(INCS_DIR) $(MAC_KEYS) $(OBJS) $(LIBS_MAC) -o $(NAME)
-			@echo "OK"
-			
 libs		:
-			@echo -n "Updating libft...                "
+			@echo -ne "Updating libft\t\t\t\t"
 			@$(MAKE) --no-print-directory -s -C ./libraries/libft/
 			@cp ./libraries/libft/libftfull.a ./libraries
 			@cp ./libraries/libft/includes/libftfull.h ./includes
@@ -85,17 +87,15 @@ norme		:
 			@$(MAKE) --no-print-directory norme -C ./libraries/libft/
 
 clean:
-			@echo -n "Cleaning objs from miniRT...     "
+			@echo -ne "Cleaning objs from miniRT\t\t"
 			@$(RM) $(OBJS)
 			@echo "OK"
 
 fclean		: clean
-			@echo -n "Deleting ./minirt...             "
 			@$(RM) $(NAME)
-			@echo "OK"
 
 libclean	:
-			@echo -n "Cleaning libft...                "
+			@echo -ne "Cleaning libft\t\t\t\t"
 			@$(MAKE) --no-print-directory fclean -C ./libraries/libft/
 			@rm ./libraries/libftfull.a
 			@echo "OK"
@@ -105,6 +105,4 @@ docu		:
 
 re			: fclean libclean all
 
-remac		: fclean libclean mac
-
-.PHONY		: all clean fclean re libs norme libclean docu mac remac
+.PHONY		: all clean fclean re libs norme libclean docu
