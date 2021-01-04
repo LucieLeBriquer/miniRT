@@ -2,3 +2,5 @@
 *.swp
 minirt
 *.pdf
+*.log
+*/aux/*
