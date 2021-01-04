@@ -15,12 +15,13 @@ LIBS_MAC	= -framework OpenGL -framework AppKit -lm \
 UNAME		:= $(shell uname -s)
 
 ifeq ($(UNAME), Darwin)
-{
-	MAC_KEYS	= -D MAC
 	LIBS		= $(LIBS_MAC)
-}
 else
 	LIBS		= $(LIBS_LIN)
+endif
+
+ifeq ($(UNAME), Darwin)
+	MAC_KEYS	= -D MAC
 endif
 
 INCS		= $(addprefix includes/, minirt.h \
