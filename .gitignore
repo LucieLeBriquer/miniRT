@@ -1,7 +1,6 @@
 *.o
 *.swp
 minirt
-*.pdf
 *.log
 documentation/tex/aux/*
 */libftfull.a
