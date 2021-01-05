@@ -32,16 +32,16 @@
 	\draw (3,7) node[left]{$y$};
 	\draw (2.5,3.75) node{$\times$};
 \end{tikzpicture}\end{center}
-\dd\ni On cherche a remplir l'image pixel par pixel, on a $i$ correspondant a la
-ligne du pixel et $j$ a sa colonne. On va d'abord normaliser les coordonnees
-selon la largeur et la hauteur de l'ecran pour travailler avec une image carree.
+\dd\ni On cherche à remplir l'image pixel par pixel, on a $i$ correspondant à la
+ligne du pixel et $j$ à sa colonne. On va d'abord normaliser les coordonnées
+selon la largeur et la hauteur de l'écran pour travailler avec une image carrée.
 On note :
 $$\text{pixNorm}_x=\frac{j + 0.5} W \etsp\text{pixNorm}_y\frac{i + 0.5} H$$
-\ni On effectue ensuite une translation pour centrer le repere sur le milieu de
-l'ecran ainsi qu'une inversion de l'axe $y$. Ainsi :
+\ni On effectue ensuite une translation pour centrer le repère sur le milieu de
+l'écran ainsi qu'une inversion de l'axe $y$. Ainsi :
 $$\text{pixScreen}_x=2 \times\text{pixNorm}_x -1 \etsp \text{pixScreen}_y = 1 -
 2\times \text{pixNorm}_y$$
-\ni Il reste ensuite a prendre en compte la FOV donnee en parametre :
+\ni Il reste ensuite à prendre en compte la FOV donnée en paramètre :
 $$\text{pixFinal}_x = \text{pixScreen}_x \times \text{ratio}
 \times\tan\left(\frac{\text{FOV}} 2\right)\etsp \text{pixFinal}_y = 
 \text{pixScreen}_y \times\tan\left(\frac{\text{FOV}} 2\right)$$
@@ -50,19 +50,19 @@ $$\text{pixFinal}_x = \left(2\times \frac{j+0.5}{W}- 1\right)
 \times \text{ratio}\times\tan\left(\frac{\text{FOV}} 2\right)$$
 $$\text{pixFinal}_y = \left(1 - 2\times \frac{i+0.5}{H}\right)
 \times\tan\left(\frac{\text{FOV}} 2\right)$$
+\ni où $\text{ratio} = \frac W H$.
 
 
 \newpage\section{Rotation de la caméra}
 
 
-
-\newpage\section{Interaction rayon-sphère}
-\ni Soit $(o_r, \vec{d}_r)$ le rayon lance pour lequel on cherche une intersection
-avec une sphere ($o_r$ est l'origine du rayon, $\vec{d}_r$ sa direction). Soit $o$ le
-centre de la sphere $\Sl$ et $r$ son rayon. On cherche donc un point $p$ de la forme
+\newpage\section{Intersection rayon-sphère}
+\ni Soit $(o_r, \vec{d}_r)$ le rayon pour lequel on cherche une intersection
+avec une sphère ($o_r$ est l'origine du rayon, $\vec{d}_r$ sa direction). Soit $o$ le
+centre de la sphère $\Sl$ et $r$ son rayon. On cherche donc un point $p$ de la forme
 :
 $$p = o_r + \bt \vec{d}_r\quad \bt>0$$
-\ni intersectant la sphere, donc verifiant :
+\ni intersectant la sphère, donc vérifiant :
 $$\|p - o\|^2 = r$$
 \ni On veut donc :
 \begin{align*}
@@ -71,18 +71,18 @@ $$\|p - o\|^2 = r$$
 	+\|o_r - o\|^2 =r^2\\
 	\Lra\quad&\bt^2 + 2\bt\scl{\vec{d}_r, o_r - o} +\|o_r - o\|^2 =r^2
 \end{align*}
-\ni Le determinant est :
+\ni Le déterminant est :
 $$\Delta = 4\times\left(\scl{\vec{d}_r, o - o_r}^2 - \|o - o_r\|^2 - 
 r^2\right)$$
-\ni Il ne reste plus qu'a determiner la plus petite racine positive si elle
-existe. Si le determinant est negatif ou que les racines (ou la racine double)
-sont negatives, l'intersection n'est pas visible depuis la camera.
+\ni Il ne reste plus qu'à determiner la plus petite racine positive si elle
+existe. Si le déterminant est négatif ou que les racines (ou la racine double)
+sont négatives, l'intersection n'est pas visible depuis la caméra.
 
-\section{Interaction rayon-plan}
+\section{Intersection rayon-plan}
 \ni Soit $(o,\vec{n})$ le plan $\Pl$, ou $\vec{n}$ est la normale au plan et $o$
-un point du plan. Comme precedemment on cherche un point $p$ de la forme :
+un point du plan. Comme précédemment on cherche un point $p$ de la forme :
 $$p = o_r + \bt \vec{d}_r\quad \bt>0$$
-\ni intersectant le plan, donc verifiant :
+\ni intersectant le plan, donc vérifiant :
 $$\scl{p - o, \vec{n}} = 0$$
 \ni On veut donc :
 \begin{align*}
@@ -93,22 +93,22 @@ Ainsi :
 $$\bt = \frac{\scl{o - o_r, \vec{n}}}{\scl{\vec{d}_r,\vec{n}}}$$
 \ni Si $\bt$ est bien positif il y a une intersection visible avec le plan.
 
-\newpage\section{Interaction rayon-triangle}
-\ni Soit $(a,b,c)$ les sommets d'un triangle. Une premiere etape et de
-verifier qu'il existe un $\bt$ tel que $p$ soit dans le plan du triangle, on a
+\newpage\section{Intersection rayon-triangle}
+\ni Soient $(a,b,c)$ les sommets d'un triangle. La première étape est de
+vérifier qu'il existe un $\bt$ tel que $p$ soit dans le plan du triangle. On a
 donc besoin d'une normale au triangle, on prend par exemple $\vec{n} = (b - a)
 \wedge(c - a)$.
-\dd\ni On veut maintenant verifier que le point $p$ est dans le demi-plan 
-contenant $c$ et etant delimite par la droite passant par $a$ et $b$ (note
-$P_{a,b}$).
+\dd\ni On veut maintenant vérifier que le point $p$ est dans le demi-plan
+$P_{a,b}$ (où $P_{a,b}$ contient $c$ et est délimité par la droite passant par
+$a$ et $b$).
 \begin{center}
 \begin{tikzpicture}[scale=0.45]
 	\fill[gray!20] (-2,0.25)--(8,-1)--(12,5)--(2,6.25)--cycle;
 	\draw (0,0)--(8,-1);
 	\draw (0,0)--(6,4.5);
-	\draw[->,very thick] (0,0)--(2,-0.25);
+	\draw[->,very thick] (0,0)--(5.5,-0.6875);
 	\draw (0,0) node[left]{$a$};
-	\draw (5.3,-1.2) node{$b$};
+	\draw (5.3,-1.3) node{$b$};
 	\draw (4,3.5) node{$c$};
 	\draw (4,5)--(6,-2);
 	\draw[->,very thick,dotted] (0,0)--(0,3);
@@ -124,9 +124,9 @@ $P_{a,b}$).
 	\fill[gray!20] (-2,0.25)--(8,-1)--(12,5)--(2,6.25)--cycle;
 	\draw (0,0)--(8,-1);
 	\draw (0,0)--(6,4.5);
-	\draw[->,very thick] (0,0)--(2,-0.25);
+	\draw[->,very thick] (0,0)--(5.5,-0.6875);
 	\draw (0,0) node[left]{$a$};
-	\draw (5.3,-1.2) node{$b$};
+	\draw (5.3,-1.3) node{$b$};
 	\draw (4,3.5) node{$c$};
 	\draw (4,5)--(6,-2);
 	\draw[->,dotted,very thick] (0,0)--(0,-3);
@@ -138,14 +138,14 @@ $P_{a,b}$).
 	\draw[->,very thick,dotted] (0,0)--(5,-2);
 \end{tikzpicture}
 \end{center}
-\dd\ni Il suffit de regarder le signe du produit scalaire entre deux vecteurs :
+\dd\ni Il suffit de regarder le signe du produit scalaire entre les deux
+vecteurs suivants :
 $$\vec{v}_1 = (b - a)\wedge(p - a)\etsp \vec{v}_2 = (b - a)\wedge(c - a)$$
-\ni Les deux cas possibles sont representes sur la figure, $\vec{v}$ est
-colineaire a la normale et oriente comme $\vec{n}$ ssi $p$ est dans le
-demi-plan. Ainsi :
+\ni Les deux cas possibles sont representés sur la figure : $\vec{v}_1$ est
+orienté comme $\vec{v}_2$ si $p$ est dans le demi-plan, à l'opposé sinon. Ainsi :
 $$p\in P_{a,b}\quad\Lra\quad
 \scl{(b - a)\wedge(p - a), (b - a)\wedge(c - a)} > 0$$
-\ni De meme :
+\ni De même :
 $$p\in P_{b,c}\quad\Lra\quad
 \scl{(c - b)\wedge(p - b), (c - b)\wedge(a - b)} > 0$$
 $$p\in P_{c,a}\quad\Lra\quad
@@ -155,9 +155,9 @@ $$\sys{\scl{(b - a)\wedge(p - a), (b - a)\wedge(c - a)} > 0\\
 \scl{(c - b)\wedge(p - b), (c - b)\wedge(a - b)} > 0\\
 \scl{(a - c)\wedge(p - c), (a - c)\wedge(b - c)} > 0}$$
 
-\newpage\section{Interaction rayon-carré}
+\newpage\section{Intersection rayon-carré}
 
-\newpage\section{Interaction rayon-cylindre}
+\newpage\section{Intersection rayon-cylindre}
 \ni Soit $(o,X,Y,Z)$ le repère du cylindre $\Cl$. Le point $p\in\Cl$ ssi
 $$x_p^2 + y_p^2 = r^2\etsp|z_p|\leq\frac h 2$$
 \ni avec $(x_p,y_p,z_p)$ les coordonnées de $p$ dans le repère du
@@ -179,7 +179,7 @@ $$\sys{a = \scl{d_R,X}^2 + \scl{d_r,Y}^2\\\\
 b = 2\left(\scl{d_R,X}\scl{o_R-o,X}+\scl{d_R,Y}\scl{o_R-o,Y}\right) \\\\
 c = \scl{o_R-o, X}^2 + \scl{o_R-o,Y}^2 - r^2
 }$$
-\ni Il ne reste plus qu'à vérifier que pour un des deux $\bt$ on obtient
+\ni Il reste à vérifier que, pour un des deux $\bt$, on obtient
 un point $p$ vérifiant $|z_p|\leq\frac h 2$ sachant que :
 $$z_p = \lng p - o, Z\rng = \bt\scl{d_R, Z} + \scl{o_r - o, Z}$$
 
