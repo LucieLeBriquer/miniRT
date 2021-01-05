@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:00 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/03 14:52:09 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 18:04:02 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,6 @@ int	to_vect_range(char *line, t_vect *vect)
 	if (to_double(line, &c) < 0 || c < -1 || c > 1)
 		return (-1);
 	vect->z = c;
+	normalize(vect);
 	return (1);
 }

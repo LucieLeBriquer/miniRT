@@ -6,22 +6,27 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:43:41 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/05 16:19:50 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 18:30:11 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_vect	normale_type(t_vect p, t_obj obj)
+static t_vect	normale_type(t_vect p, t_obj obj, t_inter itr)
 {
 	t_vect	n;
 
 	if (obj.type == 0)
 		n = sub_vect(p, obj.o);
 	else if (obj.type == 3)
+	{
 		n = sub_vect(p, add_vect(obj.o, mul_vect(dot(p, obj.axe), obj.axe)));
+		if (dot(itr.ray.dir, n) > 0)
+			n = mul_vect(-1, n);
+	}
 	else
 		n = obj.axe;
+	normalize(&n);
 	return (n);
 }
 
@@ -30,7 +35,7 @@ int	fill_useful_vectors(t_inter *itr)
 	if (itr->t > 0)
 	{
 		itr->p = add_vect(itr->ray.org, mul_vect(itr->t, itr->ray.dir));
-		itr->n = normale_type(itr->p, itr->obj_inter);
+		itr->n = normale_type(itr->p, itr->obj_inter, *itr);
 		return (1);
 	}
 	return (0);
