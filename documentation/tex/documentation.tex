@@ -1,6 +1,6 @@
 \input{pack.tex}
 
-\title{\LARGE \textbf{MiniRT} - Notes}
+\title{\LARGE \textbf{MiniRT} - Documentation}
 \author{\large Lucie Le Briquer}
 \date{\today}
 
@@ -94,10 +94,16 @@ $$\bt = \frac{\scl{o - o_r, \vec{n}}}{\scl{\vec{d}_r,\vec{n}}}$$
 \ni Si $\bt$ est bien positif il y a une intersection visible avec le plan.
 
 \newpage\section{Interaction rayon-triangle}
-\ni Soit $(a,b,c)$ les sommets du triangle $T$. Une premiere etape et de
+\ni Soit $(a,b,c)$ les sommets d'un triangle. Une premiere etape et de
 verifier qu'il existe un $\bt$ tel que $p$ soit dans le plan du triangle, on a
-donc besoin d'une normale au triangle, on prend par exemple $\vec{n} = (b - a) \wedge(c - a)$
-\begin{center}\begin{tikzpicture}[scale=0.6]
+donc besoin d'une normale au triangle, on prend par exemple $\vec{n} = (b - a)
+\wedge(c - a)$.
+\dd\ni On veut maintenant verifier que le point $p$ est dans le demi-plan 
+contenant $c$ et etant delimite par la droite passant par $a$ et $b$ (note
+$P_{a,b}$).
+\begin{center}
+\begin{tikzpicture}[scale=0.45]
+	\fill[gray!20] (-2,0.25)--(8,-1)--(12,5)--(2,6.25)--cycle;
 	\draw (0,0)--(8,-1);
 	\draw (0,0)--(6,4.5);
 	\draw[->,very thick] (0,0)--(2,-0.25);
@@ -105,13 +111,49 @@ donc besoin d'une normale au triangle, on prend par exemple $\vec{n} = (b - a) \
 	\draw (5.3,-1.2) node{$b$};
 	\draw (4,3.5) node{$c$};
 	\draw (4,5)--(6,-2);
-	\draw[->,very thick] (0,0)--(0,3);
-	\draw[->,dotted,very thick] (0,0)--(0,-3);
+	\draw[->,very thick,dotted] (0,0)--(0,3);
+	\draw (0,3.5) node{$\vec{v}_1$};
+	\draw[->,very thick] (-2,0.25)--(-2,3);
+	\draw (-2,1.5) node[left]{$\vec{v}_2$};
 	\draw (6,1) node{$\times$};
-	\draw[->,very thick] (0,0)--(6,1);
+	\draw (6,1) node[right]{$p$};
+	\draw[->,very thick,dotted] (0,0)--(6,1);
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}[scale=0.45]
+	\fill[gray!20] (-2,0.25)--(8,-1)--(12,5)--(2,6.25)--cycle;
+	\draw (0,0)--(8,-1);
+	\draw (0,0)--(6,4.5);
+	\draw[->,very thick] (0,0)--(2,-0.25);
+	\draw (0,0) node[left]{$a$};
+	\draw (5.3,-1.2) node{$b$};
+	\draw (4,3.5) node{$c$};
+	\draw (4,5)--(6,-2);
+	\draw[->,dotted,very thick] (0,0)--(0,-3);
+	\draw (0,-3.5) node{$\vec{v}_1$};
+	\draw[->,very thick] (-2,0.25)--(-2,3);
+	\draw (-2,1.5) node[left]{$\vec{v}_2$};
 	\draw (5,-2) node{$\times$};
+	\draw (5,-2) node[below]{$p$};
 	\draw[->,very thick,dotted] (0,0)--(5,-2);
-\end{tikzpicture}\end{center}
+\end{tikzpicture}
+\end{center}
+\dd\ni Il suffit de regarder le signe du produit scalaire entre deux vecteurs :
+$$\vec{v}_1 = (b - a)\wedge(p - a)\etsp \vec{v}_2 = (b - a)\wedge(c - a)$$
+\ni Les deux cas possibles sont representes sur la figure, $\vec{v}$ est
+colineaire a la normale et oriente comme $\vec{n}$ ssi $p$ est dans le
+demi-plan. Ainsi :
+$$p\in P_{a,b}\quad\Lra\quad
+\scl{(b - a)\wedge(p - a), (b - a)\wedge(c - a)} > 0$$
+\ni De meme :
+$$p\in P_{b,c}\quad\Lra\quad
+\scl{(c - b)\wedge(p - b), (c - b)\wedge(a - b)} > 0$$
+$$p\in P_{c,a}\quad\Lra\quad
+\scl{(a - c)\wedge(p - c), (a - c)\wedge(b - c)} > 0$$
+Donc $p$ appartient au triangle ssi :
+$$\sys{\scl{(b - a)\wedge(p - a), (b - a)\wedge(c - a)} > 0\\
+\scl{(c - b)\wedge(p - b), (c - b)\wedge(a - b)} > 0\\
+\scl{(a - c)\wedge(p - c), (a - c)\wedge(b - c)} > 0}$$
 
 \newpage\section{Interaction rayon-carré}
 
