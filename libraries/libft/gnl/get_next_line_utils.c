@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 17:54:53 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/03 16:48:06 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 21:12:38 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*ft_realloc(char *str, size_t len)
 
 	if (len < ft_strlen(str))
 		return (NULL);
-	new = malloc(len * sizeof(char));
+	new = malloc(sizeof(char) * len);
 	if (!new)
 		return (NULL);
 	i = 0;

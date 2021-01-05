@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:18:22 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 14:50:49 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 21:15:10 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	l1 = ft_strlen(s1);
 	l2 = ft_strlen(s2);
-	join = malloc((l1 + l2 + 1)*sizeof(char));
+	join = malloc(sizeof(char) * (l1 + l2 + 1));
 	if (!join)
 		return (NULL);
 	ft_strlcpy(join, s1, l1 + 1);

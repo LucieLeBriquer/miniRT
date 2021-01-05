@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:14:48 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/03 16:56:20 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 21:11:19 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_utoct(unsigned int n)
 
 	l = itoa_size(n, 1, 8);
 	base = "01234567";
-	res = malloc((l + 1)*sizeof(char));
+	res = malloc(sizeof(char) * (l + 1));
 	if (!res)
 		return (NULL);
 	res[l] = '\0';

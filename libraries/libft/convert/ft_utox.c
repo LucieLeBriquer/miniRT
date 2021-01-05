@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:14:48 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 14:50:32 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 21:11:32 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_utox(unsigned int n)
 
 	l = utox_size(n);
 	base = "0123456789abcdef";
-	res = malloc((l + 1)*sizeof(char));
+	res = malloc(sizeof(char) * (l + 1));
 	if (!res)
 		return (NULL);
 	res[l] = '\0';

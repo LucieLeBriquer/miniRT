@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:37:23 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 14:49:53 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 21:14:11 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**ft_splitchar(const char *s, char c)
 	if (!s)
 		return (NULL);
 	wrds = nb_wrds(s, c, &i, &j);
-	strs = malloc((wrds + 1)*sizeof(char *));
+	strs = malloc(sizeof(char *) * (wrds + 1));
 	if (!strs)
 		return (NULL);
 	strs[wrds] = 0;
@@ -75,7 +75,7 @@ char	**ft_splitchar(const char *s, char c)
 		while (s[j] && (s[j] == c))
 			j++;
 		len = wrd_len(s + j, c);
-		strs[i] = malloc((len + 1)*sizeof(char));
+		strs[i] = malloc(sizeof(char) * (len + 1));
 		if (!(strs[i]))
 			return (ft_free(strs, i));
 		(void)ft_strlcpy(strs[i], s + j, len + 1);

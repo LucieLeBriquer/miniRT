@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 10:11:19 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 14:50:00 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 21:14:51 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *s)
 	char	*dup;
 
 	l = ft_strlen(s);
-	dup = malloc((l + 1)*sizeof(char));
+	dup = malloc(sizeof(char) * (l + 1));
 	i = -1;
 	if (!dup)
 		return (NULL);

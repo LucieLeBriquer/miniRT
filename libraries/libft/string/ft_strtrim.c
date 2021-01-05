@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:16:47 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 14:50:17 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 21:15:33 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_strtrim(const char *s1, const char *set)
 	if (size == 0)
 		trim = malloc(sizeof(char));
 	else
-		trim = malloc((size - i + 1)*sizeof(char));
+		trim = malloc(sizeof(char) * (size - i + 1));
 	if (!trim)
 		return (NULL);
 	j = -1;
