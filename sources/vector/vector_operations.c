@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-void	init_vect(t_vect *v, float x, float y, float z)
+void	init_vect(t_vect *v, double x, double y, double z)
 {
 	v->x = x;
 	v->y = y;
@@ -35,7 +35,7 @@ t_vect	sub_vect(t_vect a, t_vect b)
 	return (c);
 }
 
-t_vect	mul_vect(float t, t_vect a)
+t_vect	mul_vect(double t, t_vect a)
 {
 	t_vect	c;
 
@@ -43,7 +43,7 @@ t_vect	mul_vect(float t, t_vect a)
 	return (c);
 }
 
-t_vect	div_vect(float t, t_vect a)
+t_vect	div_vect(double t, t_vect a)
 {
 	t_vect	c;
 

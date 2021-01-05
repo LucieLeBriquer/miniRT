@@ -30,14 +30,14 @@ void	progress(int i, int j, t_scene scn, int n_cam)
 
 t_vect	create_ray(int i, int j, t_scene scn, int n_cam)
 {
-	float	real_fov;
-	float	img_ratio;
+	double	real_fov;
+	double	img_ratio;
 	t_vect	dir;
 
 	real_fov = tan(scn.cams[n_cam].fov * M_PI / 360);
-	img_ratio = (float)scn.w / (float)scn.h;
-	dir.x = (2 * ((float)(j + 0.5) / (float)scn.w) - 1) * img_ratio * real_fov;
-	dir.y = (1 - 2 * ((float)(i + 0.5) / (float)scn.h)) * real_fov;
+	img_ratio = (double)scn.w / (double)scn.h;
+	dir.x = (2 * ((double)(j + 0.5) / (double)scn.w) - 1) * img_ratio * real_fov;
+	dir.y = (1 - 2 * ((double)(i + 0.5) / (double)scn.h)) * real_fov;
 	dir.z = -1;
 	normalize(&dir);
 	return (dir);

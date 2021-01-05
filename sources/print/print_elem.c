@@ -17,7 +17,7 @@ void	print_vect(t_vect vect)
 	printf("\t%5.3f,%5.3f,%5.3f", vect.x, vect.y, vect.z);
 }
 
-void	print_float(float f)
+void	print_double(double f)
 {
 	printf("\t%5.3f", f);
 }

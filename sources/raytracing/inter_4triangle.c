@@ -29,10 +29,10 @@ int	is_inside(t_vect u, t_vect v, t_vect w, t_vect point)
 	return (1);
 }
 
-float	inter_4triangle(t_ray ray, t_obj trg)
+double	inter_4triangle(t_ray ray, t_obj trg)
 {
 	t_vect	point;
-	float	t;
+	double	t;
 
 	t = inter_1plane(ray, trg);
 	if (t < 0)

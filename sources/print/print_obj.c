@@ -17,7 +17,7 @@ void	print_sph(t_obj sph, int i)
 	printf("[%02d]sph :", i);
 	print_vect(sph.o);
 	print_col(sph.col);
-	print_float(sph.r);
+	print_double(sph.r);
 	newline();
 }
 
@@ -35,7 +35,7 @@ void	print_sqr(t_obj sqr, int i)
 	printf("[%02d]sqr :", i);
 	print_vect(sqr.o);
 	print_vect(sqr.axe);
-	print_float(sqr.h);
+	print_double(sqr.h);
 	print_col(sqr.col);
 	newline();
 }
@@ -45,7 +45,7 @@ void	print_cyl(t_obj cyl, int i)
 	printf("[%02d]cyl :", i);
 	print_vect(cyl.o);
 	print_vect(cyl.axe);
-	print_float(cyl.r);
+	print_double(cyl.r);
 	print_col(cyl.col);
 	newline();
 }

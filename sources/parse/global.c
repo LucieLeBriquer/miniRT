@@ -37,15 +37,15 @@ int	parse_res(t_scene *scene, char *line)
 
 int	parse_amb(t_scene *scene, char *line)
 {
-	float	amb;
+	double	amb;
 	t_col	col;
 
 	while (ft_isspace(*line))
 		line++;
-	if (to_float(line, &amb) < 0 || amb < 0 || amb > 1)
+	if (to_double(line, &amb) < 0 || amb < 0 || amb > 1)
 		return (-1);
 	scene->amb = amb;
-	line += skip_float(line);
+	line += skip_double(line);
 	if (to_col(line, &col) == -1)
 		return (-1);
 	while (ft_isdigit(*line) || *line == ',')
@@ -86,9 +86,9 @@ int	parse_lum(t_scene *scene, char *line)
 	if (to_vect(line, &(lum.pos)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_float(line, &(lum.ratio)) == -1)
+	if (to_double(line, &(lum.ratio)) == -1)
 		return (-1);
-	line += skip_float(line);
+	line += skip_double(line);
 	if (to_col(line, &(lum.col)) == -1)
 		return (-1);
 	(scene->lums)[nb] = lum;

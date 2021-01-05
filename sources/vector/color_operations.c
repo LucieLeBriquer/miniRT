@@ -19,7 +19,7 @@ void	init_col(t_col *col, int r, int g, int b)
 	col->b = b;
 }
 
-t_vect	mul_col(float t, t_col a)
+t_vect	mul_col(double t, t_col a)
 {
 	t_vect	c;
 

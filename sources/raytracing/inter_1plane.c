@@ -12,10 +12,10 @@
 
 #include "minirt.h"
 
-float	inter_1plane(t_ray ray, t_obj obj)
+double	inter_1plane(t_ray ray, t_obj obj)
 {
-	float	t;
-	float	sc;
+	double	t;
+	double	sc;
 
 	sc = dot(obj.axe, ray.dir);
 	if (sc == 0)

@@ -6,17 +6,17 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:44:57 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/04 22:04:29 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 14:39:55 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	solve_eq(float sc[4], float r, float sol[2])
+static void	solve_eq(double sc[4], double r, double sol[2])
 {
-	float	d[3];
-	float	det;
-	float	det_sq;
+	double	d[3];
+	double	det;
+	double	det_sq;
 
 	d[0] = sc[0] * sc[0] + sc[2] * sc[2];
 	d[1] = 2 * (sc[0] * sc[1] + sc[2] * sc[3]);
@@ -32,12 +32,12 @@ static void	solve_eq(float sc[4], float r, float sol[2])
 	}
 }
 
-float	inter_3cylindre(t_ray ray, t_obj cyl)
+double	inter_3cylindre(t_ray ray, t_obj cyl)
 {
 	t_base	base;
 	t_vect	origin;
-	float	sc[6];
-	float	t[2];
+	double	sc[6];
+	double	t[2];
 
 	init_base(&base, cyl.axe);
 	origin = sub_vect(ray.org, cyl.o);

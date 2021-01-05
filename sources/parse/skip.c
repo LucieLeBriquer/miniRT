@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-int	skip_float(char *line)
+int	skip_double(char *line)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ int	skip_float(char *line)
 	return (i);
 }
 
-int	skip_float_ns(char *line)
+int	skip_double_ns(char *line)
 {
 	int	i;
 
@@ -50,11 +50,11 @@ int	skip_vect(char *line)
 {
 	int	i;
 
-	i = skip_float_ns(line);
+	i = skip_double_ns(line);
 	i++;
-	i += skip_float_ns(line + i);
+	i += skip_double_ns(line + i);
 	i++;
-	i += skip_float_ns(line + i);
+	i += skip_double_ns(line + i);
 	while (ft_isspace(line[i]))
 		i++;
 	return (i);

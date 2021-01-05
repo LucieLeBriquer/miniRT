@@ -6,22 +6,31 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:43:41 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/04 16:16:34 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 16:19:50 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static t_vect	normale_type(t_vect p, t_obj obj)
+{
+	t_vect	n;
+
+	if (obj.type == 0)
+		n = sub_vect(p, obj.o);
+	else if (obj.type == 3)
+		n = sub_vect(p, add_vect(obj.o, mul_vect(dot(p, obj.axe), obj.axe)));
+	else
+		n = obj.axe;
+	return (n);
+}
 
 int	fill_useful_vectors(t_inter *itr)
 {
 	if (itr->t > 0)
 	{
 		itr->p = add_vect(itr->ray.org, mul_vect(itr->t, itr->ray.dir));
-		if (itr->obj_inter.type == 0)
-			itr->n = sub_vect(itr->p, itr->obj_inter.o);
-		else
-			itr->n = itr->obj_inter.axe;
-		normalize(&(itr->n));
+		itr->n = normale_type(itr->p, itr->obj_inter);
 		return (1);
 	}
 	return (0);
@@ -30,7 +39,7 @@ int	fill_useful_vectors(t_inter *itr)
 int	inter(t_inter *itr, t_scene scene)
 {
 	t_interfunc	inter_fun[5];
-	float		new_t;
+	double		new_t;
 	int			i;
 
 	inter_fun[0] = &inter_0sphere;

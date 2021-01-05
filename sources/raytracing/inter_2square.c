@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-float	inter_2square(t_ray ray, t_obj obj)
+double	inter_2square(t_ray ray, t_obj obj)
 {
 	(void)ray;
 	(void)obj;

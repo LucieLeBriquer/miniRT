@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-void	init_ray_dir(t_ray *ray, float x, float y, float z)
+void	init_ray_dir(t_ray *ray, double x, double y, double z)
 {
 	ray->dir.x = x;
 	ray->dir.y = y;

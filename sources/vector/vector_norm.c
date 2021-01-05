@@ -12,19 +12,19 @@
 
 #include "minirt.h"
 
-float	norm2(t_vect v)
+double	norm2(t_vect v)
 {
 	return (v.x * v.x + v.y * v.y + v.z * v.z);
 }
 
-float	norm(t_vect v)
+double	norm(t_vect v)
 {
 	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }
 
 void	normalize(t_vect *u)
 {
-	float	n;
+	double	n;
 
 	n = norm(*u);
 	if (n > 0)
@@ -37,7 +37,7 @@ void	normalize(t_vect *u)
 
 void	normalize_and_reverse(t_vect *u)
 {
-	float	n;
+	double	n;
 
 	n = norm(*u);
 	if (n > 0)

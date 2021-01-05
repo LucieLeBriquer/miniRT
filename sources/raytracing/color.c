@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:27:26 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 15:29:09 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 16:31:07 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	is_visible(t_inter itr, t_scene scn, int n_lum)
 {
 	t_inter	omb;
 	t_vect	v;
-	float	epsilon;
+	double	epsilon;
 
 	v = sub_vect(scn.lums[n_lum].pos, itr.p);
-	epsilon = 0.01;
+	epsilon = 0.00001;
 	init_ray(&(omb.ray), add_vect(itr.p, mul_vect(epsilon, itr.n)), v);
-	if (inter(&omb, scn) && omb.t > 2 * epsilon && omb.t * omb.t < norm2(v))
+	if (inter(&omb, scn) && omb.t * omb.t < norm2(v))
 		return (0);
 	return (1);
 }
@@ -46,7 +46,7 @@ int	get_color(t_inter *itr, t_scene scn)
 	t_vect	color;
 	t_vect	intensity;
 	int		i;
-	float	sc;
+	double	sc;
 
 	i = -1;
 	init_vect(&color, 0, 0, 0);

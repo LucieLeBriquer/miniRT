@@ -27,14 +27,14 @@ int	size_of_int(int i)
 	return (size);
 }
 
-int	to_float(char *line, float *f)
+int	to_double(char *line, double *f)
 {
 	int		entiere;
-	int		floating;
+	int		doubleing;
 	int		sign;
 	int		size;
 
-	floating = 0;
+	doubleing = 0;
 	entiere = ft_atoi(line);
 	sign = 1;
 	if (*line == '-' && line++)
@@ -42,13 +42,13 @@ int	to_float(char *line, float *f)
 	while (ft_isdigit(*line))
 		line++;
 	if (*line == '.' && line++)
-		floating = ft_atoi(line);
-	size = size_of_int(floating);
+		doubleing = ft_atoi(line);
+	size = size_of_int(doubleing);
 	while (*line == '0' && line++)
 		size++;
-	if (floating < 0)
+	if (doubleing < 0)
 		return (-1);
-	*f = entiere + sign * (float)(floating)*pow(0.1, size);
+	*f = entiere + sign * (double)(doubleing)*pow(0.1, size);
 	return (1);
 }
 
@@ -83,23 +83,23 @@ int	to_col(char *line, t_col *col)
 
 int	to_vect(char *line, t_vect *vect)
 {
-	float	c;
+	double	c;
 
-	if (to_float(line, &c) < 0)
+	if (to_double(line, &c) < 0)
 		return (-1);
-	line += skip_float(line);
+	line += skip_double(line);
 	if (*line != ',')
 		return (-1);
 	vect->x = c;
 	line++;
-	if (to_float(line, &c) < 0)
+	if (to_double(line, &c) < 0)
 		return (-1);
-	line += skip_float(line);
+	line += skip_double(line);
 	if (*line != ',')
 		return (-1);
 	vect->y = c;
 	line++;
-	if (to_float(line, &c) < 0)
+	if (to_double(line, &c) < 0)
 		return (-1);
 	vect->z = c;
 	return (1);
@@ -107,23 +107,23 @@ int	to_vect(char *line, t_vect *vect)
 
 int	to_vect_range(char *line, t_vect *vect)
 {
-	float	c;
+	double	c;
 
-	if (to_float(line, &c) < 0 || c < -1 || c > 1)
+	if (to_double(line, &c) < 0 || c < -1 || c > 1)
 		return (-1);
-	line += skip_float(line);
+	line += skip_double(line);
 	if (*line != ',')
 		return (-1);
 	vect->x = c;
 	line++;
-	if (to_float(line, &c) < 0 || c < -1 || c > 1)
+	if (to_double(line, &c) < 0 || c < -1 || c > 1)
 		return (-1);
-	line += skip_float(line);
+	line += skip_double(line);
 	if (*line != ',')
 		return (-1);
 	vect->y = c;
 	line++;
-	if (to_float(line, &c) < 0 || c < -1 || c > 1)
+	if (to_double(line, &c) < 0 || c < -1 || c > 1)
 		return (-1);
 	vect->z = c;
 	return (1);

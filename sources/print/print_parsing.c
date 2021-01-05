@@ -22,7 +22,7 @@ void	print_cam(t_cam *cam, int nb_cam)
 		printf("Cam %3d :", i);
 		print_vect(cam[i].pos);
 		print_vect(cam[i].axe);
-		print_float(cam[i].fov);
+		print_double(cam[i].fov);
 		newline();
 		i++;
 	}
@@ -37,7 +37,7 @@ void	print_lum(t_lum *lum, int nb_lum)
 	{
 		printf("Lum %3d :", i);
 		print_vect(lum[i].pos);
-		print_float(lum[i].ratio);
+		print_double(lum[i].ratio);
 		print_col(lum[i].col);
 		newline();
 		i++;

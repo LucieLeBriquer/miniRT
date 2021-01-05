@@ -6,19 +6,19 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:44:14 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/04 16:50:08 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/05 16:10:31 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-float	inter_0sphere(t_ray ray, t_obj obj)
+double	inter_0sphere(t_ray ray, t_obj obj)
 {
 	t_vect	v;
-	float	det;
-	float	sc;
-	float	det_sq;
-	float	sol[2];
+	double	det;
+	double	sc;
+	double	det_sq;
+	double	sol[2];
 
 	v = sub_vect(ray.org, obj.o);
 	sc = dot(ray.dir, v);
@@ -32,8 +32,7 @@ float	inter_0sphere(t_ray ray, t_obj obj)
 		sol[0] = (-0.5) * (2 * sc + det_sq);
 		if (sol[0] > 0)
 			return (sol[0]);
-		else
-			return (sol[1]);
+		return (sol[1]);
 	}
 	return (-1);
 }
