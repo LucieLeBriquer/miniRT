@@ -10,6 +10,11 @@
 # include "libftfull.h"
 # define CYAN "\033[36m"
 # define WHITE "\033[0m"
+# define SPHERE 0
+# define PLANE 1
+# define SQUARE 2
+# define CYLINDER 3
+# define TRIANGLE 4
 # include <stdio.h>
 
 typedef struct s_vect
@@ -142,6 +147,8 @@ double	inter_3cylindre(t_ray ray, t_obj obj);
 double	inter_4triangle(t_ray ray, t_obj obj);
 int		inter(t_inter *itr, t_scene scene);
 int		get_color(t_inter *itr, t_scene scn);
+t_vect	get_colors(t_inter *itr, t_scene scn);
+int		average_color(t_inter *itr, t_scene scn);
 int		color_vect_ftoi(t_vect color);
 int		is_visible(t_inter itr, t_scene scn, int n_lum);
 

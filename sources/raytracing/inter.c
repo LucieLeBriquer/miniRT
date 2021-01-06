@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:43:41 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/05 18:30:11 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/06 13:41:25 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,14 @@ static t_vect	normale_type(t_vect p, t_obj obj, t_inter itr)
 {
 	t_vect	n;
 
-	if (obj.type == 0)
+	if (obj.type == SPHERE)
 		n = sub_vect(p, obj.o);
-	else if (obj.type == 3)
-	{
+	else if (obj.type == CYLINDER)
 		n = sub_vect(p, add_vect(obj.o, mul_vect(dot(p, obj.axe), obj.axe)));
-		if (dot(itr.ray.dir, n) > 0)
-			n = mul_vect(-1, n);
-	}
 	else
 		n = obj.axe;
+	if (dot(itr.ray.dir, n) > 0)
+		n = mul_vect(-1, n);
 	normalize(&n);
 	return (n);
 }

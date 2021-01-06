@@ -53,7 +53,7 @@ SRCS		= $(addprefix sources/, minirt.c \
 			raytracing/inter_0sphere.c \
 			raytracing/inter_1plane.c \
 			raytracing/inter_2square.c \
-			raytracing/inter_3cylindre.c \
+			raytracing/inter_3cylinder.c \
 			raytracing/inter_4triangle.c \
 			raytracing/inter.c \
 			vector/color_operations.c \
@@ -98,7 +98,7 @@ fclean		: clean
 libclean	:
 			@echo -ne "Cleaning libft\t\t\t\t"
 			@$(MAKE) --no-print-directory fclean -C ./libraries/libft/
-			@rm ./libraries/libftfull.a
+			@$(RM) ./libraries/libftfull.a
 			@echo "OK"
 
 docu		:
