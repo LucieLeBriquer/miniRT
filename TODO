@@ -1,6 +1,5 @@
-- faire une estimation du temps ?
 - faire la save en bmp
-- gerer le cas ou H > W
+- check le cas ou H > W
 - implementer cone et tore ?
 - reverifier camera sur une scene easy
 - faire le logo de 42
@@ -14,17 +13,16 @@
 
 BONUS :
 
-Normal disruption: par exemple utilisersinepour avoir un effet de vague.
-•Color disruption: par exemple, un plateau d’échecs
-•Color disruption: un effet arc-en-ciel.
-•Un capuchon sur les cylindres
-•Lumière parrallèle : la lumière suit une direction précise
-•Élement composé : Cube (6 carrés)
-•Élement composé : Pyramide (4 triangles, un carré)
-•Un autre objet de second degré : Cone,
-hyperboloide, paraboloide...•Filtre de couleurs : Sepia, filtre
-R/G/B...•Anti-aliasing•Stéréoscopie simple (comme des lunettes vert/rouge)•Rendu
-multithreadé•Texture sur les sphères (uv mapping)•Une superbe skybox•Gérer les
-reliefs de texture (bump map)•Interactions clavier (translation/rotaion) pour la
-caméra•Interactions clavier (translation/rotaion) pour la objets•Faire tourner
-la caméra à l’aide de la souris
+- Normal disruption: par exemple utiliser sine pour avoir un effet de vague.
+- Color disruption: par exemple, un plateau d’échecs
+- Color disruption: un effet arc-en-ciel.
+- Un capuchon sur les cylindres
+- Lumière parrallèle : la lumière suit une direction précise
+- Élement composé : Cube (6 carrés)
+- Élement composé : Pyramide (4 triangles, un carré)
+- Un autre objet de second degré : Cone, hyperboloide, paraboloide...
+- Filtre de couleurs : Sepia, R/G/B...
+- Anti-aliasing
+- Stéréoscopie simple (comme des lunettes vert/rouge)
+- Rendu multithreadé
+- Texture sur les sphères (uv mapping)

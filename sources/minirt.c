@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/06 13:40:32 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/06 18:05:21 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ int	init_image(t_scene *scene)
 	return (1);
 }
 
+void	render_case(t_scene *scene)
+{
+	mlx_hook(scene->win, DESTROY, (1L << 17), exit_scene, scene);
+	mlx_hook(scene->win, 2, (1L << 0), next_cam, scene);
+	mlx_loop(scene->mlx);
+	mlx_put_image_to_window(scene->mlx, scene->win, (scene->img_ptr)[0], 0, 0);
+}
+
+void	save_case(t_scene *scene, char *file)
+{
+	(void)bmp_create(*scene, file);
+}
+
 int	main(int argc, char **argv)
 {
 	t_scene	scene;
@@ -54,8 +67,9 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error : Allocation's issues\n"));
 	}
 	render(scene);
-	mlx_hook(scene.win, DESTROY, (1L << 17), exit_scene, &scene);
-	mlx_hook(scene.win, 2, (1L << 0), next_cam, &scene);
-	mlx_loop(scene.mlx);
+	if (argc == 2)
+		render_case(&scene);
+	else if (argc == 3)
+		save_case(&scene, "save.bmp");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/06 13:29:08 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/06 18:05:18 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,4 @@ void	render(t_scene scn)
 		draw(scn, i);
 		ft_printf("\rRendering view %-2d [100%%]\n", i);
 	}
-	mlx_put_image_to_window(scn.mlx, scn.win, scn.img_ptr[0], 0, 0);
 }

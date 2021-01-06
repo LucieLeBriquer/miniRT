@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/03 14:40:59 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/06 16:27:32 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	parse_file(int argc, char **argv, t_scene *scene)
 	int		fd;
 	int		err_parse;
 
-	if (argc == 2 || (argc == 4 && is_save(argv[2])))
+	if (argc == 2 || (argc == 3 && is_save(argv[2])))
 	{
 		fd = open(argv[1], O_RDONLY);
 		if (fd > 0)
@@ -113,7 +113,7 @@ int	parse_file(int argc, char **argv, t_scene *scene)
 				return (-5 * (1 + close(fd)));
 			if (err_parse < 0)
 				return (-6 * (1 + close(fd)));
-			return (close(fd));
+			return (close(fd) + (argc == 3));
 		}
 		return (-3);
 	}

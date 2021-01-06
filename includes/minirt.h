@@ -191,4 +191,10 @@ void	print_sqr(t_obj sqr, int i);
 void	print_cyl(t_obj cyl, int i);
 void	print_trg(t_obj trg, int i);
 
+/*
+** BMP save
+*/
+
+int		bmp_create(t_scene scene, char *file);
+
 #endif

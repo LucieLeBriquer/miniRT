@@ -46,6 +46,7 @@ SRCS		= $(addprefix sources/, minirt.c \
 			parse/skip.c \
 			parse/type.c \
 			parse/utils.c \
+			print/bmp.c \
 			print/print_elem.c \
 			print/print_obj.c \
 			print/print_parsing.c \
