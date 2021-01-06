@@ -1,8 +1,30 @@
-- implementer les autres fonctions d'intersection
-- fermer proprement mlx si probleme de parsing dans le main
-- implementer square comme 2 triangles
-- implementer cylindre
 - faire une estimation du temps ?
-- faire la doc
 - faire la save en bmp
 - gerer le cas ou H > W
+- implementer cone et tore ?
+- reverifier camera sur une scene easy
+- faire le logo de 42
+- maybe moyenne au carré ?
+- faire une option anti-aliasing ou non
+- reflection a ajouter dans le parsing : entre 0 et 1
+	lancer un rayon selon la formule de snell-descartes et si objet :
+	alpha * couleur_rayon + (1 - alpha) * couleur_objet
+	en fait non parce que reflection => reflection => reflection
+	ou alors juste faire un miroir par exemple
+
+BONUS :
+
+Normal disruption: par exemple utilisersinepour avoir un effet de vague.
+•Color disruption: par exemple, un plateau d’échecs
+•Color disruption: un effet arc-en-ciel.
+•Un capuchon sur les cylindres
+•Lumière parrallèle : la lumière suit une direction précise
+•Élement composé : Cube (6 carrés)
+•Élement composé : Pyramide (4 triangles, un carré)
+•Un autre objet de second degré : Cone,
+hyperboloide, paraboloide...•Filtre de couleurs : Sepia, filtre
+R/G/B...•Anti-aliasing•Stéréoscopie simple (comme des lunettes vert/rouge)•Rendu
+multithreadé•Texture sur les sphères (uv mapping)•Une superbe skybox•Gérer les
+reliefs de texture (bump map)•Interactions clavier (translation/rotaion) pour la
+caméra•Interactions clavier (translation/rotaion) pour la objets•Faire tourner
+la caméra à l’aide de la souris
