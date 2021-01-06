@@ -98,7 +98,7 @@ fclean		: clean
 libclean	:
 			@echo -ne "Cleaning libft\t\t\t\t"
 			@$(MAKE) --no-print-directory fclean -C ./libraries/libft/
-			@rm ./libraries/libftfull.a
+			@$(RM) ./libraries/libftfull.a
 			@echo "OK"
 
 docu		:
