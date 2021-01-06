@@ -10,6 +10,11 @@
 # include "libftfull.h"
 # define CYAN "\033[36m"
 # define WHITE "\033[0m"
+# define SPHERE 0
+# define PLANE 1
+# define SQUARE 2
+# define CYLINDER 3
+# define TRIANGLE 4
 # include <stdio.h>
 
 typedef struct s_vect

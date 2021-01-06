@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/06 13:27:41 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/06 13:29:08 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ void	draw(t_scene scn, int n_cam)
 	}
 }
 
-/*
-void	draw(t_scene scn, int n_cam)
+void	draw_noantialiasing(t_scene scn, int n_cam)
 {
 	t_inter	itr;
 	t_base	base;
@@ -98,7 +97,7 @@ void	draw(t_scene scn, int n_cam)
 		}
 	}
 }
-*/
+
 void	render(t_scene scn)
 {
 	int	i;
