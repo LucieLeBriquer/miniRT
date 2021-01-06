@@ -7,7 +7,9 @@
 \begin{document}
 \maketitle
 \tableofcontents
-\newpage\section{Génération des rayons}
+\newpage\rmk On notera dans tout ce document $\scl{\ ,\ }$ le produit scalaire et
+$\wedge$ le produit vectoriel.
+\section{Génération des rayons}
 \begin{center}\begin{tikzpicture}[scale=0.7]
 	\draw[step=1.0,black,thin] (0,0) grid (6,4);
 	\draw[->,very thick] (0,4)--(7,4);
@@ -54,7 +56,75 @@ $$\text{pixFinal}_y = \left(1 - 2\times \frac{i+0.5}{H}\right)
 
 
 \newpage\section{Rotation de la caméra}
-
+\ni Soit $(o_C,\vec{c})$ une caméra, $o_C$ est sa position et $\vec{c}$ la
+direction dans laquelle elle regarde. La caméra par défaut regarde en
+$(0,0,-1)$.
+\begin{center}
+\begin{tikzpicture}[scale=0.6]
+	\draw[->] (0,0)--(3,0);
+	\draw[->] (0,0)--(0,3);
+	\draw[->] (0,0)--(-2,-1);
+	\draw[->,dashed] (0,0)--(2,1);
+	\draw (2.3,1) node[above]{$(0,0,-1)$};
+	\draw (0.3,0) node[below]{$0_{\R_3}$};
+	\draw (3,0) node[right]{$x$};
+	\draw (0,3) node[above]{$y$};
+	\draw (-2.3,-1) node[below]{$z$};
+	\draw[->] (7,2)--(9.7,2.3);
+	\draw[->] (7,2)--(6,0);
+	\draw[->] (7,2)--(5.6,4);
+	\draw[->,dashed] (7,2)--(8,4);
+	\draw (8,4) node[above]{$\vec{c}$};
+	\draw (9.7,2.3) node[right]{$X$};
+	\draw (5.6,4) node[above]{$Y$};
+	\draw (6,0) node[below]{$Z$};
+	\draw[dotted] (0,0)--(7,2);
+	\draw (0,0) node{$\bullet$};
+	\draw (7,2) node{$\bullet$};
+	\draw (7.4,2) node[below]{$o_C$};
+\end{tikzpicture}
+\end{center}
+On cherche à déterminer les coordonnées des vecteurs $X,Y$ et $Z$. On sait déjà
+que $Z = -\vec{c}$ (normalisé). On cherche maintenant un vecteur $\vec{v}$ tel que :
+$$X = v\wedge Z$$
+Or on sait que pour $Z = (0,0,1)$ on veut $X = (1,0,0)$. On prend donc $\vec{v}
+= (0,1,0)$ pour satisfaire la relation.
+$$X = (0,1,0)\wedge Z$$
+\rmk Ceci n'est valable que dans le cas ou $Z\neq\lambda (0,1,0)$.
+\dl\ni Pour finir la création de la base orthonormée directe on pose donc :
+$$Y = Z\wedge X$$
+\rmk Pour le cas où $\vec{c} = (0,1,0)$ ou $(0,-1,0)$ on pose $X = (1,0,0)$ (cf
+schémas).
+\begin{center}
+\begin{tikzpicture}[scale=0.6]
+	\draw[->] (0,0)--(3,0);
+	\draw[->] (0,0)--(0,3);
+	\draw[->] (0,0)--(-2,-1);
+	\draw (0.3,0) node[below]{$0_{\R_3}$};
+	\draw (3,0) node[right]{$x$};
+	\draw (0,3) node[above]{$y$};
+	\draw (-2.3,-1) node[below]{$z$};
+	\draw[->] (7,0)--(10,0);
+	\draw[->] (7,0)--(7,3);
+	\draw[->] (7,0)--(9,1);
+	\draw (10,0) node[right]{$X$};
+	\draw (7,3) node[above]{$Z$};
+	\draw (9,1) node[right]{$Y$};
+	\draw (7,0) node{$\bullet$};
+	\draw (0,0) node{$\bullet$};
+	\draw[->,dashed] (7,0)--(7,-2.5);
+	\draw (7,-2.5) node[below]{$\vec{c}(0,-1,0)$};
+	\draw[->] (14,0)--(17,0);
+	\draw[->] (14,0)--(14,-3);
+	\draw[->] (14,0)--(16,1);
+	\draw (17,0) node[right]{$X$};
+	\draw (14,-3) node[below]{$Z$};
+	\draw (16,1) node[right]{$Y$};
+	\draw (14,0) node{$\bullet$};
+	\draw[->,dashed] (14,0)--(14,2.5);
+	\draw (14,2.5) node[above]{$\vec{c}(0,1,0)$};
+\end{tikzpicture}
+\end{center}
 
 \newpage\section{Intersection rayon-sphère}
 \ni Soit $(o_r, \vec{d}_r)$ le rayon pour lequel on cherche une intersection
@@ -144,7 +214,7 @@ $$\vec{v}_1 = (b - a)\wedge(p - a)\etsp \vec{v}_2 = (b - a)\wedge(c - a)$$
 \ni Les deux cas possibles sont representés sur la figure : $\vec{v}_1$ est
 orienté comme $\vec{v}_2$ si $p$ est dans le demi-plan, à l'opposé sinon. Ainsi :
 $$p\in P_{a,b}\quad\Lra\quad
-\scl{(b - a)\wedge(p - a), (b - a)\wedge(c - a)} > 0$$
+\scl{(b  a)\wedge(p - a), (b - a)\wedge(c - a)} > 0$$
 \ni De même :
 $$p\in P_{b,c}\quad\Lra\quad
 \scl{(c - b)\wedge(p - b), (c - b)\wedge(a - b)} > 0$$
@@ -155,7 +225,14 @@ $$\sys{\scl{(b - a)\wedge(p - a), (b - a)\wedge(c - a)} > 0\\
 \scl{(c - b)\wedge(p - b), (c - b)\wedge(a - b)} > 0\\
 \scl{(a - c)\wedge(p - c), (a - c)\wedge(b - c)} > 0}$$
 
-\newpage\section{Intersection rayon-carré}
+\dd\dd\section{Intersection rayon-carré}
+\ni Le principe est identique à l'intersection rayon-triangle : on cherche 
+d'abord un point qui appartient au plan du carré puis on rajoute
+des conditions. Les conditions ici sont : $|y| < \frac h 2$ et $|x|<
+\frac h 2$ avec $x$ et $y$ les coordonnées de $p$ dans la base du carré et $h$
+la hauteur du carré. On obtient cette base notée $(o,X,Y,Z)$ en suivant les instructions de la
+Section 2. On rappelle que :
+$$x = \scl{p - o, X} \etsp y = \scl{p - o, Y}$$
 
 \newpage\section{Intersection rayon-cylindre}
 \ni Soit $(o,X,Y,Z)$ le repère du cylindre $\Cl$. Le point $p\in\Cl$ ssi
@@ -163,7 +240,28 @@ $$x_p^2 + y_p^2 = r^2\etsp|z_p|\leq\frac h 2$$
 \ni avec $(x_p,y_p,z_p)$ les coordonnées de $p$ dans le repère du
 cylindre. Pour déterminer les vecteurs $(X,Y,Z)$ il suffit d'utiliser la même
 construction de base vue précédemment avec comme axe de départ l'axe du cylindre.
-\img{0.2}{cylindre}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+	\draw (0,0) ellipse (2cm and 0.7cm);
+	\draw (0,2.5) ellipse (2cm and 0.7cm);
+	\draw (0,-2.5) ellipse (2cm and 0.7cm);
+	\draw (-2,2.5)--(-2,-2.5);
+	\draw (2,2.5)--(2,-2.5);
+	\draw (0,0) node{$\bullet$};
+	\draw (0,0) node[left]{$O$};
+	\draw[->,thick] (0,0)--(0,1.3);
+	\draw[->,thick] (0,0)--(1.3,0);
+	\draw[->,thick] (0,0)--(0.8,0.8);
+	\draw (0,1.3) node[left]{$Z$};
+	\draw (1.2,0) node[right]{$X$};
+	\draw (1,1) node{$Y$};
+	\draw[<->] (-2,3.5)--(2,3.5);
+	\draw[<->] (2.5,-2.7)--(2.5,2.7);
+	\draw (2.8,0) node{$h$};
+	\draw (0,3.8) node{$2\times r$};
+\end{tikzpicture}
+\end{center}
 \dd Le point $p$ est de la forme $o_R + \bt d_R$ où $o_R$ est l'origine du rayon et
 $d_R$ sa direction. Ainsi :
 $$x_p = \lng p - o, X\rng = \bt\scl{d_R, X} + \scl{o_r - o, X}$$
