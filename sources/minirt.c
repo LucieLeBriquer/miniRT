@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/06 18:59:17 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/07 15:54:27 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char **argv)
 		exit_scene(&scene);
 		return (ft_printf("Error : Allocation's issues\n"));
 	}
-	render(scene);
+	render(scene, 1);
 	if (argc == 2)
 		render_case(&scene);
 	else if (argc == 3)
