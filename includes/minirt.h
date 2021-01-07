@@ -15,6 +15,7 @@
 # define SQUARE 2
 # define CYLINDER 3
 # define TRIANGLE 4
+# define CONE 5
 # include <stdio.h>
 
 typedef struct s_vect
@@ -105,14 +106,15 @@ typedef double	(*t_interfunc)(t_ray, t_obj);
 ** Rendering and display
 */
 
-void	draw(t_scene scn, int n_cam);
-void	render(t_scene scn);
+void	render(t_scene scn, int antialiasing);
 void	init_base(t_base *base, t_vect c_axe);
 void	rotate(t_vect *rayd, t_base base);
 int		exit_scene(t_scene *scene);
 int		next_cam(int keynote, t_scene *scn);
 void	free_all(t_scene scene);
 int		print_errors_and_free(int err, t_scene scene);
+void	progress(int i, int j, t_scene scn, int n_cam);
+void	progress_final(t_scene scn, int i);
 
 /*
 ** Vector functions
@@ -134,7 +136,9 @@ t_vect	sub_vect(t_vect a, t_vect b);
 t_vect	prod_vect(t_vect a, t_vect b);
 void	init_ray_dir(t_ray *ray, double x, double y, double z);
 void	init_ray_org(t_ray *ray, t_vect org);
+void	init_rays_org(t_inter itr[4], t_vect org);
 void	init_ray(t_ray *ray, t_vect org, t_vect dir);
+void	rotate_rays(t_inter itr[4], t_base base);
 
 /*
 ** Pixel's color calculation
@@ -145,6 +149,7 @@ double	inter_1plane(t_ray ray, t_obj obj);
 double	inter_2square(t_ray ray, t_obj obj);
 double	inter_3cylindre(t_ray ray, t_obj obj);
 double	inter_4triangle(t_ray ray, t_obj obj);
+double	inter_5cone(t_ray ray, t_obj obj);
 int		inter(t_inter *itr, t_scene scene);
 int		get_color(t_inter *itr, t_scene scn);
 t_vect	get_colors(t_inter *itr, t_scene scn);
@@ -161,6 +166,7 @@ int		parse_cyl(t_scene *scene, char *line, int nb);
 int		parse_sqr(t_scene *scene, char *line, int nb);
 int		parse_pln(t_scene *scene, char *line, int nb);
 int		parse_sph(t_scene *scene, char *line, int nb);
+int		parse_con(t_scene *scene, char *line, int nb);
 int		skip_double(char *line);
 int		skip_vect(char *line);
 int		to_double(char *line, double *f);
@@ -175,7 +181,7 @@ int		parse_res(t_scene *scene, char *line);
 int		parse_file(int argc, char **argv, t_scene *scene);
 
 /*
-** Print
+** Print A CLEAN
 */
 
 void	print_parsing(t_scene scene);

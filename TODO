@@ -1,5 +1,6 @@
 - faire la save en bmp
 - check le cas ou H > W
+- cas ou res > res_screen 
 - implementer cone et tore ?
 - reverifier camera sur une scene easy
 - faire le logo de 42

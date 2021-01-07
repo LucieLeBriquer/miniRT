@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:43:41 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/06 18:59:19 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/07 15:11:43 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static t_vect	normale_type(t_vect p, t_obj obj, t_inter itr)
 		n = sub_vect(p, obj.o);
 	else if (obj.type == CYLINDER)
 		n = sub_vect(p, add_vect(obj.o, mul_vect(dot(p, obj.axe), obj.axe)));
+	else if (obj.type == CONE)
+		n = sub_vect(p, obj.o);
 	else
 		n = obj.axe;
 	if (dot(itr.ray.dir, n) > 0)
@@ -28,7 +30,7 @@ static t_vect	normale_type(t_vect p, t_obj obj, t_inter itr)
 	return (n);
 }
 
-int	fill_useful_vectors(t_inter *itr)
+static int	fill_useful_vectors(t_inter *itr)
 {
 	if (itr->t > 0)
 	{
@@ -39,19 +41,25 @@ int	fill_useful_vectors(t_inter *itr)
 	return (0);
 }
 
-int	inter(t_inter *itr, t_scene scene)
+static void	init_inter_tab(t_interfunc inter_fun[6])
 {
-	t_interfunc	inter_fun[5];
-	double		new_t;
-	int			i;
-
 	inter_fun[0] = &inter_0sphere;
 	inter_fun[1] = &inter_1plane;
 	inter_fun[2] = &inter_2square;
 	inter_fun[3] = &inter_3cylindre;
 	inter_fun[4] = &inter_4triangle;
+	inter_fun[5] = &inter_5cone;
+}
+
+int	inter(t_inter *itr, t_scene scene)
+{
+	t_interfunc	inter_fun[6];
+	double		new_t;
+	int			i;
+
 	itr->t = -1;
 	i = -1;
+	init_inter_tab(inter_fun);
 	while (++i < scene.nb_obj)
 	{
 		new_t = (inter_fun[scene.objs[i].type])(itr->ray, scene.objs[i]);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type.c                                             :+:      :+:    :+:   */
+/*   obj1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/05 18:04:56 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/07 14:38:34 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	parse_sph(t_scene *scene, char *line, int nb)
 	line += skip_double(line);
 	if (to_col(line, &(sph.col)) == -1)
 		return (-1);
-	sph.type = 0;
+	sph.type = SPHERE;
 	sph.r = sph.r / 2;
 	(scene->objs)[nb - 1] = sph;
 	return (1);
@@ -46,7 +46,7 @@ int	parse_pln(t_scene *scene, char *line, int nb)
 	line += skip_vect(line);
 	if (to_col(line, &(pln.col)) == -1)
 		return (-1);
-	pln.type = 1;
+	pln.type = PLANE;
 	(scene->objs)[nb - 1] = pln;
 	return (1);
 }
@@ -68,7 +68,7 @@ int	parse_sqr(t_scene *scene, char *line, int nb)
 	line += skip_double(line);
 	if (to_col(line, &(sqr.col)) == -1)
 		return (-1);
-	sqr.type = 2;
+	sqr.type = SQUARE;
 	(scene->objs)[nb - 1] = sqr;
 	return (1);
 }
@@ -94,7 +94,7 @@ int	parse_cyl(t_scene *scene, char *line, int nb)
 	line += skip_double(line);
 	if (to_col(line, &(cyl.col)) == -1)
 		return (-1);
-	cyl.type = 3;
+	cyl.type = CYLINDER;
 	(scene->objs)[nb - 1] = cyl;
 	return (1);
 }
@@ -116,7 +116,7 @@ int	parse_trg(t_scene *scene, char *line, int nb)
 	line += skip_vect(line);
 	if (to_col(line, &(trg.col)) == -1)
 		return (-1);
-	trg.type = 4;
+	trg.type = TRIANGLE;
 	trg.axe = prod_vect(sub_vect(trg.q, trg.o), sub_vect(trg.p, trg.o));
 	normalize(&(trg.axe));
 	(scene->objs)[nb - 1] = trg;

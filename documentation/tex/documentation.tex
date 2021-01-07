@@ -280,5 +280,33 @@ c = \scl{o_R-o, X}^2 + \scl{o_R-o,Y}^2 - r^2
 \ni Il reste à vérifier que, pour un des deux $\bt$, on obtient
 un point $p$ vérifiant $|z_p|\leq\frac h 2$ sachant que :
 $$z_p = \lng p - o, Z\rng = \bt\scl{d_R, Z} + \scl{o_r - o, Z}$$
+On calcule ensuite la normale à la surface du cylindre qui est :
+$$p - (o + \scl{p,Z}Z)$$
+$o + \scl{p,Z}Z$ étant bien le point à hauteur de $p$ sur l'axe du cylindre.
 
+\newpage\section{Intersection rayon-cône}
+\ni Soit $(o,X,Y,Z)$ le repère du cône. Le point appartient au cône ssi
+$$x_p^2 + y_p^2 = \frac r h z_p^2\etsp 0\leq z_p\leq h$$
+\ni avec $(x_p,y_p,z_p)$ les coordonnées de $p$ dans le repère du
+cône. Pour déterminer les vecteurs $(X,Y,Z)$ il suffit d'utiliser la même
+construction de base vue précédemment avec comme axe de départ l'axe du cône.
+\dd Le point $p$ est de la forme $o_R + \bt d_R$ où $o_R$ est l'origine du rayon et $d_R$ sa direction. Ainsi :
+$$x_p = \lng p - o, X\rng = \bt\scl{d_R, X} + \scl{o_r - o, X}$$
+$$y_p = \lng p - o, Y\rng = \bt\scl{d_R, Y} + \scl{o_r - o, Y}$$
+$$z_p = \lng p - o, Z\rng = \bt\scl{d_R, Z} + \scl{o_r - o, Z}$$
+\begin{align*}
+	x_p^2 + y_p^2 - \frac r h z_p^2= &\left(\scl{d_R,X}^2 + \scl{d_r,Y}^2 -
+	\frac r h\scl{d_r,Z}^2\right) \bt^2\\
+		&+2\left(\scl{d_R,X}\scl{o_R-o,X}+\scl{d_R,Y}\scl{o_R-o,Y} -
+		\frac r	h\scl{d_R,Z}\scl{o_R-o,Z}\right) \bt \\
+		&+\left(\scl{o_R-o, X}^2 + \scl{o_R-o,Y}^2 -\frac r h
+		\scl{o_R-o,Z}^2\right)
+\end{align*}
+\ni$\bt$ vérifie donc une équation du second degré $a\bt^2+b\bt+c=0$ avec :
+$$\sys{a = \scl{d_R,X}^2 + \scl{d_r,Y}^2 -\frac r h\scl{d_r,Z}^2 \\\\
+b = 2\left(\scl{d_R,X}\scl{o_R-o,X}+\scl{d_R,Y}\scl{o_R-o,Y} -
+		\frac r	h\scl{d_R,Z}\scl{o_R-o,Z}\right)\\\\
+c =\scl{o_R-o, X}^2 + \scl{o_R-o,Y}^2 -\frac r h \scl{o_R-o,Z}^2}$$
+\ni Il reste à vérifier que, pour un des deux $\bt$, on obtient
+un point $p$ vérifiant $0\leq z_p\leq h$.
 \end{document}

@@ -39,12 +39,14 @@ SRCS		= $(addprefix sources/, minirt.c \
 			display/camera.c \
 			display/errors.c \
 			display/events.c \
+			display/progress.c \
 			display/rendering.c \
 			parse/converter.c \
 			parse/global.c \
 			parse/parse.c \
 			parse/skip.c \
-			parse/type.c \
+			parse/obj1.c \
+			parse/obj2.c \
 			parse/utils.c \
 			print/bmp.c \
 			print/print_elem.c \
@@ -56,6 +58,7 @@ SRCS		= $(addprefix sources/, minirt.c \
 			raytracing/inter_2square.c \
 			raytracing/inter_3cylinder.c \
 			raytracing/inter_4triangle.c \
+			raytracing/inter_5cone.c \
 			raytracing/inter.c \
 			vector/color_operations.c \
 			vector/ray_operations.c \

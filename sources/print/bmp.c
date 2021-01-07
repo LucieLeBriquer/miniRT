@@ -6,7 +6,7 @@
 /*   By: lle-briq <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 17:16:32 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/06 18:01:16 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/07 15:51:30 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	write_header(int fd, t_scene scene)
 		write_char_by_char(fd, header[i], i);
 }
 
-int		bmp_create(t_scene scene, char *file)
+int	bmp_create(t_scene scene, char *file)
 {
 	int				fd;
 	int				i;
