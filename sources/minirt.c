@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/08 13:12:08 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/08 13:17:54 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ int	options(int argc, char **argv, t_option *opt)
 	{
 		if (ft_strcmp("-a", argv[i]) == 0)
 			opt->aliasing = 1;
-		else if (ft_strcmp("-save", argv[i]) == 0 && ++i < argc)
+		else if (ft_strcmp("-save", argv[i]) == 0)
 		{
 			opt->save = 1;
-			opt->file_save = argv[i];
+			if (i + 1 < argc)
+				opt->file_save = argv[++i];
 		}
 		else
 			return (-1);
@@ -96,10 +97,10 @@ int	main(int argc, char **argv)
 		exit_scene(&scene);
 		return (ft_printf("Error : Allocation's issues\n"));
 	}
-	render(scene, 1);
-	if (argc == 2)
+	render(scene, opt.aliasing);
+	if (opt.save == 0)
 		render_case(&scene);
-	else if (argc == 3)
-		save_case(&scene, "save.bmp");
+	else if (opt.save == 1)
+		save_case(&scene, opt.file_save);
 	return (0);
 }
