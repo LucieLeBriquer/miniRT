@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:27:26 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/08 18:39:39 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/08 22:55:57 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ t_vect	get_colors(t_inter *itr, t_scene scn)
 		sc = norm2(light);
 		if (sc == 0)
 			continue ;
-		sc = dot(light, itr->n) / norm(light);
+		sc = dot(light, itr->n) / sc;
 		if (!is_visible(*itr, scn, i))
 			continue ;
-		intensity = mul_vect(fabs(sc) * scn.lums[i].ratio,
+		intensity = mul_vect(fabs(sc) * scn.lums[i].ratio * 100,
 				min_col(scn.lums[i].col, itr->obj_inter.col));
 		color = add_vect(color, intensity);
 	}

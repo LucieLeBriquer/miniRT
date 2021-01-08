@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:29:22 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/03 16:00:23 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/08 23:00:08 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,22 @@ t_vect	mul_col(double t, t_col a)
 	return (c);
 }
 
-t_vect	min_col(t_col col1, t_col col2)
+/*t_vect	min_col(t_col col1, t_col col2)
 {
 	t_vect	res;
 
 	res.x = fmin(col1.r, col2.r);
 	res.y = fmin(col1.g, col2.g);
 	res.z = fmin(col1.b, col2.b);
+	return (res);
+}*/
+
+t_vect	min_col(t_col col1, t_col col2)
+{
+	t_vect	res;
+
+	res.x = fmin(255, fmax(sqrt(col1.r * col2.r), 0));
+	res.y = fmin(255, fmax(sqrt(col1.g * col2.g), 0));
+	res.z = fmin(255, fmax(sqrt(col1.b * col2.b), 0));
 	return (res);
 }
