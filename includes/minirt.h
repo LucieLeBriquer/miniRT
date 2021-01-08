@@ -16,6 +16,7 @@
 # define CYLINDER 3
 # define TRIANGLE 4
 # define CONE 5
+# define FILTERS 6
 # include <stdio.h>
 
 typedef struct s_vect
@@ -95,6 +96,8 @@ typedef struct s_scene
 	t_obj	*objs;
 	void	**img_ptr;
 	int		**img_data;
+	void	**img_ptr_nb;
+	int		**img_data_nb;
 	void	*mlx;
 	void	*win;
 	int		prog;
@@ -123,6 +126,7 @@ void	free_all(t_scene scene);
 int		print_errors_and_free(int err, t_scene scene);
 void	progress(int i, int j, t_scene scn, int n_cam);
 void	progress_final(t_scene scn, int i);
+int		init_image(t_scene *scene);
 
 /*
 ** Vector functions
@@ -164,6 +168,9 @@ t_vect	get_colors(t_inter *itr, t_scene scn);
 int		average_color(t_inter *itr, t_scene scn);
 int		color_vect_ftoi(t_vect color);
 int		is_visible(t_inter itr, t_scene scn, int n_lum);
+int		black_white(int color);
+int		sepia(int color);
+int		compo(int color, int i);
 
 /*
 ** Parsing

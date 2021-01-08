@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 22:13:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/06 13:39:22 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/08 14:50:19 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@
 #  define LEFT_KEY 123
 # else
 #  define LEFT_KEY 65361
+# endif
+
+# ifdef MAC
+#  define F_KEY 3
+# else
+#  define F_KEY 0
 # endif
 
 #endif
