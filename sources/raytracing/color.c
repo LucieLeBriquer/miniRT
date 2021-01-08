@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:27:26 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/08 15:27:34 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/08 18:39:39 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	is_visible(t_inter itr, t_scene scn, int n_lum)
 	v = sub_vect(scn.lums[n_lum].pos, itr.p);
 	epsilon = 0.00001;
 	init_ray(&(omb.ray), add_vect(itr.p, mul_vect(epsilon, itr.n)), v);
-	if (inter(&omb, scn) && omb.t * omb.t < norm2(v))
+	if (inter(&omb, scn) && omb.t * omb.t < norm2(v) && omb.t > 2 * epsilon)
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:43:41 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/08 12:46:43 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/08 18:39:41 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ static t_vect	normale_type(t_vect p, t_obj obj, t_inter itr)
 	if (obj.type == SPHERE)
 		n = sub_vect(p, obj.o);
 	else if (obj.type == CYLINDER)
-		n = sub_vect(p, add_vect(obj.o, mul_vect(dot(p, obj.axe), obj.axe)));
+		n = sub_vect(p, add_vect(mul_vect(dot(sub_vect(p, obj.o), obj.axe), obj.axe), obj.o));
 	else if (obj.type == CONE)
-		init_vect(&n, 2 * p.x, 2 * p.y, obj.r * obj.r * p.z / (obj.h * obj.h));
-	//n = sub_vect(p, obj.o);
+		init_vect(&n, p.x - obj.o.x, p.y - obj.o.y, obj.r * obj.r * (p.z - obj.o.z) / (obj.h * obj.h));
 	else
 		n = obj.axe;
 	if (dot(itr.ray.dir, n) > 0)
