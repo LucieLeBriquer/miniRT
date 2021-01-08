@@ -6,7 +6,7 @@
 /*   By: lle-briq <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 13:31:13 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/07 15:22:44 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/08 12:44:05 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ double	inter_5cone(t_ray ray, t_obj con)
 	sc[3] = dot(origin, base.y_axis);
 	sc[4] = dot(ray.dir, base.z_axis);
 	sc[5] = dot(origin, base.z_axis);
-	solve_eq(sc, con.r / con.h, t);
+	solve_eq(sc, (con.r * con.r) / (con.h * con.h), t);
 	if (t[1] > 0)
 	{
 		z[0] = t[0] * sc[4] + sc[5];

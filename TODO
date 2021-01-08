@@ -6,11 +6,7 @@
 - faire le logo de 42
 - maybe moyenne au carré ?
 - faire une option anti-aliasing ou non
-- reflection a ajouter dans le parsing : entre 0 et 1
-	lancer un rayon selon la formule de snell-descartes et si objet :
-	alpha * couleur_rayon + (1 - alpha) * couleur_objet
-	en fait non parce que reflection => reflection => reflection
-	ou alors juste faire un miroir par exemple
+- mettre r et h au carre dans la docu
 
 BONUS :
 

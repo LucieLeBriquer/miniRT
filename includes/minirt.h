@@ -100,6 +100,14 @@ typedef struct s_scene
 	int		prog;
 }			t_scene;
 
+typedef struct s_option
+{
+	char	*file;
+	char	*file_save;
+	int		aliasing;
+	int		save;
+}			t_option;
+
 typedef double	(*t_interfunc)(t_ray, t_obj);
 
 /*
@@ -178,14 +186,13 @@ int		parse_lum(t_scene *scene, char *line);
 int		parse_cam(t_scene *scene, char *line);
 int		parse_amb(t_scene *scene, char *line);
 int		parse_res(t_scene *scene, char *line);
-int		parse_file(int argc, char **argv, t_scene *scene);
+int		parse_file(t_option opt, t_scene *scene);
 
 /*
 ** Print A CLEAN
 */
 
 void	print_parsing(t_scene scene);
-int		is_save(char *s);
 void	print_vect(t_vect v);
 void	print_double(double f);
 void	print_col(t_col col);

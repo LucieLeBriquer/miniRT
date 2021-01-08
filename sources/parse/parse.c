@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/06 16:27:32 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/08 13:13:13 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,30 +92,26 @@ int	get_numbers(int *fd, t_scene *scene)
 	return (is_readable);
 }
 
-int	parse_file(int argc, char **argv, t_scene *scene)
+int	parse_file(t_option opt, t_scene *scene)
 {
 	int		fd;
 	int		err_parse;
 
-	if (argc == 2 || (argc == 3 && is_save(argv[2])))
+	fd = open(opt.file, O_RDONLY);
+	if (fd > 0)
 	{
-		fd = open(argv[1], O_RDONLY);
-		if (fd > 0)
-		{
-			scene->nb_cam = 0;
-			scene->nb_lum = 0;
-			scene->nb_obj = 0;
-			if (!get_numbers(&fd, scene))
-				return (-4 * (1 + close(fd)));
-			fd = open(argv[1], O_RDONLY);
-			err_parse = parse(fd, scene);
-			if (!err_parse)
-				return (-5 * (1 + close(fd)));
-			if (err_parse < 0)
-				return (-6 * (1 + close(fd)));
-			return (close(fd) + (argc == 3));
-		}
-		return (-3);
+		scene->nb_cam = 0;
+		scene->nb_lum = 0;
+		scene->nb_obj = 0;
+		if (!get_numbers(&fd, scene))
+			return (-4 * (1 + close(fd)));
+		fd = open(opt.file, O_RDONLY);
+		err_parse = parse(fd, scene);
+		if (!err_parse)
+			return (-5 * (1 + close(fd)));
+		if (err_parse < 0)
+			return (-6 * (1 + close(fd)));
+		return (close(fd));
 	}
-	return (-2);
+	return (-3);
 }
