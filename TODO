@@ -1,10 +1,8 @@
+TODO
 - faire la save en bmp
-- check le cas ou H > W
 - cas ou res > res_screen 
 - implementer cone et tore ?
 - reverifier camera sur une scene easy
-- faire le logo de 42
-- maybe moyenne au carré ?
 - mettre r et h au carre dans la docu
 
 BONUS :
@@ -21,3 +19,10 @@ BONUS :
 - Stéréoscopie simple (comme des lunettes vert/rouge)
 - Rendu multithreadé
 - Texture sur les sphères (uv mapping)
+
+OK
+- leaks lors d'erreur dans la lecture/le parsing reglees
+- numero de ligne ou pb
+- check le cas ou H > W
+- faire le logo de 42
+- maybe moyenne au carré ?

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/08 16:12:48 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/09 21:49:49 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,13 @@ static t_vect	create_ray(int i, int j, t_scene scn, int n_cam)
 
 static void	create_rays(t_inter itr[4], t_base base, t_scene scn, int p[3])
 {
-	itr[0].ray.dir = create_ray(p[0] - 0.25, p[1] - 0.25, scn, p[2]);
-	itr[1].ray.dir = create_ray(p[0] - 0.25, p[1] + 0.25, scn, p[2]);
-	itr[2].ray.dir = create_ray(p[0] + 0.25, p[1] - 0.25, scn, p[2]);
-	itr[3].ray.dir = create_ray(p[0] + 0.25, p[1] + 0.25, scn, p[2]);
+	double	step;
+
+	step = 0.25;
+	itr[0].ray.dir = create_ray(p[0] - step, p[1] - step, scn, p[2]);
+	itr[1].ray.dir = create_ray(p[0] - step, p[1] + step, scn, p[2]);
+	itr[2].ray.dir = create_ray(p[0] + step, p[1] - step, scn, p[2]);
+	itr[3].ray.dir = create_ray(p[0] + step, p[1] + step, scn, p[2]);
 	rotate(&(itr[0].ray.dir), base);
 	rotate(&(itr[1].ray.dir), base);
 	rotate(&(itr[2].ray.dir), base);

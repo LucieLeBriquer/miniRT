@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/08 13:13:13 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/09 22:26:40 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,23 @@ int	at_least_res_cam(t_scene scene)
 	return (1);
 }
 
+static int	malloc_everything(t_scene *scene)
+{
+	scene->cams = malloc(scene->nb_cam * sizeof(t_cam));
+	scene->lums = malloc(scene->nb_lum * sizeof(t_lum));
+	scene->objs = malloc(scene->nb_obj * sizeof(t_obj));
+	return (!(scene->cams) || !(scene->lums) || !(scene->objs));
+}
+
 int	parse(int fd, t_scene *scene)
 {
 	char	*line;
 
-	scene->cams = malloc(scene->nb_cam * sizeof(t_cam));
-	scene->lums = malloc(scene->nb_lum * sizeof(t_lum));
-	scene->objs = malloc(scene->nb_obj * sizeof(t_obj));
-	if (!(scene->cams) || !(scene->lums) || !(scene->objs))
+	if (malloc_everything(scene))
 		return (-1);
 	scene->w = -1;
 	scene->h = -1;
+	scene->error_line = 1;
 	while (get_next_line(fd, &line) == 1)
 	{
 		if (line && line[0])
@@ -58,9 +64,11 @@ int	parse(int fd, t_scene *scene)
 				return (0);
 			}
 		}
+		(scene->error_line)++;
 		free(line);
 	}
 	free(line);
+	scene->error_line = -1;
 	return (at_least_res_cam(*scene));
 }
 
@@ -107,7 +115,7 @@ int	parse_file(t_option opt, t_scene *scene)
 			return (-4 * (1 + close(fd)));
 		fd = open(opt.file, O_RDONLY);
 		err_parse = parse(fd, scene);
-		if (!err_parse)
+		if (err_parse == 0)
 			return (-5 * (1 + close(fd)));
 		if (err_parse < 0)
 			return (-6 * (1 + close(fd)));

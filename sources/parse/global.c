@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/07 14:35:15 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/09 22:25:32 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	parse_lum(t_scene *scene, char *line)
 	if (to_vect(line, &(lum.pos)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_double(line, &(lum.ratio)) == -1)
+	if (to_double(line, &(lum.ratio)) == -1 || lum.ratio < 0 || lum.ratio > 1)
 		return (-1);
 	line += skip_double(line);
 	if (to_col(line, &(lum.col)) == -1)

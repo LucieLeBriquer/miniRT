@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/08 21:38:58 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/09 23:00:22 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,19 @@ int	exit_scene(t_scene *scene)
 	free_all(*scene);
 	if (scene->img_ptr)
 	{
-		while (++i < scene->nb_cam)
+		while (++i < scene->nb_cam * FILTERS)
 			mlx_destroy_image(scene->mlx, scene->img_ptr[i]);
 		free(scene->img_ptr);
 	}
 	if (scene->img_data)
+	{
+		while (++i < scene->nb_cam * FILTERS)
+			free(scene->img_data[i]);
 		free(scene->img_data);
+	}
 	mlx_destroy_window(scene->mlx, scene->win);
+	mlx_destroy_display(scene->mlx);
+	free(scene->mlx);
 	exit(0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:27:26 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/08 23:23:46 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/09 21:59:36 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,6 @@ int	is_visible(t_inter itr, t_scene scn, int n_lum)
 	return (1);
 }
 
-int	get_color(t_inter *itr, t_scene scn)
-{
-	t_vect	light;
-	t_vect	color;
-	t_vect	intensity;
-	int		i;
-	double	sc;
-
-	i = -1;
-	init_vect(&color, 0, 0, 0);
-	if (!inter(itr, scn))
-		return (0);
-	while (++i < scn.nb_lum)
-	{
-		light = sub_vect(scn.lums[i].pos, itr->p);
-		sc = norm2(light);
-		if (sc == 0)
-			continue ;
-		sc = dot(light, itr->n) / sc;
-		if (!is_visible(*itr, scn, i))
-			continue ;
-		intensity = mul_vect(fabs(sc) * scn.lums[i].ratio * 100,
-				min_col(scn.lums[i].col, itr->obj_inter.col));
-		color = add_vect(color, intensity);
-	}
-	color = add_vect(color, mul_col(scn.amb, scn.amb_col));
-	return (color_vect_ftoi(color));
-}
-
 t_vect	get_colors(t_inter *itr, t_scene scn)
 {
 	t_vect	light;
@@ -96,6 +67,11 @@ t_vect	get_colors(t_inter *itr, t_scene scn)
 	}
 	color = add_vect(color, mul_col(scn.amb, scn.amb_col));
 	return (color);
+}
+
+int	get_color(t_inter *itr, t_scene scn)
+{
+	return (color_vect_ftoi(get_colors(itr, scn)));
 }
 
 int	average_color(t_inter *itr, t_scene scn)

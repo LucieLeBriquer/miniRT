@@ -101,6 +101,7 @@ typedef struct s_scene
 	void	*mlx;
 	void	*win;
 	int		prog;
+	int		error_line;
 }			t_scene;
 
 typedef struct s_option
