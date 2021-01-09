@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:00 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/05 18:04:02 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/09 23:19:00 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	size_of_int(int i)
 int	to_double(char *line, double *f)
 {
 	int		entiere;
-	int		doubleing;
+	int		floating;
 	int		sign;
 	int		size;
 
-	doubleing = 0;
+	floating = 0;
 	entiere = ft_atoi(line);
 	sign = 1;
 	if (*line == '-' && line++)
@@ -42,13 +42,13 @@ int	to_double(char *line, double *f)
 	while (ft_isdigit(*line))
 		line++;
 	if (*line == '.' && line++)
-		doubleing = ft_atoi(line);
-	size = size_of_int(doubleing);
+		floating = ft_atoi(line);
+	size = size_of_int(floating);
 	while (*line == '0' && line++)
 		size++;
-	if (doubleing < 0)
+	if (floating < 0)
 		return (-1);
-	*f = entiere + sign * (double)(doubleing)*pow(0.1, size);
+	*f = entiere + sign * (double)(floating)*pow(0.1, size);
 	return (1);
 }
 

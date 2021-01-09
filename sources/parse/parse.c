@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/09 22:26:40 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/09 23:36:48 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,17 @@ int	parse_line(t_scene *scene, char *line)
 		return (parse_cam(scene, line + 1));
 	if (line[0] == 'l' && ft_isspace(line[1]))
 		return (parse_lum(scene, line + 1));
+	if (line[0] == '#' || !line[0])
+		return (1);
 	else
 		return (parse_obj(scene, line));
 }
 
-int	at_least_res_cam(t_scene scene)
-{
-	if (scene.w <= 0 || scene.h <= 0 || scene.nb_cam <= 0)
-		return (0);
-	return (1);
-}
-
 static int	malloc_everything(t_scene *scene)
 {
-	scene->cams = malloc(scene->nb_cam * sizeof(t_cam));
-	scene->lums = malloc(scene->nb_lum * sizeof(t_lum));
-	scene->objs = malloc(scene->nb_obj * sizeof(t_obj));
+	scene->cams = ft_calloc(scene->nb_cam, sizeof(t_cam));
+	scene->lums = ft_calloc(scene->nb_lum, sizeof(t_lum));
+	scene->objs = ft_calloc(scene->nb_obj, sizeof(t_obj));
 	return (!(scene->cams) || !(scene->lums) || !(scene->objs));
 }
 
@@ -54,22 +49,17 @@ int	parse(int fd, t_scene *scene)
 	scene->error_line = 1;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (line && line[0])
+		if (parse_line(scene, line) == -1)
 		{
-			if (line[0] == '#')
-				;
-			else if (parse_line(scene, line) == -1)
-			{
-				free(line);
-				return (0);
-			}
+			free(line);
+			return (0);
 		}
 		(scene->error_line)++;
 		free(line);
 	}
 	free(line);
 	scene->error_line = -1;
-	return (at_least_res_cam(*scene));
+	return (scene->w > 0 && scene->h > 0 && scene->nb_cam > 0);
 }
 
 int	get_numbers(int *fd, t_scene *scene)
@@ -81,19 +71,16 @@ int	get_numbers(int *fd, t_scene *scene)
 	is_readable = 0;
 	while (get_next_line(*fd, &line) > 0)
 	{
-		if (line && line[0])
-		{
-			is_readable = 1;
-			i = 0;
-			while (ft_isspace(line[i]))
-				i++;
-			if (line[i] == 'c' && ft_isspace(line[i + 1]))
-				scene->nb_cam++;
-			else if (line[i] == 'l' && ft_isspace(line[i + 1]))
-				scene->nb_lum++;
-			else if (line[i] != 'R' && line[i] != 'A' && line[i] != '#')
-				scene->nb_obj++;
-		}
+		is_readable = 1;
+		i = 0;
+		while (ft_isspace(line[i]))
+			i++;
+		if (line[i] == 'c' && ft_isspace(line[i + 1]))
+			scene->nb_cam++;
+		else if (line[i] == 'l' && ft_isspace(line[i + 1]))
+			scene->nb_lum++;
+		else if (line[i] != 'R' && line[i] != 'A' && line[i] != '#')
+			scene->nb_obj++;
 		free(line);
 	}
 	free(line);

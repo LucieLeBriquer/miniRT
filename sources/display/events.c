@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/09 23:11:54 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/09 23:20:32 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	previous_camera_index(int i, t_scene scn)
 	if (i < FILTERS)
 		return (FILTERS * (scn.nb_cam - 1));
 	else
-		return ((i / FILTERS) * FILTERS - FILTERS);
+		return (FILTERS * (i / FILTERS) - FILTERS);
 }
 
 static int	next_filter_index(int i)
@@ -50,7 +50,7 @@ static int	next_filter_index(int i)
 	if ((i + 1) % FILTERS != 0)
 		return (i + 1);
 	else
-		return ((i / FILTERS) * FILTERS);
+		return (FILTERS * (i / FILTERS));
 }
 
 int	next_cam(int keynote, t_scene *scn)
@@ -61,7 +61,7 @@ int	next_cam(int keynote, t_scene *scn)
 		return (exit_scene(scn));
 	if (keynote == SP_KEY || keynote == W_KEY || keynote == RIGHT_KEY)
 	{
-		i = ((i / FILTERS) * FILTERS + FILTERS) % (FILTERS * scn->nb_cam);
+		i = (FILTERS * (i / FILTERS) + FILTERS) % (FILTERS * scn->nb_cam);
 		mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[i], 0, 0);
 	}
 	else if (keynote == S_KEY || keynote == LEFT_KEY)

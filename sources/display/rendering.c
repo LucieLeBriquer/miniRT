@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/09 21:49:49 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/09 23:17:26 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,28 +76,27 @@ static void	draw_aliasing(t_scene scn, int n_cam)
 {
 	t_inter	itr;
 	t_base	base;
-	int		i;
-	int		j;
+	int		p[2];
 	int		color;
 
-	i = -1;
+	p[0] = -1;
 	init_ray_org(&(itr.ray), scn.cams[n_cam / FILTERS].pos);
 	init_base(&base, scn.cams[n_cam / FILTERS].axe);
-	while (++i < scn.h)
+	while (++p[0] < scn.h)
 	{
-		j = -1;
-		while (++j < scn.w)
+		p[1] = -1;
+		while (++p[1] < scn.w)
 		{
-			itr.ray.dir = create_ray(i, j, scn, n_cam / FILTERS);
+			itr.ray.dir = create_ray(p[0], p[1], scn, n_cam / FILTERS);
 			rotate(&(itr.ray.dir), base);
 			color = get_color(&itr, scn);
-			(scn.img_data[n_cam])[i * scn.w + j] = color;
-			(scn.img_data[n_cam + 1])[i * scn.w + j] = black_white(color);
-			(scn.img_data[n_cam + 2])[i * scn.w + j] = sepia(color);
-			(scn.img_data[n_cam + 3])[i * scn.w + j] = compo(color, 0);
-			(scn.img_data[n_cam + 4])[i * scn.w + j] = compo(color, 1);
-			(scn.img_data[n_cam + 5])[i * scn.w + j] = compo(color, 2);
-			progress(i, j, scn, n_cam);
+			(scn.img_data[n_cam])[p[0] * scn.w + p[1]] = color;
+			(scn.img_data[n_cam + 1])[p[0] * scn.w + p[1]] = black_white(color);
+			(scn.img_data[n_cam + 2])[p[0] * scn.w + p[1]] = sepia(color);
+			(scn.img_data[n_cam + 3])[p[0] * scn.w + p[1]] = compo(color, 0);
+			(scn.img_data[n_cam + 4])[p[0] * scn.w + p[1]] = compo(color, 1);
+			(scn.img_data[n_cam + 5])[p[0] * scn.w + p[1]] = compo(color, 2);
+			progress(p[0], p[1], scn, n_cam);
 		}
 	}
 }
