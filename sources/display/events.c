@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/09 23:00:22 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/09 23:11:54 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,22 @@ int	exit_scene(t_scene *scene)
 	return (1);
 }
 
+static int	previous_camera_index(int i, t_scene scn)
+{
+	if (i < FILTERS)
+		return (FILTERS * (scn.nb_cam - 1));
+	else
+		return ((i / FILTERS) * FILTERS - FILTERS);
+}
+
+static int	next_filter_index(int i)
+{
+	if ((i + 1) % FILTERS != 0)
+		return (i + 1);
+	else
+		return ((i / FILTERS) * FILTERS);
+}
+
 int	next_cam(int keynote, t_scene *scn)
 {
 	static int	i;
@@ -50,18 +66,12 @@ int	next_cam(int keynote, t_scene *scn)
 	}
 	else if (keynote == S_KEY || keynote == LEFT_KEY)
 	{
-		if (i == 0)
-			i = FILTERS * scn->nb_cam - FILTERS;
-		else
-			i = i - FILTERS;
+		i = previous_camera_index(i, *scn);
 		mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[i], 0, 0);
 	}
 	else if (keynote == F_KEY)
 	{
-		if ((i + 1) % FILTERS != 0)
-			i = i + 1;
-		else
-			i = (i / FILTERS) * FILTERS;
+		i = next_filter_index(i);
 		mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[i], 0, 0);
 	}
 	return (1);
