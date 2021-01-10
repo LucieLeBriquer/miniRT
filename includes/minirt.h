@@ -220,6 +220,6 @@ void	print_trg(t_obj trg, int i);
 */
 
 int		bmp_create(t_scene scene, char *file);
-void	create_bmp_image(t_scene scene, char *file);
+void	create_bmp(t_scene scene, char *file);
 
 #endif

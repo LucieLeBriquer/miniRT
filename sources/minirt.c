@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 01:08:41 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 01:23:53 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	save_case(t_scene *scene, char *file, int aliasing)
 {
 	mlx_destroy_display(scene->mlx);
 	render(*scene, aliasing);
-	(void)create_bmp_image(*scene, file);
+	(void)create_bmp(*scene, file);
 }
 
 static int	options(int argc, char **argv, t_option *opt)
@@ -47,7 +47,8 @@ static int	options(int argc, char **argv, t_option *opt)
 		{
 			opt->save = 1;
 			if (i + 1 < argc && ft_strcmp("-a", argv[i + 1]) != 0)
-				opt->file_save = ft_strjoin("bmp/", argv[++i]);
+				opt->file_save = ft_strjoin("bmp/", 
+					ft_strjoin(argv[++i], ".bmp"));
 		}
 		else
 			return (-1);
