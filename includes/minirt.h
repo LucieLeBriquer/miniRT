@@ -17,6 +17,7 @@
 # define TRIANGLE 4
 # define CONE 5
 # define FILTERS 6
+# define HEADER_SIZE 122
 # include <stdio.h>
 
 typedef struct s_vect
@@ -197,6 +198,7 @@ int		parse_cam(t_scene *scene, char *line);
 int		parse_amb(t_scene *scene, char *line);
 int		parse_res(t_scene *scene, char *line);
 int		parse_file(t_option opt, t_scene *scene);
+int		options(int argc, char **argv, t_option *opt);
 
 /*
 ** Print A CLEAN

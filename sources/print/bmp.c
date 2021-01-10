@@ -6,12 +6,11 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 01:04:20 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 14:26:11 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 14:43:32 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-# define HEADER_SIZE 122
 
 static void	fill_unsigned_int(unsigned char *data_ptr, unsigned int i)
 {
@@ -29,10 +28,10 @@ static void	fill_unsigned_short(unsigned char *data_ptr, unsigned short i)
 
 static void	fill_data(unsigned char *data, t_scene scn)
 {
-	int i;
-	int j;
-	int p;
-	int k;
+	int	i;
+	int	j;
+	int	p;
+	int	k;
 
 	k = HEADER_SIZE;
 	i = scn.h;
