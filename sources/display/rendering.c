@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/09 23:17:26 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:38:01 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_vect	create_ray(int i, int j, t_scene scn, int n_cam)
 	return (dir);
 }
 
-static void	create_rays(t_inter itr[4], t_base base, t_scene scn, int p[3])
+static void		create_rays(t_inter itr[4], t_base base, t_scene scn, int p[3])
 {
 	double	step;
 
@@ -43,7 +43,7 @@ static void	create_rays(t_inter itr[4], t_base base, t_scene scn, int p[3])
 	rotate(&(itr[3].ray.dir), base);
 }
 
-static void	draw(t_scene scn, int n_cam)
+static void		draw(t_scene scn, int n_cam)
 {
 	t_inter	itr[4];
 	t_base	base;
@@ -72,7 +72,7 @@ static void	draw(t_scene scn, int n_cam)
 	}
 }
 
-static void	draw_aliasing(t_scene scn, int n_cam)
+static void		draw_aliasing(t_scene scn, int n_cam)
 {
 	t_inter	itr;
 	t_base	base;
@@ -101,7 +101,7 @@ static void	draw_aliasing(t_scene scn, int n_cam)
 	}
 }
 
-void	render(t_scene scn, int aliasing)
+void			render(t_scene scn, int aliasing)
 {
 	int	i;
 

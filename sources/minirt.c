@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 15:06:08 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:36:41 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	create_window(t_scene *scene, t_option opt)
 		scene->win = mlx_new_window(scene->mlx, 1, 1, opt.file);
 }
 
-int	main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_scene		scene;
 	t_option	opt;

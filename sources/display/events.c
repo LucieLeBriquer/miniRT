@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 14:02:46 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:37:32 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	exit_scene(t_scene *scene)
+int			exit_scene(t_scene *scene)
 {
 	int	i;
 
@@ -53,7 +53,7 @@ static int	next_filter_index(int i)
 		return (FILTERS * (i / FILTERS));
 }
 
-int	next_cam(int keynote, t_scene *scn)
+int			next_cam(int keynote, t_scene *scn)
 {
 	static int	i;
 

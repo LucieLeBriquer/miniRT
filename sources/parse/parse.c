@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/09 23:36:48 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:38:58 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	parse_line(t_scene *scene, char *line)
+int			parse_line(t_scene *scene, char *line)
 {
 	while (ft_isspace(*line))
 		line++;
@@ -38,7 +38,7 @@ static int	malloc_everything(t_scene *scene)
 	return (!(scene->cams) || !(scene->lums) || !(scene->objs));
 }
 
-int	parse(int fd, t_scene *scene)
+int			parse(int fd, t_scene *scene)
 {
 	char	*line;
 
@@ -62,7 +62,7 @@ int	parse(int fd, t_scene *scene)
 	return (scene->w > 0 && scene->h > 0 && scene->nb_cam > 0);
 }
 
-int	get_numbers(int *fd, t_scene *scene)
+int			get_numbers(int *fd, t_scene *scene)
 {
 	char	*line;
 	int		is_readable;
@@ -87,7 +87,7 @@ int	get_numbers(int *fd, t_scene *scene)
 	return (is_readable);
 }
 
-int	parse_file(t_option opt, t_scene *scene)
+int			parse_file(t_option opt, t_scene *scene)
 {
 	int		fd;
 	int		err_parse;

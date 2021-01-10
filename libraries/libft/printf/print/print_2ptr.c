@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 15:50:53 by lle-briq          #+#    #+#             */
-/*   Updated: 2020/12/30 15:07:52 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:45:09 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	fill_ptr(char **to_print, char *ptoa, t_print param, int size)
 	}
 }
 
-int	print_2ptr(t_print param, va_list args)
+int			print_2ptr(t_print param, va_list args)
 {
 	unsigned long	ptr;
 	char			*to_print;
@@ -50,7 +50,7 @@ int	print_2ptr(t_print param, va_list args)
 	if (!ptoa)
 		return (0);
 	size = ft_max(len, param.field);
-	to_print = malloc((size + 1)*sizeof(char));
+	to_print = malloc(sizeof(char) * (size + 1));
 	if (!to_print)
 		return (0);
 	fill_ptr(&to_print, ptoa, param, size);

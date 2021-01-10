@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 23:16:14 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/05 21:09:50 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:43:00 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	**ft_free(char **strs, int i)
 	return (NULL);
 }
 
-char	**ft_split(const char *s, const char *set)
+char		**ft_split(const char *s, const char *set)
 {
 	char	**strs;
 	int		wrds;

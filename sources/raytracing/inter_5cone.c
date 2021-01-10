@@ -6,7 +6,7 @@
 /*   By: lle-briq <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 13:31:13 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/08 12:44:05 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:40:16 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	solve_eq(double sc[4], double s, double sol[2])
 	}
 }
 
-double	inter_5cone(t_ray ray, t_obj con)
+double		inter_5cone(t_ray ray, t_obj con)
 {
 	t_base	base;
 	t_vect	origin;

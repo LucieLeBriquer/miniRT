@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:27:26 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/09 21:59:36 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:39:33 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	color_vect_ftoi(t_vect color)
+int		color_vect_ftoi(t_vect color)
 {
 	int	res;
 	int	r;
@@ -26,7 +26,7 @@ int	color_vect_ftoi(t_vect color)
 	return (res);
 }
 
-int	is_visible(t_inter itr, t_scene scn, int n_lum)
+int		is_visible(t_inter itr, t_scene scn, int n_lum)
 {
 	t_inter	omb;
 	t_vect	v;
@@ -69,12 +69,12 @@ t_vect	get_colors(t_inter *itr, t_scene scn)
 	return (color);
 }
 
-int	get_color(t_inter *itr, t_scene scn)
+int		get_color(t_inter *itr, t_scene scn)
 {
 	return (color_vect_ftoi(get_colors(itr, scn)));
 }
 
-int	average_color(t_inter *itr, t_scene scn)
+int		average_color(t_inter *itr, t_scene scn)
 {
 	t_vect	color[4];
 	t_vect	average;

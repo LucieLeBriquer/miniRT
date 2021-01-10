@@ -6,18 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:45:12 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/05 22:11:06 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:40:09 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-/*
-**  A		B		C
-**	o		axe		p
-*/
-
-int	is_inside(t_vect u, t_vect v, t_vect w, t_vect point)
+int		is_inside(t_vect u, t_vect v, t_vect w, t_vect point)
 {
 	t_vect	v1;
 	t_vect	v2;

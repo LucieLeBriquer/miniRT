@@ -12,6 +12,8 @@ LIBS_LIN	= libraries/libmlx_Linux.a \
 LIBS_MAC	= -framework OpenGL -framework AppKit -lm \
 			libraries/libmlx_mac.a libraries/libftfull.a
 
+NORME		= ~/.norminette/norminette.rb
+
 UNAME		:= $(shell uname -s)
 
 ifeq ($(UNAME), Darwin)
@@ -90,7 +92,7 @@ libs		:
 			@echo "OK"
 
 norme		:
-			@norminette $(SRCS)
+			@$(NORME) $(SRCS) $(INCS)
 			@$(MAKE) --no-print-directory norme -C ./libraries/libft/
 
 clean:

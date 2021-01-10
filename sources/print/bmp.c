@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 01:04:20 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 14:43:32 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:51:53 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	header(unsigned char *data, t_scene scn, unsigned int size)
 	fill_unsigned_int(data + 42, 3780);
 }
 
-int	create_bmp(t_scene scn, char *file)
+int			create_bmp(t_scene scn, char *file)
 {
 	int				fd;
 	unsigned int	size;

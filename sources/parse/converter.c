@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:00 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/09 23:19:00 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:38:38 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	to_double(char *line, double *f)
 		size++;
 	if (floating < 0)
 		return (-1);
-	*f = entiere + sign * (double)(floating)*pow(0.1, size);
+	*f = entiere + sign * (double)(floating) * pow(0.1, size);
 	return (1);
 }
 

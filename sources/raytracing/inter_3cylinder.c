@@ -6,7 +6,7 @@
 /*   By: lle-briq <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 13:31:13 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/06 13:31:23 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:39:51 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	solve_eq(double sc[4], double r, double sol[2])
 	}
 }
 
-double	inter_3cylindre(t_ray ray, t_obj cyl)
+double		inter_3cylindre(t_ray ray, t_obj cyl)
 {
 	t_base	base;
 	t_vect	origin;

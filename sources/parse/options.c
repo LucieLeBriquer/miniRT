@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 14:39:11 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:39:16 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	fill_save_options(t_option *opt, char **argv, int argc, int i)
 	return (i);
 }
 
-int	options(int argc, char **argv, t_option *opt)
+int			options(int argc, char **argv, t_option *opt)
 {
 	int	i;
 

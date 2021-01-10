@@ -6,11 +6,24 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:43:41 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/09 23:42:01 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:31:35 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static void		normale_type_cone(t_vect *n, t_obj obj, t_vect p)
+{
+	t_vect	tmp;
+	double	sc;
+
+	tmp = sub_vect(p, obj.o);
+	sc = dot(obj.axe, tmp);
+	if (sc != 0)
+		*n = sub_vect(tmp, mul_vect(norm2(tmp) / sc, obj.axe));
+	else
+		init_vect(n, 0, 0, 0);
+}
 
 static t_vect	normale_type(t_vect p, t_obj obj, t_inter itr)
 {
@@ -25,10 +38,7 @@ static t_vect	normale_type(t_vect p, t_obj obj, t_inter itr)
 		n = sub_vect(p, add_vect(tmp, obj.o));
 	}
 	else if (obj.type == CONE)
-	{
-		tmp.z = obj.r * obj.r * (p.z - obj.o.z) / (obj.h * obj.h);
-		init_vect(&n, p.x - obj.o.x, p.y - obj.o.y, tmp.z);
-	}
+		normale_type_cone(&n, obj, p);
 	else
 		n = obj.axe;
 	if (dot(itr.ray.dir, n) > 0)
@@ -37,7 +47,7 @@ static t_vect	normale_type(t_vect p, t_obj obj, t_inter itr)
 	return (n);
 }
 
-static int	fill_useful_vectors(t_inter *itr)
+static int		fill_useful_vectors(t_inter *itr)
 {
 	if (itr->t > 0)
 	{
@@ -48,7 +58,7 @@ static int	fill_useful_vectors(t_inter *itr)
 	return (0);
 }
 
-static void	init_inter_tab(t_interfunc inter_fun[6])
+static void		init_inter_tab(t_interfunc inter_fun[6])
 {
 	inter_fun[0] = &inter_0sphere;
 	inter_fun[1] = &inter_1plane;
@@ -58,7 +68,7 @@ static void	init_inter_tab(t_interfunc inter_fun[6])
 	inter_fun[5] = &inter_5cone;
 }
 
-int	inter(t_inter *itr, t_scene scene)
+int				inter(t_inter *itr, t_scene scene)
 {
 	t_interfunc	inter_fun[6];
 	double		new_t;

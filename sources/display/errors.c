@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/09 22:54:29 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 21:37:01 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	free_all(t_scene scene)
+void		free_all(t_scene scene)
 {
 	if (scene.cams)
 		free(scene.cams);
@@ -32,7 +32,7 @@ static void	format_error(t_scene scene)
 	free_all(scene);
 }
 
-int	print_errors_and_free(int err, t_scene scene)
+int			print_errors_and_free(int err, t_scene scene)
 {
 	if (err == -2)
 	{
