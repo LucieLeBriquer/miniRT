@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 22:21:44 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 22:27:17 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void		put_legend(t_scene scene)
 {
-	mlx_string_put(scene.mlx, scene.win, 10, 20, 16777215, 
+	mlx_string_put(scene.mlx, scene.win, 10, 20, 16777215,
 			"<- -> to switch camera");
-	mlx_string_put(scene.mlx, scene.win, 10, 35, 16777215, 
+	mlx_string_put(scene.mlx, scene.win, 10, 35, 16777215,
 			"f to change filter");
-	mlx_string_put(scene.mlx, scene.win, 10, 50, 16777215, 
+	mlx_string_put(scene.mlx, scene.win, 10, 50, 16777215,
 			"ESC to quit");
 }
 
