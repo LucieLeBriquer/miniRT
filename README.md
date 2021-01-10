@@ -1,4 +1,6 @@
 # My miniRT
 42's project miniRT
 
-![42logo](/bmp/bl.png)
+<p align="center">
+  <img src="/bmp/bl.png">
+</p>
