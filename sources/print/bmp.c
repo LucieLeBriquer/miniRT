@@ -3,90 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   bmp.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lle-briq <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/06 17:16:32 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/07 15:51:30 by lle-briq         ###   ########.fr       */
+/*   Created: 2021/01/10 01:04:20 by lle-briq          #+#    #+#             */
+/*   Updated: 2021/01/10 01:10:40 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+# define HEADER_SIZE 122
 
-void	fill_colors(unsigned char col[3], int color)
+void	fill_bmp(unsigned char *data, t_scene scn)
 {
-	col[0] = (unsigned char)(((color / 256) / 256) % 256);
-	col[1] = (unsigned char)((color / 256) % 256);
-	col[2] = (unsigned char)(color % 256);
-}
+	int i;
+	int j;
+	int x;
+	int y;
 
-void	write_char_by_char(int fd, unsigned int n, int i)
-{
-	unsigned char	c[4];
-
-	if (i != 6)
+	i = HEADER_SIZE;
+	y = scn.h;
+	while (y--)
 	{
-		c[0] = (unsigned char)((((n / 256) / 256) / 256) % 256);
-		c[1] = (unsigned char)(((n / 256) / 256) % 256 );
-		c[2] = (unsigned char)((n / 256) % 256 );
-		c[3] = (unsigned char)(n % 256);
-	}
-	else
-	{
-		c[0] = 1;
-		c[1] = 0;
-		c[2] = 24;
-		c[3] = 0;
-	}
-	write(fd, c, 4);
-}
-
-void	write_header(int fd, t_scene scene)
-{
-	unsigned int	header[13];
-	int				size_img;
-	int				i;
-
-	write(fd, "BM", 2);
-	size_img = 4 * scene.w * scene.h;
-	header[0] = size_img + 54;
-	header[1] = 0;
-	header[2] = 54;
-	header[3] = 40;
-	header[4] = scene.w;
-	header[5] = scene.h;
-	header[7] = size_img;
-	header[8] = 0;
-	header[9] = 0;
-	header[10] = 0;
-	header[11] = 0;
-	header[12] = 0;
-	i = -1;
-	while (++i < 13)
-		write_char_by_char(fd, header[i], i);
-}
-
-int	bmp_create(t_scene scene, char *file)
-{
-	int				fd;
-	int				i;
-	int				j;
-	unsigned char	col[3];
-
-	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC);
-	if (fd < 0)
-		return (-1);
-	i = -1;
-	write_header(fd, scene);
-	while (++i <= scene.h)
-	{
-		j = -1;
-		while (++j <= scene.w)
+		x = -1;
+		while (++x < scn.w)
 		{
-			fill_colors(col, (scene.img_data[0])[i * scene.w + j]);
-			write(fd, col, 3);
-			write(fd, "0", 1);
+			j = ((x * (scn.bpp / 8)) + (y * scn.size_line)) / 4;
+			data[i++] = scn.img_data[0][j] % 256;
+			data[i++] = (scn.img_data[0][j] / 256) % 256;
+			data[i++] = ((scn.img_data[0][j] / 256) / 256) % 256;
 		}
 	}
+}
+
+void	header_bmp(unsigned char **data, t_scene scn)
+{
+	unsigned int size;
+
+	size = scn.h * scn.w * 3;
+	*(unsigned short *)*data = *(const unsigned int *)(unsigned long)"BM";
+	*(unsigned int *)(*data + 2) = (size + HEADER_SIZE);
+	*(unsigned int *)(*data + 6) = 0u;
+	*(unsigned char *)(*data + 10) = HEADER_SIZE;
+	*(unsigned int *)(*data + 14) = HEADER_SIZE - 14;
+	*(unsigned int *)(*data + 18) = scn.w;
+	*(unsigned int *)(*data + 22) = scn.h;
+	*(unsigned short *)(*data + 26) = 1;
+	*(unsigned short *)(*data + 28) = 24;
+	*(unsigned int *)(*data + 30) = 0;
+	*(unsigned int *)(*data + 34) = (unsigned int)size;
+	*(unsigned int *)(*data + 38) = 3780;
+	*(unsigned int *)(*data + 42) = 3780;
+	*(int *)(*data + 46) = 0;
+	*(int *)(*data + 50) = 0;
+}
+
+void	create_bmp(t_scene scn, char *filename)
+{
+	int				fd;
+	unsigned int	size;
+	unsigned int	i;
+	unsigned char	*data;
+
+	size = scn.h * scn.w * 3;
+	if (!(data = malloc((size + HEADER_SIZE))))
+		return ;
+	i = 0;
+	while (i < size + HEADER_SIZE)
+		data[i++] = 0;
+	header_bmp(&data, scn);
+	fill_bmp(data, scn);
+	if ((fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644)) <= 0)
+		return ;
+	write(fd, data, (size + HEADER_SIZE));
 	close(fd);
-	return (0);
 }

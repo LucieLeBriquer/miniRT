@@ -102,6 +102,9 @@ typedef struct s_scene
 	void	*win;
 	int		prog;
 	int		error_line;
+	int		endian;
+	int		bpp;
+	int		size_line;
 }			t_scene;
 
 typedef struct s_option
@@ -217,5 +220,6 @@ void	print_trg(t_obj trg, int i);
 */
 
 int		bmp_create(t_scene scene, char *file);
+void	create_bmp_image(t_scene scene, char *file);
 
 #endif
