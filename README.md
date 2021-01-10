@@ -2,5 +2,5 @@
 42's project miniRT
 
 <p align="center">
-  <img src="/bmp/bl.png">
+  <img src="/bmp/42.png">
 </p>
