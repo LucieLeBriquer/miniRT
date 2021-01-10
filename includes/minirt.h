@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 21:52:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 22:00:13 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 22:22:16 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ int				print_errors_and_free(int err, t_scene scene);
 void			progress(int i, int j, t_scene scn, int n_cam);
 void			progress_final(t_scene scn, int i);
 int				init_image(t_scene *scene);
+void			put_legend(t_scene scene);
 
 /*
 ** Vector functions

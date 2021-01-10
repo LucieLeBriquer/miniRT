@@ -1,10 +1,8 @@
 TODO
-- cas ou res > res_screen 
-- implementer cone et tore ?
+- implementer tore
 - implementer cercle
 - reverifier camera sur une scene easy
 - commenter le code
-- faire une legende avec string put
 
 BONUS :
 - Normal disruption: par exemple utiliser sine pour avoir un effet de vague.
@@ -30,3 +28,6 @@ OK
 - modifier la save en bmp
 - mettre r et h au carre dans la docu
 - lorsque -save -a faire gaffe
+- cas ou res > res_screen 
+- implementer cone
+- faire une legende avec string put
