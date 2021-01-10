@@ -6,74 +6,85 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 01:04:20 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 01:10:40 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 14:26:11 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 # define HEADER_SIZE 122
 
-void	fill_bmp(unsigned char *data, t_scene scn)
+static void	fill_unsigned_int(unsigned char *data_ptr, unsigned int i)
+{
+	data_ptr[0] = (unsigned char)(i);
+	data_ptr[1] = (unsigned char)(i >> 8);
+	data_ptr[2] = (unsigned char)(i >> 16);
+	data_ptr[3] = (unsigned char)(i >> 24);
+}
+
+static void	fill_unsigned_short(unsigned char *data_ptr, unsigned short i)
+{
+	data_ptr[0] = (unsigned char)(i);
+	data_ptr[1] = (unsigned char)(i >> 8);
+}
+
+static void	fill_data(unsigned char *data, t_scene scn)
 {
 	int i;
 	int j;
-	int x;
-	int y;
+	int p;
+	int k;
 
-	i = HEADER_SIZE;
-	y = scn.h;
-	while (y--)
+	k = HEADER_SIZE;
+	i = scn.h;
+	while (i--)
 	{
-		x = -1;
-		while (++x < scn.w)
+		j = -1;
+		while (++j < scn.w)
 		{
-			j = ((x * (scn.bpp / 8)) + (y * scn.size_line)) / 4;
-			data[i++] = scn.img_data[0][j] % 256;
-			data[i++] = (scn.img_data[0][j] / 256) % 256;
-			data[i++] = ((scn.img_data[0][j] / 256) / 256) % 256;
+			p = ((j * (scn.bpp / 8)) + (i * scn.size_line)) / 4;
+			data[k] = scn.img_data[0][p] % 256;
+			data[k + 1] = (scn.img_data[0][p] / 256) % 256;
+			data[k + 2] = ((scn.img_data[0][p] / 256) / 256) % 256;
+			k += 3;
 		}
 	}
 }
 
-void	header_bmp(unsigned char **data, t_scene scn)
+static void	header(unsigned char *data, t_scene scn, unsigned int size)
 {
-	unsigned int size;
-
-	size = scn.h * scn.w * 3;
-	*(unsigned short *)*data = *(const unsigned int *)(unsigned long)"BM";
-	*(unsigned int *)(*data + 2) = (size + HEADER_SIZE);
-	*(unsigned int *)(*data + 6) = 0u;
-	*(unsigned char *)(*data + 10) = HEADER_SIZE;
-	*(unsigned int *)(*data + 14) = HEADER_SIZE - 14;
-	*(unsigned int *)(*data + 18) = scn.w;
-	*(unsigned int *)(*data + 22) = scn.h;
-	*(unsigned short *)(*data + 26) = 1;
-	*(unsigned short *)(*data + 28) = 24;
-	*(unsigned int *)(*data + 30) = 0;
-	*(unsigned int *)(*data + 34) = (unsigned int)size;
-	*(unsigned int *)(*data + 38) = 3780;
-	*(unsigned int *)(*data + 42) = 3780;
-	*(int *)(*data + 46) = 0;
-	*(int *)(*data + 50) = 0;
+	data[0] = 'B';
+	data[1] = 'M';
+	fill_unsigned_int(data + 2, size + HEADER_SIZE);
+	fill_unsigned_int(data + 10, HEADER_SIZE);
+	fill_unsigned_int(data + 14, HEADER_SIZE - 14);
+	fill_unsigned_int(data + 18, scn.w);
+	fill_unsigned_int(data + 22, scn.h);
+	fill_unsigned_short(data + 26, 1);
+	fill_unsigned_short(data + 28, 24);
+	fill_unsigned_int(data + 34, size);
+	fill_unsigned_int(data + 38, 3780);
+	fill_unsigned_int(data + 42, 3780);
 }
 
-void	create_bmp(t_scene scn, char *filename)
+int	create_bmp(t_scene scn, char *file)
 {
 	int				fd;
 	unsigned int	size;
-	unsigned int	i;
 	unsigned char	*data;
 
 	size = scn.h * scn.w * 3;
-	if (!(data = malloc((size + HEADER_SIZE))))
-		return ;
-	i = 0;
-	while (i < size + HEADER_SIZE)
-		data[i++] = 0;
-	header_bmp(&data, scn);
-	fill_bmp(data, scn);
-	if ((fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644)) <= 0)
-		return ;
+	data = ft_calloc(size + HEADER_SIZE, sizeof(unsigned char));
+	if (!data)
+		return (-1);
+	header(data, scn, size);
+	fill_data(data, scn);
+	fd = open(file, O_CREAT | O_TRUNC | O_RDWR, 0644);
+	if (fd <= 0)
+	{
+		free(data);
+		return (-2);
+	}
 	write(fd, data, (size + HEADER_SIZE));
-	close(fd);
+	free(data);
+	return (close(fd));
 }

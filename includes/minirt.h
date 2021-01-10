@@ -100,7 +100,6 @@ typedef struct s_scene
 	int		**img_data_nb;
 	void	*mlx;
 	void	*win;
-	int		prog;
 	int		error_line;
 	int		endian;
 	int		bpp;
@@ -219,7 +218,6 @@ void	print_trg(t_obj trg, int i);
 ** BMP save
 */
 
-int		bmp_create(t_scene scene, char *file);
-void	create_bmp(t_scene scene, char *file);
+int	create_bmp(t_scene scn, char *file);
 
 #endif

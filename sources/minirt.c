@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 01:23:53 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/10 14:09:16 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,39 @@ static void	render_case(t_scene *scene, int aliasing)
 
 static void	save_case(t_scene *scene, char *file, int aliasing)
 {
-	mlx_destroy_display(scene->mlx);
+	int	err_bmp;
+
 	render(*scene, aliasing);
-	(void)create_bmp(*scene, file);
+	err_bmp = create_bmp(*scene, file);
+	if (err_bmp == -1)
+		ft_printf("Error : Allocation's issues\n");
+	else if (err_bmp == -2)
+		ft_printf("Error : Cannot write on %s\n", file);
+	//free(file);
+	exit_scene(scene);
+}
+
+static char	*bmp_filename(char *file, char dir[4], char ext[4])
+{
+	char	*filename;
+	int		i;
+	int		l;
+
+	l = ft_strlen(file);
+	filename = ft_calloc(l + 9, sizeof(char));
+	if (!filename)
+		return ("bmp/save.bmp");
+	i = -1;
+	while (++i < l)
+		filename[4 + i] = file[i];
+	i = -1;
+	while (++i < 4)
+	{
+		filename[i] = dir[i];
+		filename[l + i] = ext[i];
+	}
+	filename[l + 8] = '\0';
+	return (filename);
 }
 
 static int	options(int argc, char **argv, t_option *opt)
@@ -47,8 +77,7 @@ static int	options(int argc, char **argv, t_option *opt)
 		{
 			opt->save = 1;
 			if (i + 1 < argc && ft_strcmp("-a", argv[i + 1]) != 0)
-				opt->file_save = ft_strjoin("bmp/", 
-					ft_strjoin(argv[++i], ".bmp"));
+				opt->file_save = bmp_filename(argv[++i], "bmp/", ".bmp");
 		}
 		else
 			return (-1);
