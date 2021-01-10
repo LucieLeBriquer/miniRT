@@ -1,12 +1,10 @@
 TODO
-
-- modifier la save en bmp
 - cas ou res > res_screen 
 - implementer cone et tore ?
-- implemeter cercle
+- implementer cercle
 - reverifier camera sur une scene easy
-- mettre r et h au carre dans la docu
-- lorsque -save -a faire gaffe
+- commenter le code
+- faire une legende avec string put
 
 BONUS :
 - Normal disruption: par exemple utiliser sine pour avoir un effet de vague.
@@ -29,3 +27,6 @@ OK
 - check le cas ou H > W
 - faire le logo de 42
 - maybe moyenne au carré ?
+- modifier la save en bmp
+- mettre r et h au carre dans la docu
+- lorsque -save -a faire gaffe
