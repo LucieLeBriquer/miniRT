@@ -28,7 +28,6 @@ void	progress(int i, int j, t_scene scn, int n_cam)
 		else
 			ft_printf("\rRendering view %2d/%-2d", n_cam + 1, scn.nb_cam);
 		ft_printf(" [%3d%%]", prog);
-		fflush(stdout);
 	}
 }
 

@@ -31,7 +31,6 @@
 # define CIRCLE 6
 # define FILTERS 6
 # define HEADER_SIZE 122
-# include <stdio.h>
 
 typedef struct	s_vect
 {
