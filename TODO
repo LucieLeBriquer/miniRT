@@ -4,6 +4,7 @@ TODO
 - tester sur la vm
 - commenter le code
 - /!\ exposure mask, bien tester sur la vm
+- calculer une seule cam lorsque save
 
 BONUS
 - Normal disruption: par exemple utiliser sine pour avoir un effet de vague.

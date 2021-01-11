@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 17:15:37 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 18:56:39 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		put_legend(t_scene scene)
 
 static void	render_case(t_scene *scene, int aliasing)
 {
-	render(*scene, aliasing);
+	render(*scene, aliasing, scene->nb_cam);
 	mlx_put_image_to_window(scene->mlx, scene->win, (scene->img_ptr)[0], 0, 0);
 	put_legend(*scene);
 	mlx_hook(scene->win, DESTROY, (1L<<17), exit_scene, scene);
@@ -37,7 +37,7 @@ static void	save_case(t_scene *scene, t_option opt)
 {
 	int	err_bmp;
 
-	render(*scene, opt.aliasing);
+	render(*scene, opt.aliasing, 1);
 	err_bmp = create_bmp(*scene, opt.file_save);
 	if (err_bmp == -1)
 		ft_printf("Error : Allocation's issues\n");

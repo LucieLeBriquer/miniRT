@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 21:52:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 17:14:17 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 18:58:28 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ typedef double	(*t_interfunc)(t_ray, t_obj);
 ** Rendering and display
 */
 
-void			render(t_scene scn, int antialiasing);
+void			render(t_scene scn, int antialiasing, int n_cam);
 void			init_base(t_base *base, t_vect c_axe);
 void			rotate(t_vect *rayd, t_base base);
 int				exit_scene(t_scene *scene);

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 13:09:31 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 18:58:26 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,12 @@ static void		draw_aliasing(t_scene scn, int n_cam)
 	}
 }
 
-void			render(t_scene scn, int aliasing)
+void			render(t_scene scn, int aliasing, int n_cam)
 {
 	int	i;
 
 	i = -1;
-	while (++i < scn.nb_cam)
+	while (++i < fmin(scn.nb_cam, n_cam))
 	{
 		if (aliasing == 1)
 			draw_aliasing(scn, i * FILTERS);
