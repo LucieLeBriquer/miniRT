@@ -53,10 +53,16 @@ SRCS		= $(addprefix sources/, minirt.c \
 			parse/global.c \
 			parse/parse.c \
 			parse/skip.c \
-			parse/obj1.c \
-			parse/obj2.c \
-			parse/obj3.c \
-			parse/obj4.c \
+			parse/objs/circle.c \
+			parse/objs/closed_cylinder.c \
+			parse/objs/cone.c \
+			parse/objs/cube.c \
+			parse/objs/cylinder.c \
+			parse/objs/plane.c \
+			parse/objs/pyramide.c \
+			parse/objs/sphere.c \
+			parse/objs/square.c \
+			parse/objs/triangle.c \
 			parse/options.c \
 			print/bmp.c \
 			print/print_elem.c \
