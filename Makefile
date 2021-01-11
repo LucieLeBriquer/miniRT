@@ -56,6 +56,7 @@ SRCS		= $(addprefix sources/, minirt.c \
 			parse/obj1.c \
 			parse/obj2.c \
 			parse/obj3.c \
+			parse/obj4.c \
 			parse/options.c \
 			print/bmp.c \
 			print/print_elem.c \
