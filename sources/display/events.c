@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 17:18:16 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 21:34:53 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			exit_scene(t_scene *scene)
 		free(scene->img_data);
 	}
 	mlx_destroy_window(scene->mlx, scene->win);
-	//mlx_destroy_display(scene->mlx);
+	mlx_destroy_display(scene->mlx);
 	free(scene->mlx);
 	exit(0);
 	return (1);
@@ -55,34 +55,22 @@ static int	next_filter_index(int i)
 
 int			display(t_scene *scn)
 {
-	mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[0], 0, 0);
-	(void)scn;
+	mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[scn->cam], 0, 0);
 	return (1);
 }
 
 int			next_cam(int keynote, t_scene *scn)
 {
-	static int	i;
-
 	if (keynote == ESC_KEY)
 		return (exit_scene(scn));
 	if (keynote == SP_KEY || keynote == W_KEY || keynote == RIGHT_KEY)
-	{
-		i = (FILTERS * (i / FILTERS) + FILTERS) % (FILTERS * scn->nb_cam);
-		mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[i], 0, 0);
-		put_legend(*scn);
-	}
+		scn->cam = (FILTERS * ((scn->cam / FILTERS) + 1))
+			% (FILTERS * scn->nb_cam);
 	else if (keynote == S_KEY || keynote == LEFT_KEY)
-	{
-		i = previous_camera_index(i, *scn);
-		mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[i], 0, 0);
-		put_legend(*scn);
-	}
+		scn->cam = previous_camera_index(scn->cam, *scn);
 	else if (keynote == F_KEY)
-	{
-		i = next_filter_index(i);
-		mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[i], 0, 0);
-		put_legend(*scn);
-	}
+		scn->cam = next_filter_index(scn->cam);
+	display(scn);
+	put_legend(*scn);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 18:58:26 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 21:24:03 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void		draw(t_scene scn, int n_cam)
 			(scn.img_data[n_cam + 3])[p[0] * scn.w + p[1]] = compo(color, 0);
 			(scn.img_data[n_cam + 4])[p[0] * scn.w + p[1]] = compo(color, 1);
 			(scn.img_data[n_cam + 5])[p[0] * scn.w + p[1]] = compo(color, 2);
-			progress(p[0], p[1], scn, n_cam);
+			progress(p[0], p[1], scn, n_cam / FILTERS);
 		}
 	}
 }
@@ -96,7 +96,7 @@ static void		draw_aliasing(t_scene scn, int n_cam)
 			(scn.img_data[n_cam + 3])[p[0] * scn.w + p[1]] = compo(color, 0);
 			(scn.img_data[n_cam + 4])[p[0] * scn.w + p[1]] = compo(color, 1);
 			(scn.img_data[n_cam + 5])[p[0] * scn.w + p[1]] = compo(color, 2);
-			progress(p[0], p[1], scn, n_cam);
+			progress(p[0], p[1], scn, n_cam / FILTERS);
 		}
 	}
 }

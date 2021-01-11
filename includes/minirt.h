@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 21:52:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 18:58:28 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 21:29:19 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,15 +118,12 @@ typedef struct	s_scene
 	int		endian;
 	int		bpp;
 	int		size_line;
-}				t_scene;
-
-typedef struct	s_option
-{
+	int		cam;
 	char	*file;
 	char	*file_save;
 	int		aliasing;
 	int		save;
-}				t_option;
+}				t_scene;
 
 typedef double	(*t_interfunc)(t_ray, t_obj);
 
@@ -217,8 +214,8 @@ int				parse_lum(t_scene *scene, char *line);
 int				parse_cam(t_scene *scene, char *line);
 int				parse_amb(t_scene *scene, char *line);
 int				parse_res(t_scene *scene, char *line);
-int				parse_file(t_option opt, t_scene *scene);
-int				options(int argc, char **argv, t_option *opt);
+int				parse_file(t_scene *scene);
+int				options(int argc, char **argv, t_scene *scn);
 int				get_numbers(int *fd, t_scene *scene);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 21:39:16 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 21:28:43 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,35 @@ static char	*bmp_filename(char *file, char dir[4], char ext[4])
 	return (filename);
 }
 
-static int	fill_save_options(t_option *opt, char **argv, int argc, int i)
+static int	fill_save_options(t_scene *scn, char **argv, int argc, int i)
 {
-	opt->save = 1;
+	scn->save = 1;
 	if (i + 1 < argc && ft_strcmp("-a", argv[i + 1]) != 0)
 	{
-		opt->file_save = bmp_filename(argv[i + 1], "bmp/", ".bmp");
-		opt->save = 2;
+		scn->file_save = bmp_filename(argv[i + 1], "bmp/", ".bmp");
+		scn->save = 2;
 		return (i + 1);
 	}
 	return (i);
 }
 
-int			options(int argc, char **argv, t_option *opt)
+int			options(int argc, char **argv, t_scene *scn)
 {
 	int	i;
 
 	if (argc < 2)
 		return (-1);
-	opt->file = argv[1];
-	opt->file_save = "bmp/save.bmp";
-	opt->aliasing = 0;
-	opt->save = 0;
+	scn->file = argv[1];
+	scn->file_save = "bmp/save.bmp";
+	scn->aliasing = 0;
+	scn->save = 0;
 	i = 1;
 	while (++i < argc)
 	{
 		if (ft_strcmp("-a", argv[i]) == 0)
-			opt->aliasing = 1;
+			scn->aliasing = 1;
 		else if (ft_strcmp("-save", argv[i]) == 0)
-			i = fill_save_options(opt, argv, argc, i);
+			i = fill_save_options(scn, argv, argc, i);
 		else
 			return (-1);
 	}

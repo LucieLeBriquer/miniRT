@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 18:56:39 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 21:34:16 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,68 +25,66 @@ void		put_legend(t_scene scene)
 static void	render_case(t_scene *scene, int aliasing)
 {
 	render(*scene, aliasing, scene->nb_cam);
-	mlx_put_image_to_window(scene->mlx, scene->win, (scene->img_ptr)[0], 0, 0);
+	display(scene);
 	put_legend(*scene);
-	mlx_hook(scene->win, DESTROY, (1L<<17), exit_scene, scene);
-	mlx_hook(scene->win, 2, (1L<<0), next_cam, scene);
-	mlx_hook(scene->win, 14, (1L<<15), display, scene);
+	mlx_hook(scene->win, DESTROY, (1L << 17), exit_scene, scene);
+	mlx_hook(scene->win, 2, (1L << 0), next_cam, scene);
+	mlx_hook(scene->win, 14, (1L << 15), display, scene);
 	mlx_loop(scene->mlx);
 }
 
-static void	save_case(t_scene *scene, t_option opt)
+static void	save_case(t_scene *scene)
 {
 	int	err_bmp;
 
-	render(*scene, opt.aliasing, 1);
-	err_bmp = create_bmp(*scene, opt.file_save);
+	render(*scene, scene->aliasing, 1);
+	err_bmp = create_bmp(*scene, scene->file_save);
 	if (err_bmp == -1)
 		ft_printf("Error : Allocation's issues\n");
 	else if (err_bmp == -2)
-		ft_printf("Error : Cannot write on %s\n", opt.file_save);
-	if (opt.save == 2)
-		free(opt.file_save);
+		ft_printf("Error : Cannot write on %s\n", scene->file_save);
+	if (scene->save == 2)
+		free(scene->file_save);
 	exit_scene(scene);
 }
 
-static void	create_window(t_scene *scene, t_option opt)
+static void	create_window(t_scene *scene)
 {
 	int	height;
 	int	width;
 
-	//mlx_get_screen_size(scene->mlx, &width, &height);
-	width = scene->w;
-	height = scene->h;
-	if (opt.save == 0)
+	mlx_get_screen_size(scene->mlx, &width, &height);
+	if (scene->save == 0)
 	{
 		scene->w = fmin(scene->w, width);
 		scene->h = fmin(scene->h, height);
-		scene->win = mlx_new_window(scene->mlx, scene->w, scene->h, opt.file);
+		scene->win = mlx_new_window(scene->mlx, scene->w,
+			scene->h, scene->file);
 	}
 	else
-		scene->win = mlx_new_window(scene->mlx, 1, 1, opt.file);
+		scene->win = mlx_new_window(scene->mlx, 1, 1, scene->file);
 }
 
 int			main(int argc, char **argv)
 {
 	t_scene		scene;
-	t_option	opt;
 	int			error_parse;
 
 	scene.mlx = mlx_init();
-	if (options(argc, argv, &opt) < 0)
+	if (options(argc, argv, &scene) < 0)
 		return (print_errors_and_free(-2, scene));
-	error_parse = parse_file(opt, &scene);
+	error_parse = parse_file(&scene);
 	if (error_parse < 0)
 		return (print_errors_and_free(error_parse, scene));
-	create_window(&scene, opt);
+	create_window(&scene);
 	if (init_image(&scene) == 0)
 	{
 		exit_scene(&scene);
 		return (ft_printf("Error : Allocation's issues\n"));
 	}
-	if (opt.save == 0)
-		render_case(&scene, opt.aliasing);
-	else if (opt.save > 0)
-		save_case(&scene, opt);
+	if (scene.save == 0)
+		render_case(&scene, scene.aliasing);
+	else if (scene.save > 0)
+		save_case(&scene);
 	return (0);
 }

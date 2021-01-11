@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 18:57:40 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 21:33:45 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	progress(int i, int j, t_scene scn, int n_cam)
 	if (new > prog)
 	{
 		prog = new;
-		ft_printf("\rRendering view %2d/%-2d", n_cam / FILTERS + 1, scn.nb_cam);
+		if (scn.save)
+			ft_printf("\rRendering view %2d/%-2d", n_cam + 1, 1);
+		else
+			ft_printf("\rRendering view %2d/%-2d", n_cam + 1, scn.nb_cam);
 		ft_printf(" [%3d%%]", prog);
 		fflush(stdout);
 	}
@@ -31,5 +34,8 @@ void	progress(int i, int j, t_scene scn, int n_cam)
 
 void	progress_final(t_scene scn, int i)
 {
-	ft_printf("\rRendering view %2d/%-2d [100%%]\n", i + 1, scn.nb_cam);
+	if (scn.save)
+		ft_printf("\rRendering view %2d/%-2d [100%%]\n", i + 1, 1);
+	else
+		ft_printf("\rRendering view %2d/%-2d [100%%]\n", i + 1, scn.nb_cam);
 }

@@ -6,7 +6,7 @@
 /*   By: lle-briq <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:27:26 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 21:37:40 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 21:18:03 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	fill_info_img(t_scene *scene, int bpp, int endian, int size_line)
 	scene->bpp = bpp;
 	scene->endian = endian;
 	scene->size_line = size_line;
+	scene->cam = 0;
 }
 
 int			init_image(t_scene *scene)

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 15:24:19 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 21:33:06 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ int			parse(int fd, t_scene *scene)
 	return (scene->w > 0 && scene->h > 0 && scene->nb_cam > 0);
 }
 
-int			parse_file(t_option opt, t_scene *scene)
+int			parse_file(t_scene *scene)
 {
 	int		fd;
 	int		err_parse;
 
-	fd = open(opt.file, O_RDONLY);
+	fd = open(scene->file, O_RDONLY);
 	if (fd > 0)
 	{
 		scene->nb_cam = 0;
@@ -75,7 +75,7 @@ int			parse_file(t_option opt, t_scene *scene)
 		scene->nb_obj = 0;
 		if (!get_numbers(&fd, scene))
 			return (-4 * (1 + close(fd)));
-		fd = open(opt.file, O_RDONLY);
+		fd = open(scene->file, O_RDONLY);
 		err_parse = parse(fd, scene);
 		if (err_parse == 0)
 			return (-5 * (1 + close(fd)));
