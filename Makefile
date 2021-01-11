@@ -48,6 +48,7 @@ SRCS		= $(addprefix sources/, minirt.c \
 			display/init.c \
 			display/progress.c \
 			display/rendering.c \
+			display/bitmap.c \
 			parse/converter.c \
 			parse/count.c \
 			parse/global.c \
@@ -64,10 +65,6 @@ SRCS		= $(addprefix sources/, minirt.c \
 			parse/objs/square.c \
 			parse/objs/triangle.c \
 			parse/options.c \
-			print/bmp.c \
-			print/print_elem.c \
-			print/print_obj.c \
-			print/print_parsing.c \
 			raytracing/color.c \
 			raytracing/inter_0sphere.c \
 			raytracing/inter_1plane.c \
