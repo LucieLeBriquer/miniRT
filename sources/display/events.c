@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 12:39:56 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 17:18:16 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ static int	next_filter_index(int i)
 		return (i + 1);
 	else
 		return (FILTERS * (i / FILTERS));
+}
+
+int			display(t_scene *scn)
+{
+	mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[0], 0, 0);
+	(void)scn;
+	return (1);
 }
 
 int			next_cam(int keynote, t_scene *scn)

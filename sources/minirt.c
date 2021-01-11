@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 13:07:38 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 17:15:37 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void		put_legend(t_scene scene)
 {
-	mlx_string_put(scene.mlx, scene.win, 10, 20, 16777215,
+	mlx_string_put(scene.mlx, scene.win, 10, 10, 16777215,
 			"<- -> to switch camera");
-	mlx_string_put(scene.mlx, scene.win, 10, 35, 16777215,
+	mlx_string_put(scene.mlx, scene.win, 10, 30, 16777215,
 			"f to change filter");
 	mlx_string_put(scene.mlx, scene.win, 10, 50, 16777215,
 			"ESC to quit");
@@ -27,8 +27,9 @@ static void	render_case(t_scene *scene, int aliasing)
 	render(*scene, aliasing);
 	mlx_put_image_to_window(scene->mlx, scene->win, (scene->img_ptr)[0], 0, 0);
 	put_legend(*scene);
-	mlx_hook(scene->win, DESTROY, (1L << 17), exit_scene, scene);
-	mlx_hook(scene->win, 2, (1L << 0), next_cam, scene);
+	mlx_hook(scene->win, DESTROY, (1L<<17), exit_scene, scene);
+	mlx_hook(scene->win, 2, (1L<<0), next_cam, scene);
+	mlx_hook(scene->win, 14, (1L<<15), display, scene);
 	mlx_loop(scene->mlx);
 }
 

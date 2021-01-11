@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 21:52:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 15:23:20 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 17:14:17 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void			init_base(t_base *base, t_vect c_axe);
 void			rotate(t_vect *rayd, t_base base);
 int				exit_scene(t_scene *scene);
 int				next_cam(int keynote, t_scene *scn);
+int				display(t_scene *scn);
 void			free_all(t_scene scene);
 int				print_errors_and_free(int err, t_scene scene);
 void			progress(int i, int j, t_scene scn, int n_cam);
