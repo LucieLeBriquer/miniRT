@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 21:52:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 13:08:10 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:27:21 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ int				parse_pln(t_scene *scene, char *line, int nb);
 int				parse_sph(t_scene *scene, char *line, int nb);
 int				parse_con(t_scene *scene, char *line, int nb);
 int				parse_cir(t_scene *scene, char *line, int nb);
+int				parse_cyc(t_scene *scene, char *line, int nb);
 int				skip_double(char *line);
 int				skip_vect(char *line);
 int				to_double(char *line, double *f);

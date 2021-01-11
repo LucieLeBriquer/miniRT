@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 12:57:26 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:27:48 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,7 @@ int	parse_obj(t_scene *scene, char *line)
 		return (parse_con(scene, line + 2, nb));
 	if (line[0] == 'c' && line[1] == 'i')
 		return (parse_cir(scene, line + 2, nb));
+	if (line[0] == 'c' && line[1] == 'c')
+		return (parse_cyc(scene, line + 2, nb));
 	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:24:51 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 13:05:16 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:26:46 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,17 @@ int			parse(int fd, t_scene *scene)
 	return (scene->w > 0 && scene->h > 0 && scene->nb_cam > 0);
 }
 
+static int	nb_subobjects(char *line, int i)
+{
+	if (line[i] == 'c' && line[i + 1] == 'c')
+		return (3);
+	if (line[i] == 'c' && line[i + 1] == 'b')
+		return (6);
+	if (line[i] == 'p' && line[i + 1] == 'y')
+		return (5);
+	return (1);
+}
+
 int			get_numbers(int *fd, t_scene *scene)
 {
 	char	*line;
@@ -81,7 +92,7 @@ int			get_numbers(int *fd, t_scene *scene)
 			scene->nb_lum++;
 		else if (line[i] != '\0' && line[i] != 'R' && 
 				line[i] != 'A' && line[i] != '#')
-			scene->nb_obj++;
+				scene->nb_obj += nb_subobjects(line, i);
 		free(line);
 	}
 	free(line);
@@ -103,6 +114,7 @@ int			parse_file(t_option opt, t_scene *scene)
 			return (-4 * (1 + close(fd)));
 		fd = open(opt.file, O_RDONLY);
 		err_parse = parse(fd, scene);
+		print_parsing(*scene);
 		if (err_parse == 0)
 			return (-5 * (1 + close(fd)));
 		if (err_parse < 0)
