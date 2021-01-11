@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 13:27:46 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:38:38 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		parse_con(t_scene *scene, char *line, int nb)
+int			parse_con(t_scene *scene, char *line, int *nb)
 {
 	t_obj	con;
 
@@ -34,11 +34,12 @@ int		parse_con(t_scene *scene, char *line, int nb)
 	if (to_col(line, &(con.col)) == -1)
 		return (-1);
 	con.type = CONE;
-	(scene->objs)[nb - 1] = con;
+	(scene->objs)[*nb] = con;
+	*nb += 1;
 	return (1);
 }
 
-int		parse_cir(t_scene *scene, char *line, int nb)
+int			parse_cir(t_scene *scene, char *line, int *nb)
 {
 	t_obj	cir;
 
@@ -57,11 +58,12 @@ int		parse_cir(t_scene *scene, char *line, int nb)
 	if (to_col(line, &(cir.col)) == -1)
 		return (-1);
 	cir.type = CIRCLE;
-	(scene->objs)[nb - 1] = cir;
+	(scene->objs)[*nb] = cir;
+	*nb += 1;
 	return (1);
 }
 
-void	add_circles_cylinder(t_scene *scene, t_obj cyl, int nb)
+static void	add_circles_cylinder(t_scene *scene, t_obj cyl, int nb)
 {
 	t_obj	cir[2];
 	t_vect	o[2];
@@ -78,11 +80,11 @@ void	add_circles_cylinder(t_scene *scene, t_obj cyl, int nb)
 	cir[1].axe = cyl.axe;
 	cir[1].col = cyl.col;
 	cir[1].type = CIRCLE;
-	(scene->objs)[nb] = cir[0];
-	(scene->objs)[nb + 1] = cir[1];
+	(scene->objs)[nb + 1] = cir[0];
+	(scene->objs)[nb + 2] = cir[1];
 }
 
-int		parse_cyc(t_scene *scene, char *line, int nb)
+int			parse_cyc(t_scene *scene, char *line, int *nb)
 {
 	t_obj	cyl;
 
@@ -104,7 +106,8 @@ int		parse_cyc(t_scene *scene, char *line, int nb)
 	if (to_col(line, &(cyl.col)) == -1)
 		return (-1);
 	cyl.type = CYLINDER;
-	(scene->objs)[nb - 1] = cyl;
-	add_circles_cylinder(scene, cyl, nb);
+	(scene->objs)[*nb] = cyl;
+	add_circles_cylinder(scene, cyl, *nb);
+	*nb += 3;
 	return (1);
 }

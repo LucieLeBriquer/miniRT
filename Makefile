@@ -12,9 +12,13 @@ LIBS_LIN	= libraries/libmlx_Linux.a \
 LIBS_MAC	= -framework OpenGL -framework AppKit -lm \
 			libraries/libmlx_mac.a libraries/libftfull.a
 
-NORME		= ~/.norminette/norminette.rb
-
 UNAME		:= $(shell uname -s)
+
+ifeq ($(UNAME), Darwin)
+	NORME		= norminette
+else
+	NORME		= ~/.norminette/norminette.rb
+endif
 
 ifeq ($(UNAME), Darwin)
 	LIBS		= $(LIBS_MAC)
@@ -45,11 +49,13 @@ SRCS		= $(addprefix sources/, minirt.c \
 			display/progress.c \
 			display/rendering.c \
 			parse/converter.c \
+			parse/count.c \
 			parse/global.c \
 			parse/parse.c \
 			parse/skip.c \
 			parse/obj1.c \
 			parse/obj2.c \
+			parse/obj3.c \
 			parse/options.c \
 			print/bmp.c \
 			print/print_elem.c \

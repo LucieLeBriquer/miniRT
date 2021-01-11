@@ -6,13 +6,13 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 13:00:35 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 15:01:17 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	parse_sph(t_scene *scene, char *line, int nb)
+int	parse_sph(t_scene *scene, char *line, int *nb)
 {
 	t_obj	sph;
 
@@ -28,11 +28,12 @@ int	parse_sph(t_scene *scene, char *line, int nb)
 		return (-1);
 	sph.type = SPHERE;
 	sph.r = sph.r / 2;
-	(scene->objs)[nb - 1] = sph;
+	(scene->objs)[*nb] = sph;
+	*nb += 1;
 	return (1);
 }
 
-int	parse_pln(t_scene *scene, char *line, int nb)
+int	parse_pln(t_scene *scene, char *line, int *nb)
 {
 	t_obj	pln;
 
@@ -47,11 +48,12 @@ int	parse_pln(t_scene *scene, char *line, int nb)
 	if (to_col(line, &(pln.col)) == -1)
 		return (-1);
 	pln.type = PLANE;
-	(scene->objs)[nb - 1] = pln;
+	(scene->objs)[*nb] = pln;
+	*nb += 1;
 	return (1);
 }
 
-int	parse_sqr(t_scene *scene, char *line, int nb)
+int	parse_sqr(t_scene *scene, char *line, int *nb)
 {
 	t_obj	sqr;
 
@@ -69,11 +71,12 @@ int	parse_sqr(t_scene *scene, char *line, int nb)
 	if (to_col(line, &(sqr.col)) == -1)
 		return (-1);
 	sqr.type = SQUARE;
-	(scene->objs)[nb - 1] = sqr;
+	(scene->objs)[*nb] = sqr;
+	*nb += 1;
 	return (1);
 }
 
-int	parse_cyl(t_scene *scene, char *line, int nb)
+int	parse_cyl(t_scene *scene, char *line, int *nb)
 {
 	t_obj	cyl;
 
@@ -95,11 +98,12 @@ int	parse_cyl(t_scene *scene, char *line, int nb)
 	if (to_col(line, &(cyl.col)) == -1)
 		return (-1);
 	cyl.type = CYLINDER;
-	(scene->objs)[nb - 1] = cyl;
+	(scene->objs)[*nb] = cyl;
+	*nb += 1;
 	return (1);
 }
 
-int	parse_trg(t_scene *scene, char *line, int nb)
+int	parse_trg(t_scene *scene, char *line, int *nb)
 {
 	t_obj	trg;
 
@@ -119,6 +123,7 @@ int	parse_trg(t_scene *scene, char *line, int nb)
 	trg.type = TRIANGLE;
 	trg.axe = prod_vect(sub_vect(trg.q, trg.o), sub_vect(trg.p, trg.o));
 	normalize(&(trg.axe));
-	(scene->objs)[nb - 1] = trg;
+	(scene->objs)[*nb] = trg;
+	*nb += 1;
 	return (1);
 }

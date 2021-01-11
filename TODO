@@ -1,23 +1,14 @@
 TODO
 - implementer tore
-- implementer cercle
-- cylinder avec capuchon -> cylindre + cercle
-- cube -> 6 carres
 - pyramide -> 4 triangles et un care
 - reverifier camera sur une scene easy
 - commenter le code
 
-BONUS :
+BONUS
 - Normal disruption: par exemple utiliser sine pour avoir un effet de vague.
 - Color disruption: par exemple, un plateau d’échecs
 - Color disruption: un effet arc-en-ciel.
-- Un capuchon sur les cylindres
 - Lumière parrallèle : la lumière suit une direction précise
-- Élement composé : Cube (6 carrés)
-- Élement composé : Pyramide (4 triangles, un carré)
-- Un autre objet de second degré : Cone, hyperboloide, paraboloide...
-- Filtre de couleurs : Sepia, R/G/B...
-- Anti-aliasing
 - Stéréoscopie simple (comme des lunettes vert/rouge)
 - Rendu multithreadé
 - Texture sur les sphères (uv mapping)
@@ -34,3 +25,13 @@ OK
 - cas ou res > res_screen 
 - implementer cone
 - faire une legende avec string put
+- implementer cercle
+- cylinder avec capuchon -> cylindre + cercles
+- cube -> 6 carres
+
+BONUS DONE
+- Un capuchon sur les cylindres
+- Élement composé : Cube (6 carrés)
+- Élement composé : Pyramide (4 triangles, un carré)
+- Filtre de couleurs : Sepia, R/G/B...
+- Un autre objet de second degré : Cone, hyperboloide, paraboloide...

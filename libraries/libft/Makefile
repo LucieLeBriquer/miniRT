@@ -3,7 +3,13 @@ CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -rf
 NAME		= libftfull.a
 LIB			= ar rcs
-NORME		= ~/.norminette/norminette.rb
+UNAME		:= $(shell uname -s)
+
+ifeq ($(UNAME), Darwin)
+	NORME		= norminette
+else
+	NORME		= ~/.norminette/norminette.rb
+endif
 
 INCS_DIR	= includes/
 INCS		= $(addprefix $(INCS_DIR), libftfull.h)

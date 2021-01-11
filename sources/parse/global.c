@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:22:39 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 13:27:48 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:39:35 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,22 +100,23 @@ int	parse_obj(t_scene *scene, char *line)
 {
 	static int	nb;
 
-	nb++;
 	if (line[0] == 's' && line[1] == 'p')
-		return (parse_sph(scene, line + 2, nb));
+		return (parse_sph(scene, line + 2, &nb));
 	if (line[0] == 'p' && line[1] == 'l')
-		return (parse_pln(scene, line + 2, nb));
+		return (parse_pln(scene, line + 2, &nb));
 	if (line[0] == 's' && line[1] == 'q')
-		return (parse_sqr(scene, line + 2, nb));
+		return (parse_sqr(scene, line + 2, &nb));
 	if (line[0] == 'c' && line[1] == 'y')
-		return (parse_cyl(scene, line + 2, nb));
+		return (parse_cyl(scene, line + 2, &nb));
 	if (line[0] == 't' && line[1] == 'r')
-		return (parse_trg(scene, line + 2, nb));
+		return (parse_trg(scene, line + 2, &nb));
 	if (line[0] == 'c' && line[1] == 'o')
-		return (parse_con(scene, line + 2, nb));
+		return (parse_con(scene, line + 2, &nb));
 	if (line[0] == 'c' && line[1] == 'i')
-		return (parse_cir(scene, line + 2, nb));
+		return (parse_cir(scene, line + 2, &nb));
 	if (line[0] == 'c' && line[1] == 'c')
-		return (parse_cyc(scene, line + 2, nb));
+		return (parse_cyc(scene, line + 2, &nb));
+	if (line[0] == 'c' && line[1] == 'b')
+		return (parse_cub(scene, line + 2, &nb));
 	return (-1);
 }

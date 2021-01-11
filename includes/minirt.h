@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 21:52:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 13:27:21 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 15:23:20 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,14 +195,16 @@ int				compo(int color, int i);
 ** Parsing
 */
 
-int				parse_trg(t_scene *scene, char *line, int nb);
-int				parse_cyl(t_scene *scene, char *line, int nb);
-int				parse_sqr(t_scene *scene, char *line, int nb);
-int				parse_pln(t_scene *scene, char *line, int nb);
-int				parse_sph(t_scene *scene, char *line, int nb);
-int				parse_con(t_scene *scene, char *line, int nb);
-int				parse_cir(t_scene *scene, char *line, int nb);
-int				parse_cyc(t_scene *scene, char *line, int nb);
+int				parse_trg(t_scene *scene, char *line, int *nb);
+int				parse_cyl(t_scene *scene, char *line, int *nb);
+int				parse_sqr(t_scene *scene, char *line, int *nb);
+int				parse_pln(t_scene *scene, char *line, int *nb);
+int				parse_sph(t_scene *scene, char *line, int *nb);
+int				parse_con(t_scene *scene, char *line, int *nb);
+int				parse_cir(t_scene *scene, char *line, int *nb);
+int				parse_cyc(t_scene *scene, char *line, int *nb);
+int				parse_cub(t_scene *scene, char *line, int *nb);
+int				parse_pyr(t_scene *scene, char *line, int *nb);
 int				skip_double(char *line);
 int				skip_vect(char *line);
 int				to_double(char *line, double *f);
@@ -216,6 +218,7 @@ int				parse_amb(t_scene *scene, char *line);
 int				parse_res(t_scene *scene, char *line);
 int				parse_file(t_option opt, t_scene *scene);
 int				options(int argc, char **argv, t_option *opt);
+int				get_numbers(int *fd, t_scene *scene);
 
 /*
 ** Print A CLEAN
