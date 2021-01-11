@@ -56,6 +56,7 @@ static int	next_filter_index(int i)
 int			display(t_scene *scn)
 {
 	mlx_put_image_to_window(scn->mlx, scn->win, scn->img_ptr[scn->cam], 0, 0);
+	put_legend(*scn);
 	return (1);
 }
 

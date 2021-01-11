@@ -14,11 +14,11 @@
 
 void		put_legend(t_scene scene)
 {
-	mlx_string_put(scene.mlx, scene.win, 10, 10, 16777215,
+	mlx_string_put(scene.mlx, scene.win, 10, 15, 16777215,
 			"<- -> to switch camera");
 	mlx_string_put(scene.mlx, scene.win, 10, 30, 16777215,
 			"f to change filter");
-	mlx_string_put(scene.mlx, scene.win, 10, 50, 16777215,
+	mlx_string_put(scene.mlx, scene.win, 10, 45, 16777215,
 			"ESC to quit");
 }
 
@@ -29,7 +29,7 @@ static void	render_case(t_scene *scene, int aliasing)
 	put_legend(*scene);
 	mlx_hook(scene->win, DESTROY, (1L << 17), exit_scene, scene);
 	mlx_hook(scene->win, 2, (1L << 0), next_cam, scene);
-	mlx_hook(scene->win, 14, (1L << 15), display, scene);
+	mlx_hook(scene->win, 12, (1L << 15), display, scene);
 	mlx_loop(scene->mlx);
 }
 
