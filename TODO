@@ -3,6 +3,7 @@ TODO
 - faire plusieurs scene pour la correction
 - tester sur la vm
 - commenter le code
+- /!\ exposure mask, bien tester sur la vm
 
 BONUS
 - Normal disruption: par exemple utiliser sine pour avoir un effet de vague.
