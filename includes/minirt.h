@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 21:52:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 12:38:11 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:08:10 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,10 @@
 # define CYLINDER 3
 # define TRIANGLE 4
 # define CONE 5
+# define CIRCLE 6
 # define FILTERS 6
 # define HEADER_SIZE 122
 # include <stdio.h>
-# ifndef LINUX
-#  define LINUX 1
-# endif
 
 typedef struct	s_vect
 {
@@ -182,6 +180,7 @@ double			inter_2square(t_ray ray, t_obj obj);
 double			inter_3cylindre(t_ray ray, t_obj obj);
 double			inter_4triangle(t_ray ray, t_obj obj);
 double			inter_5cone(t_ray ray, t_obj obj);
+double			inter_6circle(t_ray ray, t_obj obj);
 int				inter(t_inter *itr, t_scene scene);
 int				get_color(t_inter *itr, t_scene scn);
 t_vect			get_colors(t_inter *itr, t_scene scn);
@@ -202,6 +201,7 @@ int				parse_sqr(t_scene *scene, char *line, int nb);
 int				parse_pln(t_scene *scene, char *line, int nb);
 int				parse_sph(t_scene *scene, char *line, int nb);
 int				parse_con(t_scene *scene, char *line, int nb);
+int				parse_cir(t_scene *scene, char *line, int nb);
 int				skip_double(char *line);
 int				skip_vect(char *line);
 int				to_double(char *line, double *f);

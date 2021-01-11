@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:43:41 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 21:31:35 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:07:53 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int		fill_useful_vectors(t_inter *itr)
 	return (0);
 }
 
-static void		init_inter_tab(t_interfunc inter_fun[6])
+static void		init_inter_tab(t_interfunc inter_fun[7])
 {
 	inter_fun[0] = &inter_0sphere;
 	inter_fun[1] = &inter_1plane;
@@ -66,11 +66,12 @@ static void		init_inter_tab(t_interfunc inter_fun[6])
 	inter_fun[3] = &inter_3cylindre;
 	inter_fun[4] = &inter_4triangle;
 	inter_fun[5] = &inter_5cone;
+	inter_fun[6] = &inter_6circle;
 }
 
 int				inter(t_inter *itr, t_scene scene)
 {
-	t_interfunc	inter_fun[6];
+	t_interfunc	inter_fun[7];
 	double		new_t;
 	int			i;
 

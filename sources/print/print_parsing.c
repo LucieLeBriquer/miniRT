@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 16:26:57 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/08 12:53:02 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:04:53 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	print_obj(t_obj *obj, int nb_obj)
 			print_sph(obj[i], i);
 		else if (obj[i].type == 1)
 			print_pln(obj[i], i);
-		else if (obj[i].type == 2)
+		else if (obj[i].type == 2 || obj[i].type == 6)
 			print_sqr(obj[i], i);
 		else if (obj[i].type == 3)
 			print_cyl(obj[i], i);

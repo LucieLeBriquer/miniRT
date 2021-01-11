@@ -24,8 +24,6 @@ endif
 
 ifeq ($(UNAME), Darwin)
 	MAC_KEYS	= -D MAC
-else
-	MAC_KEYS	= -D LINUX
 endif
 
 INCS		= $(addprefix includes/, minirt.h \
@@ -64,6 +62,7 @@ SRCS		= $(addprefix sources/, minirt.c \
 			raytracing/inter_3cylinder.c \
 			raytracing/inter_4triangle.c \
 			raytracing/inter_5cone.c \
+			raytracing/inter_6circle.c \
 			raytracing/inter.c \
 			raytracing/filters.c \
 			vector/color_operations.c \
