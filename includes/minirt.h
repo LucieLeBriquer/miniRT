@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 21:52:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 22:22:16 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 12:38:11 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # define FILTERS 6
 # define HEADER_SIZE 122
 # include <stdio.h>
+# ifndef LINUX
+#  define LINUX 1
+# endif
 
 typedef struct	s_vect
 {

@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 22:23:31 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 12:39:56 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			exit_scene(t_scene *scene)
 		free(scene->img_data);
 	}
 	mlx_destroy_window(scene->mlx, scene->win);
-	mlx_destroy_display(scene->mlx);
+	//mlx_destroy_display(scene->mlx);
 	free(scene->mlx);
 	exit(0);
 	return (1);

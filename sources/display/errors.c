@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 21:37:01 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 12:40:17 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int			print_errors_and_free(int err, t_scene scene)
 		ft_printf("Error : Allocation's issues\n");
 		free_all(scene);
 	}
-	mlx_destroy_display(scene.mlx);
+	//mlx_destroy_display(scene.mlx);
 	free(scene.mlx);
 	exit(0);
 	return (0);

@@ -24,6 +24,8 @@ endif
 
 ifeq ($(UNAME), Darwin)
 	MAC_KEYS	= -D MAC
+else
+	MAC_KEYS	= -D LINUX
 endif
 
 INCS		= $(addprefix includes/, minirt.h \

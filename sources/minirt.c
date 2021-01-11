@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:58:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 22:27:17 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/11 12:39:42 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ static void	create_window(t_scene *scene, t_option opt)
 	int	height;
 	int	width;
 
-	mlx_get_screen_size(scene->mlx, &width, &height);
+	//mlx_get_screen_size(scene->mlx, &width, &height);
+	width = scene->w;
+	height = scene->h;
 	if (opt.save == 0)
 	{
 		scene->w = fmin(scene->w, width);
