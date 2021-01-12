@@ -1,7 +1,7 @@
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -rf
-NAME		= minirt 
+NAME		= miniRT 
 NORME		= norminette
 INCS_DIR	= ./includes
 
