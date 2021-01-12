@@ -1,45 +1,17 @@
 CC			= gcc
-
 CFLAGS		= -Wall -Wextra -Werror
-
 RM			= rm -rf
-
 NAME		= minirt 
+NORME		= norminette
+INCS_DIR	= ./includes
 
-LIBS_LIN	= libraries/libmlx_Linux.a \
+LIBS		= libraries/libmlx_Linux.a \
 			libraries/libftfull.a -lXext -lX11 -lm
-
-LIBS_MAC	= -framework OpenGL -framework AppKit -lm \
-			libraries/libmlx_mac.a libraries/libftfull.a
-
-UNAME		:= $(shell uname -s)
-
-ifeq ($(UNAME), Darwin)
-	NORME		= norminette
-else
-	NORME		= ~/.norminette/norminette.rb
-endif
-
-ifeq ($(UNAME), Darwin)
-	LIBS		= $(LIBS_MAC)
-else
-	LIBS		= $(LIBS_LIN)
-endif
-
-ifeq ($(UNAME), Darwin)
-	MAC_KEYS	= -D MAC
-endif
 
 INCS		= $(addprefix includes/, minirt.h \
 			libftfull.h \
 			mlx_code.h \
 			mlx.h)
-
-INCS_NR		= $(addprefix includes/, minirt.h \
-			get_next_line.h \
-			libft.h)
-
-INCS_DIR	= ./includes
 
 SRCS		= $(addprefix sources/, minirt.c \
 			display/camera.c \

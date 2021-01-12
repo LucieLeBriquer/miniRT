@@ -24,11 +24,11 @@ int	parse_cyl(t_scene *scene, char *line, int *nb)
 	if (to_vect_range(line, &(cyl.axe)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_double(line, &(cyl.r)) == -1)
+	if (to_double(line, &(cyl.r)) == -1 || cyl.r < 0)
 		return (-1);
 	cyl.r = cyl.r / 2;
 	line += skip_double(line);
-	if (to_double(line, &(cyl.h)) == -1)
+	if (to_double(line, &(cyl.h)) == -1 || cyl.h < 0)
 		return (-1);
 	line += skip_double(line);
 	if (to_col(line, &(cyl.col)) == -1)

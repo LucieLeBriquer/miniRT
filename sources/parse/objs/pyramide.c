@@ -73,10 +73,10 @@ int			parse_pyr(t_scene *scene, char *line, int *nb)
 	if (to_vect_range(line, &(pyr.axe)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_double(line, &(pyr.r)) == -1)
+	if (to_double(line, &(pyr.r)) == -1 || pyr.r < 0)
 		return (-1);
 	line += skip_double(line);
-	if (to_double(line, &(pyr.h)) == -1)
+	if (to_double(line, &(pyr.h)) == -1 || pyr.h < 0)
 		return (-1);
 	line += skip_double(line);
 	if (to_col(line, &(pyr.col)) == -1)

@@ -57,7 +57,7 @@ int	to_col(char *line, t_col *col)
 	int		c;
 
 	c = ft_atoi(line);
-	if (c < 0 || c > 255)
+	if (c < 0 || c > 255 || !ft_isdigit(*line))
 		return (-1);
 	col->r = c;
 	while (ft_isdigit(*line))
@@ -66,7 +66,7 @@ int	to_col(char *line, t_col *col)
 		return (-1);
 	line++;
 	c = ft_atoi(line);
-	if (c < 0 || c > 255)
+	if (c < 0 || c > 255 || !ft_isdigit(*line))
 		return (-1);
 	col->g = c;
 	while (ft_isdigit(*line))
@@ -75,7 +75,7 @@ int	to_col(char *line, t_col *col)
 		return (-1);
 	line++;
 	c = ft_atoi(line);
-	if (c < 0 || c > 255)
+	if (c < 0 || c > 255 || !ft_isdigit(*line))
 		return (-1);
 	col->b = c;
 	return (1);

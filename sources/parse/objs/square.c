@@ -24,7 +24,7 @@ int	parse_sqr(t_scene *scene, char *line, int *nb)
 	if (to_vect_range(line, &(sqr.axe)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_double(line, &(sqr.h)) == -1)
+	if (to_double(line, &(sqr.h)) == -1 || sqr.h < 0)
 		return (-1);
 	line += skip_double(line);
 	if (to_col(line, &(sqr.col)) == -1)

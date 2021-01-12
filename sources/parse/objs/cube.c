@@ -107,7 +107,7 @@ int			parse_cub(t_scene *scene, char *line, int *nb)
 	if (to_vect_range(line, &(cub.axe)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_double(line, &(cub.h)) == -1)
+	if (to_double(line, &(cub.h)) == -1 || cub.h < 0)
 		return (-1);
 	line += skip_double(line);
 	if (to_col(line, &(cub.col)) == -1)

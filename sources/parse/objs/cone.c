@@ -24,11 +24,11 @@ int	parse_con(t_scene *scene, char *line, int *nb)
 	if (to_vect_range(line, &(con.axe)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_double(line, &(con.r)) == -1)
+	if (to_double(line, &(con.r)) == -1 || con.r < 0)
 		return (-1);
 	con.r = con.r / 2;
 	line += skip_double(line);
-	if (to_double(line, &(con.h)) == -1)
+	if (to_double(line, &(con.h)) == -1 || con.h < 0)
 		return (-1);
 	line += skip_double(line);
 	if (to_col(line, &(con.col)) == -1)

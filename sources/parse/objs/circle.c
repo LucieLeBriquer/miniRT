@@ -24,7 +24,7 @@ int	parse_cir(t_scene *scene, char *line, int *nb)
 	if (to_vect_range(line, &(cir.axe)) == -1)
 		return (-1);
 	line += skip_vect(line);
-	if (to_double(line, &(cir.r)) == -1)
+	if (to_double(line, &(cir.r)) == -1 || cir.r < 0)
 		return (-1);
 	cir.r = cir.r / 2;
 	line += skip_double(line);
