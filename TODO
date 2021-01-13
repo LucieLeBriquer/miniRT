@@ -1,3 +1,5 @@
 TODO
-- commenter le code
-- /!\ exposure mask, bien tester sur la vm
+- maybe faire le open avant pour ne pas calculer pour rien
+- extension .rt
+- remplacer par --save
+- rotation de camera
