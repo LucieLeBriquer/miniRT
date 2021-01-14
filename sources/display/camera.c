@@ -30,8 +30,16 @@ void	init_base(t_base *base, t_vect c_axe)
 
 void	rotate(t_vect *rayd, t_base base)
 {
-	rayd->x = dot(*rayd, base.x_axis);
+	t_vect	tmp;
+	/*rayd->x = dot(*rayd, base.x_axis);
 	rayd->y = dot(*rayd, base.y_axis);
-	rayd->z = dot(*rayd, base.z_axis);
+	rayd->z = dot(*rayd, base.z_axis);*/
+	tmp.x = rayd->x * base.x_axis.x + rayd->y * base.y_axis.x + rayd->z *
+	base.z_axis.x;
+	tmp.y = rayd->x * base.x_axis.y + rayd->y * base.y_axis.y + rayd->z *
+	base.z_axis.y;
+	tmp.z = rayd->x * base.x_axis.z + rayd->y * base.y_axis.z + rayd->z *
+	base.z_axis.z;
+	*rayd = tmp;
 	normalize(rayd);
 }
