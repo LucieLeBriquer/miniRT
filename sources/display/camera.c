@@ -17,7 +17,8 @@ void	init_base(t_base *base, t_vect c_axe)
 	t_vect	u;
 
 	init_vect(&u, 0, 1, 0);
-	base->z_axis = mul_vect(-1, c_axe);
+	//base->z_axis = mul_vect(-1, c_axe);
+	base->z_axis = c_axe;
 	if (fabs(c_axe.y) == 1)
 		init_vect(&(base->x_axis), 1, 0, 0);
 	else

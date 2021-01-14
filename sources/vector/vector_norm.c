@@ -44,6 +44,6 @@ void	normalize_and_reverse(t_vect *u)
 	{
 		u->x = -u->x / n;
 		u->y = -u->y / n;
-		u->z = u->z / n;
+		u->z = -u->z / n;
 	}
 }
