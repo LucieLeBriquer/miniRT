@@ -72,7 +72,7 @@ int			options(int argc, char **argv, t_scene *scn)
 	{
 		if (ft_strcmp("-a", argv[i]) == 0)
 			scn->aliasing = 1;
-		else if (ft_strcmp("-save", argv[i]) == 0)
+		else if (ft_strcmp("--save", argv[i]) == 0)
 			i = fill_save_options(scn, argv, argc, i);
 		else
 			return (-1);

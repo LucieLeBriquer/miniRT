@@ -18,6 +18,8 @@ int	parse_res(t_scene *scene, char *line)
 	int		height;
 
 	line++;
+	if (scene->w > 0 || scene->h > 0)
+		return (-1);
 	while (ft_isspace(*line))
 		line++;
 	width = ft_atoi(line);
@@ -40,6 +42,8 @@ int	parse_amb(t_scene *scene, char *line)
 	double	amb;
 	t_col	col;
 
+	if (scene->amb >= 0)
+		return (-1);
 	while (ft_isspace(*line))
 		line++;
 	if (to_double(line, &amb) < 0 || amb < 0 || amb > 1)

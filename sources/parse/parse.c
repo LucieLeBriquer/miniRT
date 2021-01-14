@@ -46,6 +46,7 @@ int			parse(int fd, t_scene *scene)
 		return (-1);
 	scene->w = -1;
 	scene->h = -1;
+	scene->amb = -1;
 	scene->error_line = 1;
 	while (get_next_line(fd, &line) == 1)
 	{
@@ -58,6 +59,8 @@ int			parse(int fd, t_scene *scene)
 		free(line);
 	}
 	free(line);
+	if (scene->amb < 0)
+		scene->amb = 0;
 	scene->error_line = -1;
 	return (scene->w > 0 && scene->h > 0 && scene->nb_cam > 0);
 }

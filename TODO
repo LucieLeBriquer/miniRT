@@ -1,5 +1,5 @@
 TODO
 - maybe faire le open avant pour ne pas calculer pour rien
 - extension .rt
-- remplacer par --save
 - rotation de camera
+- lumiere ambiante obligatoire
