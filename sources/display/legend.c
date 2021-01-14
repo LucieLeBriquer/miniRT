@@ -12,13 +12,21 @@
 
 #include "minirt.h"
 
+static void	fill_str(char *str_cam)
+{
+	str_cam[0] = 'c';
+	str_cam[1] = 'a';
+	str_cam[2] = 'm';
+	str_cam[3] = ' ';
+}
+
 static char	*create_str_cam(t_scene scene, int *s)
 {
 	char	*str_cam;
 	int		size;
 	int		cam;
 	int		i;
-	
+
 	size = 0;
 	cam = scene.cam / FILTERS;
 	if (cam == 0)
@@ -35,10 +43,7 @@ static char	*create_str_cam(t_scene scene, int *s)
 		str_cam[size + 3 - i] = (cam % 10) + '0';
 		cam = cam / 10;
 	}
-	str_cam[0] = 'c';
-	str_cam[1] = 'a';
-	str_cam[2] = 'm';
-	str_cam[3] = ' ';
+	fill_str(str_cam);
 	*s = size + 5;
 	return (str_cam);
 }
