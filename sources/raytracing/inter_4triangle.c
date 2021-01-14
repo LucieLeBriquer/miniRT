@@ -19,7 +19,7 @@ int		is_inside(t_vect u, t_vect v, t_vect w, t_vect point)
 
 	v1 = prod_vect(sub_vect(v, u), sub_vect(w, u));
 	v2 = prod_vect(sub_vect(v, u), sub_vect(point, u));
-	if (dot(v1, v2) < 0.00001)
+	if (dot(v1, v2) < -0.01)
 		return (0);
 	return (1);
 }

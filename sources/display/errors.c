@@ -51,6 +51,8 @@ int			print_errors_and_free(int err, t_scene scene)
 		ft_printf("Error : Allocation's issues\n");
 		free_all(scene);
 	}
+	else if (err == -7)
+		ft_printf("Error : file hasn't .rt extension\n");
 	mlx_destroy_display(scene.mlx);
 	free(scene.mlx);
 	exit(0);

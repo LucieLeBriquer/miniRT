@@ -14,13 +14,14 @@ INCS		= $(addprefix includes/, minirt.h \
 			mlx.h)
 
 SRCS		= $(addprefix sources/, minirt.c \
+			display/bitmap.c \
 			display/camera.c \
 			display/errors.c \
 			display/events.c \
 			display/init.c \
+			display/legend.c \
 			display/progress.c \
 			display/rendering.c \
-			display/bitmap.c \
 			parse/converter.c \
 			parse/count.c \
 			parse/global.c \
@@ -58,16 +59,16 @@ OBJS		= $(SRCS:.c=.o)
 SHELL		= bash
 
 %.o			: %.c
+			@echo -ne "\rCompiling all objs for miniRT\t\t"
 			@$(CC) $(CFLAGS) $(MAC_KEYS) -I$(INCS_DIR) -c $< -o $@
 
 all			: $(NAME)
 
-$(NAME)		: $(OBJS) $(INCS) libs
-			@echo -ne "Compiling all objs for miniRT\t\t"
+$(NAME)		: $(LIBS) $(OBJS) $(INCS)
 			@$(CC) -I$(INCS_DIR) $(MAC_KEYS) $(OBJS) $(LIBS) -o $(NAME)
 			@echo "OK"
 
-libs		:
+$(LIBS)		:
 			@echo -ne "Updating libft\t\t\t\t"
 			@$(MAKE) --no-print-directory -s -C ./libraries/libft/
 			@cp ./libraries/libft/libftfull.a ./libraries
@@ -75,7 +76,7 @@ libs		:
 			@echo "OK"
 
 norme		:
-			@$(NORME) $(SRCS) $(INCS)
+			@norminette $(SRCS) $(INCS)
 			@$(MAKE) --no-print-directory norme -C ./libraries/libft/
 
 clean:
@@ -97,4 +98,4 @@ docu		:
 
 re			: fclean libclean all
 
-.PHONY		: all clean fclean re libs norme libclean docu
+.PHONY		: all clean fclean re norme libclean docu

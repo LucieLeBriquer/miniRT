@@ -57,6 +57,16 @@ static int	fill_save_options(t_scene *scn, char **argv, int argc, int i)
 	return (i);
 }
 
+static int	not_rt(char *s)
+{
+	int		l;
+
+	l = ft_strlen(s);
+	if (l < 4 || ft_strcmp(".rt", s + l - 3) != 0)
+		return (1);
+	return (0);
+}
+
 int			options(int argc, char **argv, t_scene *scn)
 {
 	int	i;
@@ -64,6 +74,8 @@ int			options(int argc, char **argv, t_scene *scn)
 	if (argc < 2)
 		return (-1);
 	scn->file = argv[1];
+	if (not_rt(scn->file))
+		return (-2);
 	scn->file_save = "bitmap/save.bmp";
 	scn->aliasing = 0;
 	scn->save = 0;

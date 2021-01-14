@@ -44,10 +44,6 @@ int			parse(int fd, t_scene *scene)
 
 	if (malloc_everything(scene))
 		return (-1);
-	scene->w = -1;
-	scene->h = -1;
-	scene->amb = -1;
-	scene->error_line = 1;
 	while (get_next_line(fd, &line) == 1)
 	{
 		if (parse_line(scene, line) == -1)
@@ -65,6 +61,20 @@ int			parse(int fd, t_scene *scene)
 	return (scene->w > 0 && scene->h > 0 && scene->nb_cam > 0);
 }
 
+static void	init_everything(t_scene *scene)
+{
+	scene->nb_cam = 0;
+	scene->nb_lum = 0;
+	scene->nb_obj = 0;
+	scene->amb_col.r = 0;
+	scene->amb_col.g = 0;
+	scene->amb_col.b = 0;
+	scene->w = -1;
+	scene->h = -1;
+	scene->amb = -1;
+	scene->error_line = 1;
+}
+
 int			parse_file(t_scene *scene)
 {
 	int		fd;
@@ -73,9 +83,7 @@ int			parse_file(t_scene *scene)
 	fd = open(scene->file, O_RDONLY);
 	if (fd > 0)
 	{
-		scene->nb_cam = 0;
-		scene->nb_lum = 0;
-		scene->nb_obj = 0;
+		init_everything(scene);
 		if (!get_numbers(&fd, scene))
 			return (-4 * (1 + close(fd)));
 		fd = open(scene->file, O_RDONLY);

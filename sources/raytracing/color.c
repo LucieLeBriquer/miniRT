@@ -35,7 +35,7 @@ int		is_visible(t_inter itr, t_scene scn, int n_lum)
 	v = sub_vect(scn.lums[n_lum].pos, itr.p);
 	epsilon = 0.00001;
 	init_ray(&(omb.ray), add_vect(itr.p, mul_vect(epsilon, itr.n)), v);
-	if (inter(&omb, scn) && omb.t * omb.t < norm2(v) && omb.t > 2 * epsilon)
+	if (inter(&omb, scn) && omb.t * omb.t < norm2(v))
 		return (0);
 	return (1);
 }

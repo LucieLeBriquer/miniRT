@@ -12,16 +12,6 @@
 
 #include "minirt.h"
 
-void		put_legend(t_scene scene)
-{
-	mlx_string_put(scene.mlx, scene.win, 10, 15, 16777215,
-			"<- -> to switch camera");
-	mlx_string_put(scene.mlx, scene.win, 10, 30, 16777215,
-			"f to change filter");
-	mlx_string_put(scene.mlx, scene.win, 10, 45, 16777215,
-			"ESC to quit");
-}
-
 static void	render_case(t_scene *scene, int aliasing)
 {
 	render(*scene, aliasing, scene->nb_cam);
@@ -71,8 +61,11 @@ int			main(int argc, char **argv)
 	int			error_parse;
 
 	scene.mlx = mlx_init();
-	if (options(argc, argv, &scene) < 0)
+	error_parse = options(argc, argv, &scene);
+	if (error_parse == -1)
 		return (print_errors_and_free(-2, scene));
+	else if (error_parse == -2)
+		return (print_errors_and_free(-7, scene));
 	error_parse = parse_file(&scene);
 	if (error_parse < 0)
 		return (print_errors_and_free(error_parse, scene));

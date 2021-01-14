@@ -17,7 +17,6 @@ void	init_base(t_base *base, t_vect c_axe)
 	t_vect	u;
 
 	init_vect(&u, 0, 1, 0);
-	//base->z_axis = mul_vect(-1, c_axe);
 	base->z_axis = c_axe;
 	if (fabs(c_axe.y) == 1)
 		init_vect(&(base->x_axis), 1, 0, 0);
@@ -32,9 +31,7 @@ void	init_base(t_base *base, t_vect c_axe)
 void	rotate(t_vect *rayd, t_base base)
 {
 	t_vect	tmp;
-	/*rayd->x = dot(*rayd, base.x_axis);
-	rayd->y = dot(*rayd, base.y_axis);
-	rayd->z = dot(*rayd, base.z_axis);*/
+
 	tmp.x = rayd->x * base.x_axis.x + rayd->y * base.y_axis.x + rayd->z *
 	base.z_axis.x;
 	tmp.y = rayd->x * base.x_axis.y + rayd->y * base.y_axis.y + rayd->z *
