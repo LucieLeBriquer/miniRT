@@ -3,6 +3,8 @@
 miniRT
 *.log
 documentation/tex/aux/*
-*/libftfull.a
-*/*/libftfull.a
 .DS_Store
+libraries/libft/libftfull.a
+libraries/mlx/libmlx.a
+libraries/mlx/libmlx_Linux.a
+libraries/mlx/test/mlx-test
