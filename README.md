@@ -27,11 +27,9 @@ make
 ```
 
 ## Bonus
-<ul>
-	<li>Filters (press `f` to change filter)</li>
-	<li>Antialiasing</li>
-	<li>Closed cylinders `cc`</li>
-	<li>Cube `cb`</li>
-	<li>Pyramide `py`</li>
-	<li>Cone `co`</li>
-</ul>
+- Filters (press `f` to change filter)
+- Antialiasing
+- Closed cylinders `cc`
+- Cube `cb`
+- Pyramid `py`
+- Cone `co`
