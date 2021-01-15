@@ -1,19 +1,22 @@
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
+CC			= gcc -Wall -Wextra -Werror
 RM			= rm -rf
 NAME		= miniRT 
 NORME		= norminette
-INCS_DIR	= ./includes
+INCS_DIR	= ./includes/
 
-LIBS		= libraries/libmlx_Linux.a \
-			libraries/libftfull.a -lXext -lX11 -lm
+MLX_DIR		= ./libraries/mlx/
+MLX_INC		= -I$(MLX_DIR)
+MLX_NAME	= $(MLX_DIR)libmlx.a
 
-INCS		= $(addprefix includes/, minirt.h \
-			libftfull.h \
-			mlx_code.h \
-			mlx.h)
+LIB_DIR		= ./libraries/libft/
+LIB_INC		= -I$(LIB_DIR)includes/
+LIB_NAME	= $(LIB_DIR)libftfull.a
 
-SRCS		= $(addprefix sources/, minirt.c \
+LIBS		= -lXext -lX11 -lm
+
+INCS		= $(addprefix $(INCS_DIR), minirt.h mlx_code.h)
+
+SRCS		= $(addprefix ./sources/, minirt.c \
 			display/bitmap.c \
 			display/camera.c \
 			display/errors.c \
@@ -56,46 +59,29 @@ SRCS		= $(addprefix sources/, minirt.c \
 
 OBJS		= $(SRCS:.c=.o)
 
-SHELL		= bash
-
 %.o			: %.c
-			@echo -ne "\rCompiling all objs for miniRT\t\t"
-			@$(CC) $(CFLAGS) $(MAC_KEYS) -I$(INCS_DIR) -c $< -o $@
+			@$(CC) -I$(INCS_DIR) $(LIB_INC) $(MLX_INC) -c $< -o $@
 
 all			: $(NAME)
 
-$(NAME)		: $(LIBS) $(OBJS) $(INCS)
-			@$(CC) $(CFLAGS) -I$(INCS_DIR) $(MAC_KEYS) $(OBJS) $(LIBS) -o $(NAME)
-			@echo "OK"
-
-$(LIBS)		:
-			@echo -ne "Updating libft\t\t\t\t"
-			@$(MAKE) --no-print-directory -s -C ./libraries/libft/
-			@cp ./libraries/libft/libftfull.a ./libraries
-			@cp ./libraries/libft/includes/libftfull.h ./includes
-			@echo "OK"
-
-norme		:
-			@norminette $(SRCS) $(INCS)
-			@$(MAKE) --no-print-directory norme -C ./libraries/libft/
+$(NAME)		: $(OBJS) $(INCS)
+			@make --silent -C $(LIB_DIR)
+			@make --silent -C $(MLX_DIR)
+			@$(CC) $(OBJS) $(LIB_NAME) $(MLX_NAME) -L$(LIB_DIR) -L$(MLX_DIR) \
+			$(LIB_INC) $(MLX_INC) -I$(INCS_DIR) $(LIBS) -o $(NAME)
+			@echo "miniRT compiled"
 
 clean:
-			@echo -ne "Cleaning objs from miniRT\t\t"
+			@$(MAKE) clean --silent -C ./libraries/libft/
 			@$(RM) $(OBJS)
-			@echo "OK"
 
 fclean		: clean
+			@$(MAKE) fclean --silent -C ./libraries/libft/
 			@$(RM) $(NAME)
 
-libclean	:
-			@echo -ne "Cleaning libft\t\t\t\t"
-			@$(MAKE) --no-print-directory fclean -C ./libraries/libft/
-			@$(RM) ./libraries/libftfull.a
-			@echo "OK"
-
 docu		:
-			@$(MAKE) --no-print-directory -s -C ./documentation/
+			@$(MAKE) --silent -C ./documentation/
 
-re			: fclean libclean all
+re			: fclean all
 
-.PHONY		: all clean fclean re norme libclean docu
+.PHONY		: all clean fclean re docu

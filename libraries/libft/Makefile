@@ -103,6 +103,7 @@ all			: $(NAME)
 
 $(NAME)		: $(OBJS) $(INCS)
 			@$(LIB) $(NAME) $(OBJS)
+			@echo "libftfull compiled"
 
 norme		:
 			@$(NORME) $(SRCS) $(PRINT_SRCS) $(INCS)
