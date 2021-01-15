@@ -6,5 +6,6 @@
 </p>
 
 <p align="center">
-  <img src="/bitmap/cat.png">
+  <img  width=49% src="/bitmap/cat.png">
+  <img  width=49% src="/bitmap/fox.png">
 </p>
