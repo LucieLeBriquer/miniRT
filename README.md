@@ -25,3 +25,13 @@ make
 -a to deactivate antialiasing (faster execution)
 --save [name] to export the rendering in bitmap format
 ```
+
+## Bonus
+<ul>
+	<li>Filters (press `f` to change filter)</li>
+	<li>Antialiasing</li>
+	<li>Closed cylinders `cc`</li>
+	<li>Cube `cb`</li>
+	<li>Pyramide `py`</li>
+	<li>Cone `co`</li>
+</ul>
