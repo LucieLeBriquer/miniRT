@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 21:52:50 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/11 21:29:19 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/15 13:39:27 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include "mlx.h"
 # include "mlx_code.h"
 # include "libftfull.h"
-# define CYAN "\033[36m"
-# define WHITE "\033[0m"
 # define SPHERE 0
 # define PLANE 1
 # define SQUARE 2
@@ -216,22 +214,6 @@ int				parse_res(t_scene *scene, char *line);
 int				parse_file(t_scene *scene);
 int				options(int argc, char **argv, t_scene *scn);
 int				get_numbers(int *fd, t_scene *scene);
-
-/*
-** Print A CLEAN
-*/
-
-void			print_parsing(t_scene scene);
-void			print_vect(t_vect v);
-void			print_double(double f);
-void			print_col(t_col col);
-void			newline(void);
-void			newtab(void);
-void			print_sph(t_obj sph, int i);
-void			print_pln(t_obj pln, int i);
-void			print_sqr(t_obj sqr, int i);
-void			print_cyl(t_obj cyl, int i);
-void			print_trg(t_obj trg, int i);
 
 /*
 ** BMP save
