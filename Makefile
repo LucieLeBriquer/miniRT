@@ -65,7 +65,7 @@ SHELL		= bash
 all			: $(NAME)
 
 $(NAME)		: $(LIBS) $(OBJS) $(INCS)
-			@$(CC) -I$(INCS_DIR) $(MAC_KEYS) $(OBJS) $(LIBS) -o $(NAME)
+			@$(CC) $(CFLAGS) -I$(INCS_DIR) $(MAC_KEYS) $(OBJS) $(LIBS) -o $(NAME)
 			@echo "OK"
 
 $(LIBS)		:
