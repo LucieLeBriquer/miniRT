@@ -6,7 +6,7 @@
 /*   By: lle-briq <lle-briq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 05:45:12 by lle-briq          #+#    #+#             */
-/*   Updated: 2021/01/10 21:40:09 by lle-briq         ###   ########.fr       */
+/*   Updated: 2021/01/15 13:36:07 by lle-briq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		is_inside(t_vect u, t_vect v, t_vect w, t_vect point)
 
 	v1 = prod_vect(sub_vect(v, u), sub_vect(w, u));
 	v2 = prod_vect(sub_vect(v, u), sub_vect(point, u));
-	if (dot(v1, v2) < -0.01)
+	if (dot(v1, v2) < 0)
 		return (0);
 	return (1);
 }
