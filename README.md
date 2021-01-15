@@ -11,7 +11,7 @@ Here are some lowpoly :
   <img  width=49% src="/bitmap/cat.png">
   <img  width=49% src="/bitmap/fox.png">
 </p>
-I use <a href="">convertRT</a> to obtain .rt format from .obj objects.
+I use <a href="https://github.com/LucieLeBriquer/convertRT">convertRT</a> to obtain .rt format from .obj objects.
 
 ## Usage
 ```
