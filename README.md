@@ -20,8 +20,8 @@ make
 
 # Execute
 ./miniRT scene.rt [options]
--a to deactivate antialiasing (faster execution)
 
 # Options
+-a to deactivate antialiasing (faster execution)
 --save [name] to export the rendering in bitmap format
 ```
